@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+Route::view('pengguna', 'pendataan.pengguna');
+Route::view('distributor', 'pendataan.distributor');
+Route::view('customer', 'pendataan.customer');
+Route::view('barang', 'pendataan.barang');
+
+Route::view('faktur', 'menu.faktur');
+Route::view('pajak', 'menu.pajak');
+Route::view('penjualan', 'menu.penjualan');
+Route::view('setoran', 'menu.setoran');
+Route::view('stok', 'menu.stok');
 
 Auth::routes();
 

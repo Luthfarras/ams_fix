@@ -244,7 +244,7 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Logo-->
 						<div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
 							<!--begin::Logo image-->
-							<a href="../../demo1/dist/index.html">
+							<a href="/">
 								<img alt="Logo" src="{{ asset('met/dist/assets/media/logos/default-dark.svg') }}" class="h-25px app-sidebar-logo-default" />
 								<img alt="Logo" src="{{ asset('met/dist/assets/media/logos/default-small.svg') }}" class="h-20px app-sidebar-logo-minimize" />
 							</a>
@@ -272,7 +272,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="../../demo1/dist/apps/calendar.html">
+										<a class="menu-link" href="/">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/gen008.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -313,7 +313,7 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="../../demo1/dist/apps/chat/private.html">
+												<a class="menu-link" href="/customer">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -325,7 +325,7 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="../../demo1/dist/apps/chat/group.html">
+												<a class="menu-link" href="/distributor">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -337,7 +337,7 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="../../demo1/dist/apps/chat/drawer.html">
+												<a class="menu-link" href="/barang">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -349,7 +349,7 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="../../demo1/dist/apps/chat/drawer.html">
+												<a class="menu-link" href="/pengguna">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -365,7 +365,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="../../demo1/dist/apps/calendar.html">
+										<a class="menu-link" href="/stok">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/ecm006.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -384,7 +384,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="../../demo1/dist/apps/calendar.html">
+										<a class="menu-link" href="/faktur">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/ecm008.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -404,7 +404,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="../../demo1/dist/apps/calendar.html">
+										<a class="menu-link" href="/setoran">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/fin007.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -423,7 +423,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="../../demo1/dist/apps/calendar.html">
+										<a class="menu-link" href="/penjualan">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/fin005.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -443,7 +443,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="../../demo1/dist/apps/calendar.html">
+										<a class="menu-link" href="/pajak">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/fin001.svg-->
 												<span class="svg-icon svg-icon-2">
