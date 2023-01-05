@@ -530,6 +530,8 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used by this page)-->
+		<script src="{{ asset('met/dist/assets/js/custom/apps/subscriptions/list/export.js') }}"></script>
+		<script src="{{ asset('met/dist/assets/js/custom/apps/subscriptions/list/list.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/widgets.bundle.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/widgets.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/apps/chat/chat.js') }}"></script>

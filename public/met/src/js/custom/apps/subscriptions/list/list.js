@@ -106,12 +106,12 @@ var KTSubscriptionsList = function () {
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + customerName + "?",
+                    text: "Kamu yakin ingin menghapus " + customerName + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
-                    confirmButtonText: "Yes, delete!",
-                    cancelButtonText: "No, cancel",
+                    confirmButtonText: "Ya, Hapus!",
+                    cancelButtonText: "Tidak, Batal",
                     customClass: {
                         confirmButton: "btn fw-bold btn-danger",
                         cancelButton: "btn fw-bold btn-active-light-primary"
@@ -119,10 +119,10 @@ var KTSubscriptionsList = function () {
                 }).then(function (result) {
                     if (result.value) {
                         Swal.fire({
-                            text: "You have deleted " + customerName + "!.",
+                            text: "Kamu Menghapus " + customerName + "!.",
                             icon: "success",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke, Selesai",
                             customClass: {
                                 confirmButton: "btn fw-bold btn-primary",
                             }
@@ -135,10 +135,10 @@ var KTSubscriptionsList = function () {
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: customerName + " was not deleted.",
+                            text: customerName + " tidak dihapus.",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke, Selesai",
                             customClass: {
                                 confirmButton: "btn fw-bold btn-primary",
                             }
@@ -175,12 +175,12 @@ var KTSubscriptionsList = function () {
         deleteSelected.addEventListener('click', function () {
             // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
             Swal.fire({
-                text: "Are you sure you want to delete selected customers?",
+                text: "Kamu yakin ingin menghapus Customer yang terpilih ini ?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
-                confirmButtonText: "Yes, delete!",
-                cancelButtonText: "No, cancel",
+                confirmButtonText: "Ya, Hapus",
+                cancelButtonText: "Tidak, Batal!",
                 customClass: {
                     confirmButton: "btn fw-bold btn-danger",
                     cancelButton: "btn fw-bold btn-active-light-primary"
@@ -188,10 +188,10 @@ var KTSubscriptionsList = function () {
             }).then(function (result) {
                 if (result.value) {
                     Swal.fire({
-                        text: "You have deleted all selected customers!.",
+                        text: "Kamu berhasil menghapus seluruh customer",
                         icon: "success",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke Paham!",
                         customClass: {
                             confirmButton: "btn fw-bold btn-primary",
                         }
@@ -212,10 +212,10 @@ var KTSubscriptionsList = function () {
                     });
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "Selected customers was not deleted.",
+                        text: "Customer yang dipilih tidak dihapus",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke, Paham",
                         customClass: {
                             confirmButton: "btn fw-bold btn-primary",
                         }
