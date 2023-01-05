@@ -22,7 +22,8 @@ Route::view('distributor', 'pendataan.distributor');
 Route::view('customer', 'pendataan.customer');
 Route::view('barang', 'pendataan.barang');
 
-Route::view('faktur', 'menu.faktur');
+Route::view('faktur', 'faktur.faktur');
+Route::view('tambahfaktur', 'faktur.tambahfaktur');
 Route::view('pajak', 'menu.pajak');
 Route::view('penjualan', 'menu.penjualan');
 Route::view('setoran', 'menu.setoran');
