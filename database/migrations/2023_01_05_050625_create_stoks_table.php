@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('stoks', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('role')->default('Admin');
-            $table->rememberToken();
+            $table->foreignId('barang_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
+            $table->integer('stok_masuk');
+            $table->date('tanggal_masuk');
+            $table->foreignId('distributor_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('stoks');
     }
 };

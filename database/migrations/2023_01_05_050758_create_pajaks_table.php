@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pajaks', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('role')->default('Admin');
-            $table->rememberToken();
+            $table->string('kode_laporan');
+            $table->foreignId('customer_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
+            $table->date('tanggal_rep');
+            $table->string('no_fakpajak');
+            $table->date('tanggal_upload');
+            $table->string('ket_rep');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pajaks');
     }
 };
