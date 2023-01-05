@@ -187,11 +187,11 @@
                                         </td>
                                         <!--end::Billing=-->
                                         <!--begin::Product=-->
-                                        <td>{{ $item->harga_jual }}</td>
+                                        <td>{{ number_format("$item->harga_jual",0,",",".") }}</td>
                                         <td>{{ $item->qty_barang }}</td>
                                         <td>{{ $item->stok }}</td>
                                         <td>{{ $item->satuan_barang }}</td>
-                                        <td>{{ $item->harga_netto }}</td>
+                                        <td>{{ number_format("$item->harga_netto",0,",",".") }}</td>
                                         <td>{{ $item->ket_barang }}</td>
                                         <td><span class="badge badge-light-danger">{{ $item->tgl_kadaluarsa }}</span></td>
                                         <!--end::Product=-->
