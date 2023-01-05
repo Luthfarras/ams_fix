@@ -370,12 +370,11 @@
 										<!--end:Menu link-->
 									</div>
 									<!--end:Menu item-->
-									<!--begin:Menu item-->
-									<div class="menu-item">
+									<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="/faktur">
+										<span class="menu-link">
 											<span class="menu-icon">
-												<!--begin::Svg Icon | path: icons/duotune/general/ecm008.svg-->
+												<!--begin::Svg Icon | path: icons/duotune/communication/ecm008.svg-->
 												<span class="svg-icon svg-icon-2">
 													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path opacity="0.3" d="M18 21.6C16.3 21.6 15 20.3 15 18.6V2.50001C15 2.20001 14.6 1.99996 14.3 2.19996L13 3.59999L11.7 2.3C11.3 1.9 10.7 1.9 10.3 2.3L9 3.59999L7.70001 2.3C7.30001 1.9 6.69999 1.9 6.29999 2.3L5 3.59999L3.70001 2.3C3.50001 2.1 3 2.20001 3 3.50001V18.6C3 20.3 4.3 21.6 6 21.6H18Z" fill="currentColor"/>
@@ -386,10 +385,38 @@
 												<!--end::Svg Icon-->
 											</span>
 											<span class="menu-title">Faktur</span>
-										</a>
+											<span class="menu-arrow"></span>
+										</span>
 										<!--end:Menu link-->
+										<!--begin:Menu sub-->
+										<div class="menu-sub menu-sub-accordion">
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link" href="/tambahfaktur">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Tambah Barang Faktur</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link" href="/faktur">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Faktur</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+										</div>
+										<!--end:Menu sub-->
 									</div>
-									<!--end:Menu item-->
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
