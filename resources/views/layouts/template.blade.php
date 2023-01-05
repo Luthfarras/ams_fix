@@ -247,7 +247,7 @@
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="/">
+										<a class="menu-link {{ request()->is('/') ? 'active' : '' }}" href="/">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/gen008.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -268,7 +268,7 @@
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 										<!--begin:Menu link-->
-										<span class="menu-link">
+										<span class="menu-link {{ request()->is('customer', 'distributor', 'barang', 'pengguna') ? 'active' : '' }}">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/communication/gen028.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -288,7 +288,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="/customer">
+												<a class="menu-link {{ request()->is('customer') ? 'active' : '' }}" href="/customer">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -300,7 +300,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="/distributor">
+												<a class="menu-link {{ request()->is('distributor') ? 'active' : '' }}" href="/distributor">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -312,7 +312,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="/barang">
+												<a class="menu-link {{ request()->is('barang') ? 'active' : '' }}" href="/barang">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -324,7 +324,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="/pengguna">
+												<a class="menu-link {{ request()->is('pengguna') ? 'active' : '' }}" href="/pengguna">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -340,7 +340,7 @@
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="/stok">
+										<a class="menu-link {{ request()->is('stok') ? 'active' : '' }}" href="/stok">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/ecm006.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -379,7 +379,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="/tambahfaktur">
+												<a class="menu-link {{ request()->is('detailfaktur') ? 'active' : '' }}" href="/detailfaktur">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -391,7 +391,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="/faktur">
+												<a class="menu-link {{ request()->is('faktur') ? 'active' : '' }}" href="/faktur">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -406,7 +406,7 @@
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="/setoran">
+										<a class="menu-link {{ request()->is('setoran') ? 'active' : '' }}" href="/setoran">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/fin007.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -425,7 +425,7 @@
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="/penjualan">
+										<a class="menu-link {{ request()->is('penjualan') ? 'active' : '' }}" href="/penjualan">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/fin005.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -445,7 +445,7 @@
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="/pajak">
+										<a class="menu-link {{ request()->is('pajak') ? 'active' : '' }}" href="/pajak">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/general/fin001.svg-->
 												<span class="svg-icon svg-icon-2">

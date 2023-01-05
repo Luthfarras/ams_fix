@@ -129,6 +129,7 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
+                                @foreach ($cust as $item)
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <td>
@@ -138,25 +139,21 @@
                                     </td>
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
-                                    <td>
-                                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
-                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
                                     <td>
-                                        <div class="badge badge-light-success">Active</div>
+                                        <div class="badge badge-light-warning">{{ $item->kode_customer }}</div>
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
-                                    <td>
-                                        <div class="badge badge-light">Auto-debit</div>
-                                    </td>
+                                    <td>{{ $item->nama_customer }}</td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
-                                    <td>Basic</td>
+                                    <td>{{ $item->alamat_customer }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>Mar 10, 2022</td>
+                                    <td>{{ $item->telepon_customer }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
@@ -190,7 +187,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
-                                
+                                @endforeach                                
                             </tbody>
                             <!--end::Table body-->
                         </table>

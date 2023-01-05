@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class BarangController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::all();
-        return view('pendataan.barang', compact('barang'));
+        $user = User::all();
+        return view('pendataan.pengguna', compact('user'));
     }
 
     /**
@@ -36,17 +36,16 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        Barang::create($request->all());
-        return redirect('barang');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Barang  $barang
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Barang $barang)
+    public function show($id)
     {
         //
     }
@@ -54,10 +53,10 @@ class BarangController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Barang  $barang
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Barang $barang)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +65,10 @@ class BarangController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Barang  $barang
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Barang $barang)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,12 +76,11 @@ class BarangController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Barang  $barang
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barang)
+    public function destroy($id)
     {
-        $barang->delete();
-        return redirect('barang');
+        //
     }
 }

@@ -161,6 +161,7 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody class="text-gray-600 fw-semibold">
+                                    @foreach ($barang as $item)
                                     <tr>
                                         <!--begin::Checkbox-->
                                         <td>
@@ -169,34 +170,31 @@
                                             </div>
                                         </td>
                                         <!--end::Checkbox-->
+                                        <td>{{ $loop->iteration }}</td>
                                         <!--begin::Customer=-->
                                         <td>
-                                            <a href="../../demo1/dist/apps/customers/view.html"
-                                                class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
+                                            <span class="badge badge-light-warning">{{ $item->kode_barang }}</span>
                                         </td>
                                         <!--end::Customer=-->
                                         <!--begin::Status=-->
                                         <td>
-                                            <div class="badge badge-light-success">Active</div>
+                                            <span class="badge badge-light-success">{{ $item->kode_harga }}</span>
                                         </td>
                                         <!--end::Status=-->
                                         <!--begin::Billing=-->
                                         <td>
-                                            <div class="badge badge-light">Auto-debit</div>
+                                            {{ $item->nama_barang }}
                                         </td>
                                         <!--end::Billing=-->
                                         <!--begin::Product=-->
-                                        <td>Basic</td>
-                                        <td>Basic</td>
-                                        <td>Basic</td>
-                                        <td>Basic</td>
-                                        <td>Basic</td>
-                                        <td>Basic</td>
-                                        <td>Basic</td>
+                                        <td>{{ $item->harga_jual }}</td>
+                                        <td>{{ $item->qty_barang }}</td>
+                                        <td>{{ $item->stok }}</td>
+                                        <td>{{ $item->satuan_barang }}</td>
+                                        <td>{{ $item->harga_netto }}</td>
+                                        <td>{{ $item->ket_barang }}</td>
+                                        <td><span class="badge badge-light-danger">{{ $item->tgl_kadaluarsa }}</span></td>
                                         <!--end::Product=-->
-                                        <!--begin::Date=-->
-                                        <td>Mar 10, 2022</td>
-                                        <!--end::Date=-->
                                         <!--begin::Action=-->
                                         <td class="text-end">
                                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
@@ -229,8 +227,7 @@
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="#" data-kt-subscriptions-table-filter="delete_row"
-                                                        class="menu-link px-3">Delete</a>
+                                                    <a href="/barang/{{ $item->id }}" class="menu-link px-3">Delete</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
@@ -238,7 +235,7 @@
                                         </td>
                                         <!--end::Action=-->
                                     </tr>
-
+                                    @endforeach
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
@@ -416,7 +413,8 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
-                    <form id="kt_modal_new_target_form" class="form" action="#">
+                    <form id="kt_modal_new_target_form" class="form" action="{{ route('barang.store') }}" method="POST">
+                        @csrf
                         <!--begin::Heading-->
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
@@ -434,11 +432,11 @@
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                                 <span class="required">Nama Barang</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                    title="Sesuaikan Nama Customer"></i>
+                                    title="Sesuaikan Nama Barang"></i>
                             </label>
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid"
-                                placeholder="Masukkan Nama Barang..." name="" />
+                                placeholder="Masukkan Nama Barang..." name="nama_barang" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -447,7 +445,7 @@
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-semibold mb-2">Kode Barang</label>
                                 <input type="text" class="form-control form-control-solid"
-                                    placeholder="Masukkan Kode Barang..." name="" />
+                                    placeholder="Masukkan Kode Barang..." name="kode_barang" />
                             </div>
                             <!--end::Col-->
                             <!--begin::Col-->
@@ -473,7 +471,7 @@
                                     <!--end::Icon-->
                                     <!--begin::Datepicker-->
                                     <input type="text" class="form-control form-control-solid ps-12"
-                                        placeholder="Masukkan Kode Harga..." name="" />
+                                        placeholder="Masukkan Kode Harga..." name="kode_harga" />
                                     <!--end::Datepicker-->
                                 </div>
                                 <!--end::Input-->
@@ -485,7 +483,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Satuan Barang</label>
                                 <select class="form-select form-select-solid" data-control="select2"
                                     data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                                    name="target_assign">
+                                    name="satuan_barang">
                                     <option selected disabled>Pilih Satuan...</option>
                                     <option value="liter">Liter</option>
                                     <option value="box">Box</option>
@@ -509,7 +507,7 @@
                                     <!--end::Svg Icon-->
                                     <!--end::Icon-->
                                     <!--begin::Datepicker-->
-                                    <input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" />
+                                    <input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tgl_kadaluarsa" />
                                     <!--end::Datepicker-->
                                 </div>
                             </div>
@@ -519,12 +517,12 @@
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-semibold mb-2">Harga Jual</label>
                                 <input type="number" class="form-control form-control-solid"
-                                    placeholder="Masukkan Harga Jual..." name="" />
+                                    placeholder="Masukkan Harga Jual..." name="harga_jual" />
                             </div>
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-semibold mb-2">Harga Netto</label>
                                 <input type="number" class="form-control form-control-solid"
-                                    placeholder="Masukkan Harga Netto..." name="" />
+                                    placeholder="Masukkan Harga Netto..." name="harga_netto" />
                             </div>
                         </div>
                         <div class="row g-9 mb-8">
@@ -532,26 +530,26 @@
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-semibold mb-2">Qty</label>
                                 <input type="number" class="form-control form-control-solid"
-                                    placeholder="Masukkan Harga Qty..." name="" />
+                                    placeholder="Masukkan Harga Qty..." name="qty_barang" />
                             </div>
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-semibold mb-2">Stok</label>
                                 <input type="number" class="form-control form-control-solid"
-                                    placeholder="Masukkan Harga Stok..." name="" />
+                                    placeholder="Masukkan Harga Stok..." name="stok" />
                             </div>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-8">
                             <label class="fs-6 fw-semibold mb-2">Keterangan</label>
-                            <textarea class="form-control form-control-solid" rows="3" placeholder="Masukkan Keterangan..."></textarea>
+                            <textarea class="form-control form-control-solid" rows="3" placeholder="Masukkan Keterangan..." name="ket_barang"></textarea>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="text-center">
                             <button type="reset" id="kt_modal_new_target_cancel"
                                 class="btn btn-light me-3">Cancel</button>
-                            <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                            <button type="submit" id="" class="btn btn-primary">
                                 <span class="indicator-label">Submit</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
