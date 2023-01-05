@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Pengguna..." />
+                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Customer..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -228,7 +228,8 @@
                                         <div class="badge badge-light">Auto-debit</div>
                                     </td>
                                     <!--end::Billing=-->
-                                    
+                                    <!--begin::Product=-->
+                                    <!--end::Product=-->
                                     <!--begin::Date=-->
                                     <td>Mar 10, 2022</td>
                                     <!--end::Date=-->
