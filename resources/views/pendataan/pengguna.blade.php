@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Customer..." />
+                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Pengguna..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -195,10 +195,9 @@
                                         </div>
                                     </th>
                                     <th class="min-w-125px">No</th>
-                                    <th class="min-w-125px">Kode Customer</th>
-                                    <th class="min-w-125px">Nama Customer</th>
-                                    <th class="min-w-125px">Alamat Customer</th>
-                                    <th class="min-w-125px">Telepon</th>
+                                    <th class="min-w-125px">Nama Pengguna</th>
+                                    <th class="min-w-125px">Email</th>
+                                    <th class="min-w-125px">Role</th>
                                     <th class="text-end min-w-70px">Actions</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -229,9 +228,7 @@
                                         <div class="badge badge-light">Auto-debit</div>
                                     </td>
                                     <!--end::Billing=-->
-                                    <!--begin::Product=-->
-                                    <td>Basic</td>
-                                    <!--end::Product=-->
+                                    
                                     <!--begin::Date=-->
                                     <td>Mar 10, 2022</td>
                                     <!--end::Date=-->

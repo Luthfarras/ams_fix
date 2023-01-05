@@ -1,22 +1,11 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../"/>
 		<title>AMS | @yield('title')</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="{{ asset('met/dist/assets/media/logos/ams.png') }}" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -245,8 +234,8 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
 							<!--begin::Logo image-->
 							<a href="/">
-								<img alt="Logo" src="{{ asset('met/dist/assets/media/logos/default-dark.svg') }}" class="h-25px app-sidebar-logo-default" />
-								<img alt="Logo" src="{{ asset('met/dist/assets/media/logos/default-small.svg') }}" class="h-20px app-sidebar-logo-minimize" />
+								<img alt="Logo" src="{{ asset('met/dist/assets/media/logos/ams-logo-s.svg') }}" class="h-25px app-sidebar-logo-default" />
+								<img alt="Logo" src="{{ asset('met/dist/assets/media/logos/ams-small.png') }}" class="h-20px app-sidebar-logo-minimize" />
 							</a>
 							<!--end::Logo image-->
 							<!--begin::Sidebar toggle-->
@@ -531,7 +520,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used by this page)-->
 		<script src="{{ asset('met/dist/assets/js/custom/apps/subscriptions/list/export.js') }}"></script>
-		<script src="{{ asset('met/dist/assets/js/custom/apps/subscriptions/list/list.js') }}"></script>
+		<script src="{{ asset('met/src/js/custom/apps/subscriptions/list/list.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/widgets.bundle.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/widgets.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/apps/chat/chat.js') }}"></script>
