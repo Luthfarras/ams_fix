@@ -14,7 +14,8 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        //
+        $dist = Distributor::all();
+        return view('pendataan.distributor', compact('dist'));
     }
 
     /**
