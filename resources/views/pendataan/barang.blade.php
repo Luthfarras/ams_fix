@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Customer..." />
+                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Barang..." />
                             </div>
                             <!--end::Search-->
                         </div>
