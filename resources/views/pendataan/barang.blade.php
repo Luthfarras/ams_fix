@@ -547,63 +547,6 @@
                             <textarea class="form-control form-control-solid" rows="3" placeholder="Masukkan Keterangan..."></textarea>
                         </div>
                         <!--end::Input group-->
-                        {{-- <!--begin::Input group-->
-                    <div class="d-flex flex-column mb-8 fv-row">
-                        <!--begin::Label-->
-                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                            <span class="required">Tags</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target priorty"></i>
-                        </label>
-                        <!--end::Label-->
-                        <input class="form-control form-control-solid" value="Important, Urgent" name="tags" />
-                    </div>
-                    <!--end::Input group--> --}}
-                        {{-- <!--begin::Input group-->
-                    <div class="d-flex flex-stack mb-8">
-                        <!--begin::Label-->
-                        <div class="me-5">
-                            <label class="fs-6 fw-semibold">Adding Users by Team Members</label>
-                            <div class="fs-7 fw-semibold text-muted">If you need more info, please check budget planning</div>
-                        </div>
-                        <!--end::Label-->
-                        <!--begin::Switch-->
-                        <label class="form-check form-switch form-check-custom form-check-solid">
-                            <input class="form-check-input" type="checkbox" value="1" checked="checked" />
-                            <span class="form-check-label fw-semibold text-muted">Allowed</span>
-                        </label>
-                        <!--end::Switch-->
-                    </div>
-                    <!--end::Input group--> --}}
-                        {{-- <!--begin::Input group-->
-                    <div class="mb-15 fv-row">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack">
-                            <!--begin::Label-->
-                            <div class="fw-semibold me-5">
-                                <label class="fs-6">Notifications</label>
-                                <div class="fs-7 text-muted">Allow Notifications by Phone or Email</div>
-                            </div>
-                            <!--end::Label-->
-                            <!--begin::Checkboxes-->
-                            <div class="d-flex align-items-center">
-                                <!--begin::Checkbox-->
-                                <label class="form-check form-check-custom form-check-solid me-10">
-                                    <input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="email" checked="checked" />
-                                    <span class="form-check-label fw-semibold">Email</span>
-                                </label>
-                                <!--end::Checkbox-->
-                                <!--begin::Checkbox-->
-                                <label class="form-check form-check-custom form-check-solid">
-                                    <input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="phone" />
-                                    <span class="form-check-label fw-semibold">Phone</span>
-                                </label>
-                                <!--end::Checkbox-->
-                            </div>
-                            <!--end::Checkboxes-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                    <!--end::Input group--> --}}
                         <!--begin::Actions-->
                         <div class="text-center">
                             <button type="reset" id="kt_modal_new_target_cancel"
