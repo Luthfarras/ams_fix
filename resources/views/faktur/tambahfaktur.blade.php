@@ -445,7 +445,7 @@
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">QTY</label>
                             <input type="number" class="form-control form-control-solid"
-                                placeholder="Masukkan Qty..." name="" />
+                                placeholder="Masukkan Qty..." name="stok_keluar" />
                         </div>
                     </div>
                     <div class="row g-9 mb-8">
