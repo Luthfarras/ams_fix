@@ -87,7 +87,7 @@
                                                 <!--begin::Input-->
                                                 <div class="position-relative d-flex align-items-center w-150px">
                                                     <!--begin::Datepicker-->
-                                                    <input type="date" class="form-control form-control-transparent fw-bold pe-5"
+                                                    <input type="text" id="invoice_date" class="form-control form-control-transparent fw-bold pe-5"
                                                         placeholder="Select date" name="tanggal_faktur" />
                                                     <!--end::Datepicker-->
                                                     <!--begin::Icon-->
@@ -166,7 +166,7 @@
                                                             <td class="pe-7">
                                                                 <select class="form-select form-select-solid" data-control="select2"
                                                                     data-hide-search="true" data-placeholder="Pilih Nama Barang..."
-                                                                    name="barang_id" id="nama_barang" onchange="harga(value)" required>
+                                                                    name="barang_id" onchange="harga(value)" required>
                                                                     <option selected value="">Pilih Barang...</option>
                                                                     @foreach ($barang as $item)
                                                                         <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
@@ -185,7 +185,7 @@
                                                                     data-kt-element="price" />
                                                             </td>
                                                             <td class="pt-8 text-end text-nowrap">Rp.
-                                                                <span data-kt-element="total" id="total">0,00</span>
+                                                                <span data-kt-element="total" id="total">0</span>
                                                             </td>
                                                             <td class="pt-5 text-end">
                                                                 <button type="button"
@@ -234,14 +234,14 @@
                                                                 </div>
                                                             </th>
                                                             <th colspan="2"
-                                                                class="border-bottom border-bottom-dashed text-end">$
+                                                                class="border-bottom border-bottom-dashed text-end">Rp.
                                                                 <span data-kt-element="sub-total">0.00</span>
                                                             </th>
                                                         </tr>
                                                         <tr class="align-top fw-bold text-gray-700">
                                                             <th></th>
                                                             <th colspan="2" class="fs-4 ps-0">Total</th>
-                                                            <th colspan="2" class="text-end fs-4 text-nowrap">$
+                                                            <th colspan="2" class="text-end fs-4 text-nowrap">Rp.
                                                                 <span data-kt-element="grand-total">0.00</span>
                                                             </th>
                                                         </tr>
@@ -252,53 +252,56 @@
                                             <!--end::Table-->
                                             <!--begin::Item template-->
                                             <table class="table d-none" data-kt-element="item-template">
-                                                <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
-                                                    <td class="pe-7">
-                                                        <select class="form-select form-select-solid" data-control="select2"
-                                                            data-hide-search="true" data-placeholder="Pilih Nama Barang..."
-                                                            name="barang_id" id="nama_barang" onchange="harga(value)" required>
-                                                            <option selected value="">Pilih Barang...</option>
-                                                            @foreach ($barang as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td class="ps-0">
-                                                        <input class="form-control form-control-solid" type="number"
-                                                            min="1" name="quantity[]" placeholder="1"
-                                                            data-kt-element="quantity" />
-                                                    </td>
-                                                    <td>
-                                                        <input type="text"
-                                                            class="form-control form-control-solid text-end"
-                                                            name="price[]" placeholder="0.00" data-kt-element="price" />
-                                                    </td>
-                                                    <td class="pt-8 text-end">$
-                                                        <span data-kt-element="total">0.00</span>
-                                                    </td>
-                                                    <td class="pt-5 text-end">
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-icon btn-active-color-primary"
-                                                            data-kt-element="remove-item">
-                                                            <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-                                                            <span class="svg-icon svg-icon-3">
-                                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
-                                                                        fill="currentColor" />
-                                                                    <path opacity="0.5"
-                                                                        d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
-                                                                        fill="currentColor" />
-                                                                    <path opacity="0.5"
-                                                                        d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
-                                                                        fill="currentColor" />
-                                                                </svg>
-                                                            </span>
-                                                            <!--end::Svg Icon-->
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                <tr class="border-bottom border-bottom-dashed"
+                                                            data-kt-element="item">
+                                                            <td class="pe-7">
+                                                                <select class="form-select form-select-solid"
+                                                                    data-hide-search="true" data-placeholder="Pilih Nama Barang..."
+                                                                    name="barang_id" onchange="bharga(value)" required>
+                                                                    <option selected value="">Pilih Barang...</option>
+                                                                    @foreach ($barang as $item)
+                                                                        <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                            <td class="ps-0">
+                                                                <input class="form-control form-control-solid"
+                                                                    type="number" min="1" name="stok_keluar" id="s_keluar"
+                                                                    placeholder="1" data-kt-element="quantity" onkeyup="hasil()"/>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text"
+                                                                    class="form-control form-control-solid text-end" id="h_barang"
+                                                                    name="price[]" placeholder="0.00" onchange="bharga(value)"
+                                                                    data-kt-element="price" />
+                                                            </td>
+                                                            <td class="pt-8 text-end text-nowrap">Rp.
+                                                                <span data-kt-element="total" id="ttotal" >1</span>
+                                                            </td>
+                                                            <td class="pt-5 text-end">
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-icon btn-active-color-primary"
+                                                                    data-kt-element="remove-item">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                                                    <span class="svg-icon svg-icon-3">
+                                                                        <svg width="24" height="24"
+                                                                            viewBox="0 0 24 24" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
+                                                                                fill="currentColor" />
+                                                                            <path opacity="0.5"
+                                                                                d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
+                                                                                fill="currentColor" />
+                                                                            <path opacity="0.5"
+                                                                                d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                    <!--end::Svg Icon-->
+                                                                </button>
+                                                            </td>
+                                                        </tr>
                                             </table>
                                             <table class="table d-none" data-kt-element="empty-template">
                                                 <tr data-kt-element="empty">
@@ -453,56 +456,8 @@
     <!--end:::Main-->
 
     <script>
-        $.ajax({
-            type: "GET",
-            url: "/getharga",
-            dataType: "JSON",
-            success: function (response) {
-                response.map((value) => {
-                    $('#nama_barang').append($('<option>', {
-                        value: value.id,
-                        text: value.nama_barang
-                    }));
-                })
-            }
-        });
-    
-    function harga(id){
-        $.ajax({
-            type: "get",
-            url: `/getbarang/${id}`,
-            dataType: "json",
-            success: function (response) {
-                console.log(response);
-                $(`#harga_barang`).children().remove()
-                response.map((value) => { 
-                    $('#harga_barang').val(value.harga_jual)
-                    // $(`#harga_barang`).append($('<option>', {
-                    //     value: value.id,
-                    //     text: value.harga_jual
-                    // }));
-                });
-            }
-        });
-    }
+       
     </script>
     <script>
-        function hasil() {
-            let stok = $('#stok_keluar').val()
-            let hargabarang = $('#harga_barang').val()
-            let diskon = $('#diskon').val()
-    
-            let total = hargabarang * stok
-    
-            $('#total').text(total);
-    
-            let sementara = parseInt(total) * (parseInt(diskon) / 100);
-            let subtotal = parseInt(total) - sementara
-    
-            if (!isNaN(subtotal)) {
-                $('#subtotal').val(subtotal);
-                $('#sub').val(subtotal);
-            }
-        }
-    </script>    
+        
 @endsection

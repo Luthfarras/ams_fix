@@ -1,28 +1,28 @@
 "use strict";
 
 // Class definition
-var KTAppInvoicesCreate = function () {
-    var form;
+let KTAppInvoicesCreate = function () {
+    let form;
 
 	// Private functions
-	var updateTotal = function() {
-		var items = [].slice.call(form.querySelectorAll('[data-kt-element="items"] [data-kt-element="item"]'));
-		var grandTotal = 0;
+	let updateTotal = function() {
+		let items = [].slice.call(form.querySelectorAll('[data-kt-element="items"] [data-kt-element="item"]'));
+		let grandTotal = 0;
 
-		var format = wNumb({
+		let format = wNumb({
 			//prefix: '$ ',
-			decimals: 2,
-			thousand: ','
+			decimals: 0,
+			thousand: ''
 		});
 
 		items.map(function (item) {
-            var quantity = item.querySelector('[data-kt-element="quantity"]');
-			var price = item.querySelector('[data-kt-element="price"]');
+            let quantity = item.querySelector('[data-kt-element="quantity"]');
+			let price = item.querySelector('[data-kt-element="price"]');
 
-			var priceValue = format.from(price.value);
+			let priceValue = format.from(price.value);
 			priceValue = (!priceValue || priceValue < 0) ? 0 : priceValue;
 
-			var quantityValue = parseInt(quantity.value);
+			let quantityValue = parseInt(quantity.value);
 			quantityValue = (!quantityValue || quantityValue < 0) ?  1 : quantityValue;
 
 			price.value = format.to(priceValue);
@@ -37,21 +37,21 @@ var KTAppInvoicesCreate = function () {
 		form.querySelector('[data-kt-element="grand-total"]').innerText = format.to(grandTotal);
 	}
 
-	var handleEmptyState = function() {
+	let handleEmptyState = function() {
 		if (form.querySelectorAll('[data-kt-element="items"] [data-kt-element="item"]').length === 0) {
-			var item = form.querySelector('[data-kt-element="empty-template"] tr').cloneNode(true);
+			let item = form.querySelector('[data-kt-element="empty-template"] tr').cloneNode(true);
 			form.querySelector('[data-kt-element="items"] tbody').appendChild(item);
 		} else {
 			KTUtil.remove(form.querySelector('[data-kt-element="items"] [data-kt-element="empty"]'));
 		}
 	}
 
-	var handeForm = function (element) {
+	let handeForm = function (element) {
 		// Add item
 		form.querySelector('[data-kt-element="items"] [data-kt-element="add-item"]').addEventListener('click', function(e) {
 			e.preventDefault();
 
-			var item = form.querySelector('[data-kt-element="item-template"] tr').cloneNode(true);
+			let item = form.querySelector('[data-kt-element="item-template"] tr').cloneNode(true);
 
 			form.querySelector('[data-kt-element="items"] tbody').appendChild(item);
 
@@ -77,16 +77,16 @@ var KTAppInvoicesCreate = function () {
 		});
 	}
 
-	var initForm = function(element) {
+	let initForm = function(element) {
 		// Due date. For more info, please visit the official plugin site: https://flatpickr.js.org/
-		var invoiceDate = $(form.querySelector('[name="invoice_date"]'));
+		let invoiceDate = $(form.querySelector('[id="invoice_date"]'));
 		invoiceDate.flatpickr({
 			enableTime: false,
-			dateFormat: "d, M Y",
+			dateFormat: "Y-m-d",
 		});
 
         // Due date. For more info, please visit the official plugin site: https://flatpickr.js.org/
-		var dueDate = $(form.querySelector('[name="invoice_due_date"]'));
+		let dueDate = $(form.querySelector('[name="invoice_due_date"]'));
 		dueDate.flatpickr({
 			enableTime: false,
 			dateFormat: "d, M Y",
@@ -104,6 +104,94 @@ var KTAppInvoicesCreate = function () {
         }
 	};
 }();
+
+	$.ajax({
+		type: "GET",
+		url: "/getharga",
+		dataType: "JSON",
+		success: function (response) {
+			response.map((value) => {
+				$('#nama_barang').append($('<option>', {
+					value: value.id,
+					text: value.nama_barang
+				}));
+			})
+		}
+	});
+
+	function harga(id){
+		$.ajax({
+			type: "get",
+			url: `/getbarang/${id}`,
+			dataType: "json",
+			success: function (response) {
+				console.log(response);
+				$(`#harga_barang`).children().remove()
+				response.map((value) => { 
+					$('#harga_barang').val(value.harga_jual)
+					// $(`#harga_barang`).append($('<option>', {
+					//     value: value.id,
+					//     text: value.harga_jual
+					// }));
+				});
+			}
+		});
+	}
+
+			function bharga(id){
+				$.ajax({
+					type: "get",
+					url: `/getbarang/${id}`,
+					dataType: "json",
+					success: function (response) {
+						console.log(response);
+						$(`#h_barang`).children().remove()
+						response.map((value) => { 
+							$('#h_barang').val(value.harga_jual)
+							// $(`#harga_barang`).append($('<option>', {
+							//     value: value.id,
+							//     text: value.harga_jual
+							// }));
+						});
+					}
+				});
+			}
+
+			function hasil() {
+				let stok = $('#stok_keluar').val()
+				let hargabarang = $('#harga_barang').val()
+				let diskon = $('#diskon').val()
+		
+				let total = hargabarang * stok
+		
+				$('#total').text(total);
+		
+				let sementara = parseInt(total) * (parseInt(diskon) / 100);
+				let subtotal = parseInt(total) - sementara
+		
+				if (!isNaN(subtotal)) {
+					$('#subtotal').val(subtotal);
+					$('#sub').val(subtotal);
+				}
+			}
+
+			function bhasil() {
+				let stok = $('#s_keluar').val()
+				let hargabarang = $('#h_barang').val()
+				let diskon = $('#diskon').val()
+		
+				let total = hargabarang * stok
+		
+				$('#ttotal').text(total);
+		
+				let sementara = parseInt(total) * (parseInt(diskon) / 100);
+				let subtotal = parseInt(total) - sementara
+		
+				if (!isNaN(subtotal)) {
+					$('#subtotal').val(subtotal);
+					$('#sub').val(subtotal);
+				}
+			}
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
