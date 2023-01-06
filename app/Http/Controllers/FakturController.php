@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faktur;
+use App\Models\Customer;
+use App\Models\DetailFaktur;
 use Illuminate\Http\Request;
 
 class FakturController extends Controller
@@ -14,7 +16,8 @@ class FakturController extends Controller
      */
     public function index()
     {
-        //
+        $faktur = Faktur::all();
+        return view('faktur.faktur', compact('faktur'));
     }
 
     /**
@@ -24,7 +27,11 @@ class FakturController extends Controller
      */
     public function create()
     {
-        //
+        $cust = Customer::all();
+        $detail = DetailFaktur::all();
+        $dfaktur = $detail->unique('kode_faktur');
+        return view('faktur.tambah', compact('cust', 'detail', 'dfaktur'));
+
     }
 
     /**

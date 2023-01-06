@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Customer..." />
+                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Faktur..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -79,8 +79,7 @@
                                 </span>
                                 <!--end::Svg Icon-->Export</button>
                                 <!--end::Export-->
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_new_target">
+                                <a href="/faktur/create" class="btn btn-primary">
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                         <span class="svg-icon svg-icon-2">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
