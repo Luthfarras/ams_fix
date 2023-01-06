@@ -364,13 +364,13 @@
                         <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                             <span class="required">Nama Barang</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Sesuaikan Nama Barang\"></i>
+                                title="Sesuaikan Nama Barang"></i>
                         </label>
                         <!--end::Label-->
                         <select class="form-select form-select-solid" data-control="select2"
                                 data-hide-search="true" data-placeholder="Pilih Nama Barang..."
-                                name="barang_id">
-                                <option selected disabled>Pilih Satuan...</option>
+                                name="barang_id" id="reset-select" required>
+                                <option selected value="">Pilih Barang...</option>
                                 @foreach ($barang as $item)
                                     <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
                                 @endforeach
@@ -385,11 +385,11 @@
                         </label>
                         <!--end::Label-->
                         <select class="form-select form-select-solid" data-control="select2"
-                                data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                                name="distributor_id">
-                                <option selected disabled>Pilih Satuan...</option>
+                                data-hide-search="true" data-placeholder="Pilih Distributor..."
+                                name="distributor_id" required>
+                                <option selected value="">Pilih Distributor...</option>
                                 @foreach ($dist as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_distributor }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->nama_distributor }}</option>
                                 @endforeach
                             </select>
                     </div>
@@ -400,7 +400,7 @@
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Stok Masuk</label>
                             <input type="text" class="form-control form-control-solid"
-                                placeholder="Masukkan Stok Masuk Barang..." name="stok_masuk" />
+                                placeholder="Masukkan Stok Masuk Barang..." name="stok_masuk" required />
                         </div>
                         <!--end::Col-->
                         <!--begin::Col-->
@@ -419,7 +419,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="date" class="form-control form-control-solid ps-12" name="tanggal_masuk" placeholder="Select a date" />
+                                <input type="text" id="due_date" class="form-control form-control-solid ps-12" name="tanggal_masuk" placeholder="Select a date" required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>
@@ -430,7 +430,7 @@
                     <div class="text-center">
                         <button type="reset" id="kt_modal_new_target_cancel"
                             class="btn btn-light me-3">Cancel</button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="kt_modal_new_target_submit">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

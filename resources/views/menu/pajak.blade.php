@@ -411,7 +411,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="date" class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" />
+                                <input type="text" id="due_date" class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" />
                                 <!--end::Datepicker-->
                             </div>
                         </div>
@@ -435,7 +435,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_upload" />
+                                <input id="due_date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_upload" />
                                 <!--end::Datepicker-->
                             </div>
                             

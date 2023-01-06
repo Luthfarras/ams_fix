@@ -26,10 +26,9 @@ var KTModalNewTarget = function () {
 		});
 
 		// Due date. For more info, please visit the official plugin site: https://flatpickr.js.org/
-		var dueDate = $(form.querySelector('[name="due_date"]'));
+		var dueDate = $(form.querySelector('[id="due_date"]'));
 		dueDate.flatpickr({
-			enableTime: true,
-			dateFormat: "d, M Y, H:i",
+			dateFormat: "Y-m-d",
 		});
 
 		// Team assign. For more info, plase visit the official plugin site: https://select2.org/
@@ -48,31 +47,31 @@ var KTModalNewTarget = function () {
 			form,
 			{
 				fields: {
-					target_title: {
+					barang_id: {
 						validators: {
 							notEmpty: {
-								message: 'Target title is required'
+								message: 'Nama Barang harus dipilih'
 							}
 						}
 					},
-					target_assign: {
+					distributor_id: {
 						validators: {
 							notEmpty: {
-								message: 'Target assign is required'
+								message: 'Distributor harus dipilih'
 							}
 						}
 					},
-					target_due_date: {
+					tanggal_masuk: {
 						validators: {
 							notEmpty: {
-								message: 'Target due date is required'
+								message: 'Tanggal Masuk harus diisi'
 							}
 						}
 					},
-					target_tags: {
+					stok_masuk: {
 						validators: {
 							notEmpty: {
-								message: 'Target tags are required'
+								message: 'Stok Masuk harus diisi'
 							}
 						}
 					},

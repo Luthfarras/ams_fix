@@ -413,7 +413,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_dep" />
+                                <input id="due_date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_dep" />
                                 <!--end::Datepicker-->
                             </div>
                         </div>

@@ -507,7 +507,7 @@
                                     <!--end::Svg Icon-->
                                     <!--end::Icon-->
                                     <!--begin::Datepicker-->
-                                    <input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tgl_kadaluarsa" />
+                                    <input type="text" id="due_date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tgl_kadaluarsa" />
                                     <!--end::Datepicker-->
                                 </div>
                             </div>
