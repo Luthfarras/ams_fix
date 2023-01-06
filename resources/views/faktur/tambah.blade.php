@@ -181,7 +181,7 @@
                                                             <td>
                                                                 <input type="text"
                                                                     class="form-control form-control-solid text-end" id="harga_barang"
-                                                                    name="price[]" placeholder="0.00" onchange="harga('value')"
+                                                                    name="price[]" placeholder="0.00" onchange="harga(value)"
                                                                     data-kt-element="price" />
                                                             </td>
                                                             <td class="pt-8 text-end text-nowrap">Rp.
@@ -257,7 +257,7 @@
                                                             <td class="pe-7">
                                                                 <select class="form-select form-select-solid additem"
                                                                     data-hide-search="true" data-placeholder="Pilih Nama Barang..."
-                                                                    name="barang_id" onchange="bharga(value)" required>
+                                                                    name="barang_id" onchange="harga(value)" required>
                                                                     <option selected value="">Pilih Barang...</option>
                                                                     @foreach ($barang as $item)
                                                                         <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
@@ -266,17 +266,17 @@
                                                             </td>
                                                             <td class="ps-0">
                                                                 <input class="form-control form-control-solid"
-                                                                    type="number" min="1" name="stok_keluar" id="s_keluar"
+                                                                    type="number" min="1" name="stok_keluar" id="stok_keluar"
                                                                     placeholder="1" data-kt-element="quantity" onkeyup="hasil()"/>
                                                             </td>
                                                             <td>
                                                                 <input type="text"
-                                                                    class="form-control form-control-solid text-end" id="h_barang"
-                                                                    name="price[]" placeholder="0.00" onchange="bharga(value)"
+                                                                    class="form-control form-control-solid text-end" id="harga_barang"
+                                                                    name="price[]" placeholder="0.00" onchange="harga(value)"
                                                                     data-kt-element="price" />
                                                             </td>
                                                             <td class="pt-8 text-end text-nowrap">Rp.
-                                                                <span data-kt-element="total" id="ttotal" >1</span>
+                                                                <span data-kt-element="total" id="total" >1</span>
                                                             </td>
                                                             <td class="pt-5 text-end">
                                                                 <button type="button"

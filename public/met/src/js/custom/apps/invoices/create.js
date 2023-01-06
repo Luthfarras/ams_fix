@@ -51,9 +51,10 @@ let KTAppInvoicesCreate = function () {
 		form.querySelector('[data-kt-element="items"] [data-kt-element="add-item"]').addEventListener('click', function(e) {
 			e.preventDefault();
 
-			let item = form.querySelector('[data-kt-element="item-template"] tr').cloneNode(true);
+			let item = form.querySelector('[data-kt-element="item-template"]  tr').cloneNode(true);
 			let items1 = $('.additem');
-			console.log(items1.length);
+			// let barang = items1.length;
+			// console.log(item);
 			form.querySelector('[data-kt-element="items"] tbody').appendChild(item);
 
 			handleEmptyState();
@@ -135,6 +136,7 @@ let KTAppInvoicesCreate = function () {
 					//     text: value.harga_jual
 					// }));
 				});
+				
 			}
 		});
 	}
