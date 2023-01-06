@@ -36,7 +36,8 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Distributor::create($request->all());
+        return redirect('distributor');
     }
 
     /**
@@ -81,6 +82,7 @@ class DistributorController extends Controller
      */
     public function destroy(Distributor $distributor)
     {
-        //
+        $distributor->delete();
+        return redirect('distributor');
     }
 }

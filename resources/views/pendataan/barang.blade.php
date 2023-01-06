@@ -413,7 +413,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
-                    <form id="kt_modal_new_target_form" class="form" action="{{ route('barang.store') }}" method="POST">
+                    <form id="kt_modal_new_target_form" class="form" action="" method="POST">
                         @csrf
                         <!--begin::Heading-->
                         <div class="mb-13 text-center">

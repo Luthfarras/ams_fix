@@ -57,7 +57,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Customer..." />
+                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Barang Faktur..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -134,6 +134,7 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
+                                @foreach ($detail as $item)
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <td>
@@ -143,30 +144,29 @@
                                     </td>
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
-                                    <td>
-                                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
-                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
                                     <td>
-                                        <div class="badge badge-light-success">Active</div>
+                                        <div class="badge badge-light-warning">{{ $item->kode_faktur }}</div>
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
-                                    <td>
-                                        <div class="badge badge-light">Auto-debit</div>
-                                    </td>
+                                    <td>{{ $item->tanggal_keluar }}</td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
-                                    <td>Basic</td>
+                                    <td>{{ $item->customer->nama_customer }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>Mar 10, 2022</td>
+                                    <td>{{ $item->barang->nama_barang }}</td>
+                                    <td>{{ $item->stok_keluar }}</td>
+                                    <td>{{ $item->diskon }}</td>
+                                    <td>{{ $item->subtotal }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
                                         <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                         <span class="svg-icon svg-icon-5 m-0">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
@@ -177,7 +177,7 @@
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo1/dist/apps/subscriptions/add.html" class="menu-link px-3">View</a>
+                                                <a href="/detailfaktur/{{ $item->id }}" class="menu-link px-3">View</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -187,7 +187,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
+                                                <a href="/dfaktur/{{ $item->id }}" class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
@@ -195,7 +195,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
-                                
+                                @endforeach
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -351,7 +351,8 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form id="kt_modal_new_target_form" class="form" action="#">
+                <form id="kt_modal_new_target_form" class="form" action="" method="POST">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
@@ -403,14 +404,12 @@
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Nama Customer</label>
                             <select class="form-select form-select-solid" data-control="select2"
-                                data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
+                                data-hide-search="true" data-placeholder="Pilih Customer..."
                                 name="customer_id">
                                 <option selected disabled>Pilih Customer...</option>
-                                <option value="liter">Liter</option>
-                                <option value="box">Box</option>
-                                <option value="satuan">Satuan</option>
-                                <option value="botol">Botol</option>
-                                <option value="pax">Pax</option>
+                                @foreach ($cust as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_customer }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <!--end::Col-->
@@ -418,62 +417,56 @@
                     <div class="d-flex flex-column mb-8 fv-row">
                         <label class="required fs-6 fw-semibold mb-2">Nama Barang</label>
                         <select class="form-select form-select-solid" data-control="select2"
-                            data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                            name="barang_id">
+                            data-hide-search="true" data-placeholder="Pilih Barang..."
+                            name="barang_id" id="nama_barang" onchange="harga(value)">
                             <option selected disabled>Pilih Barang...</option>
-                            <option value="liter">Liter</option>
-                            <option value="box">Box</option>
-                            <option value="satuan">Satuan</option>
-                            <option value="botol">Botol</option>
-                            <option value="pax">Pax</option>
+                            @foreach ($barang as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="row g-9 mb-8">
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Harga Barang</label>
-                            <select class="form-select form-select-solid" data-control="select2"
+                            <input type="text" disabled class="form-control form-control-solid" placeholder="Harga Barang..." id="harga_barang" onkeyup="harga(value)"/>
+                            {{-- <select class="form-select form-select-solid" data-control="select2"
                                 data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                                name="barang_id">
-                                <option selected disabled>Pilih Customer...</option>
-                                <option value="liter">Liter</option>
-                                <option value="box">Box</option>
-                                <option value="satuan">Satuan</option>
-                                <option value="botol">Botol</option>
-                                <option value="pax">Pax</option>
-                            </select>
+                                id="harga_barang" onchange="harga(value)">
+                            </select> --}}
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">QTY</label>
                             <input type="number" class="form-control form-control-solid"
-                                placeholder="Masukkan Qty..." name="stok_keluar" />
+                                placeholder="Masukkan Qty..." name="stok_keluar" id="stok_keluar" onkeyup="hasil()"/>
                         </div>
                     </div>
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Total</label>
-                            <input type="number" class="form-control form-control-solid"
-                                placeholder="Total..." name="" />
+                            <input type="text" disabled class="form-control form-control-solid"
+                                placeholder="Total..." name="" id="total"/>
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Diskon</label>
-                            <input type="number" class="form-control form-control-solid"
-                                placeholder="Masukkan Diskon..." name="diskon" />
+                            <input type="number" class="form-control form-control-solid" id="diskon"
+                                placeholder="Masukkan Diskon..." name="diskon" onkeyup="hasil()"/>
                         </div>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="d-flex flex-column mb-8">
                         <label class="required fs-6 fw-semibold mb-2">Subtotal</label>
-                            <input type="number" class="form-control form-control-solid"
-                                placeholder="Hasil Subtotal" name="subtotal" />
+                            <input type="text" disabled class="form-control form-control-solid" 
+                                placeholder="Hasil Subtotal" id="subtotal"/>
+                                <input type="hidden" name="subtotal" id="sub">
                     </div>
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
                         <button type="reset" id="kt_modal_new_target_cancel"
                             class="btn btn-light me-3">Cancel</button>
-                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -489,4 +482,59 @@
     </div>
     <!--end::Modal dialog-->
 </div>
+
+<script>
+    $.ajax({
+        type: "GET",
+        url: "/getharga",
+        dataType: "JSON",
+        success: function (response) {
+            response.map((value) => {
+                $('#nama_barang').append($('<option>', {
+                    value: value.id,
+                    text: value.nama_barang
+                }));
+            })
+        }
+    });
+
+function harga(id){
+    $.ajax({
+        type: "get",
+        url: `/getbarang/${id}`,
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            $(`#harga_barang`).children().remove()
+            response.map((value) => { 
+                $('#harga_barang').val(value.harga_jual)
+                // $(`#harga_barang`).append($('<option>', {
+                //     value: value.id,
+                //     text: value.harga_jual
+                // }));
+            });
+        }
+    });
+}
+</script>
+
+<script>
+    function hasil() {
+        let stok = $('#stok_keluar').val()
+        let hargabarang = $('#harga_barang').val()
+        let diskon = $('#diskon').val()
+
+        let total = hargabarang * stok
+
+        $('#total').val(total);
+
+        let sementara = parseInt(total) * (parseInt(diskon) / 100);
+        let subtotal = parseInt(total) - sementara
+
+        if (!isNaN(subtotal)) {
+            $('#subtotal').val(subtotal);
+            $('#sub').val(subtotal);
+        }
+    }
+</script>
 @endsection

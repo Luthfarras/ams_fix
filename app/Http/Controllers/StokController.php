@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stok;
+use App\Models\Barang;
+use App\Models\Distributor;
 use Illuminate\Http\Request;
 
 class StokController extends Controller
@@ -14,7 +16,10 @@ class StokController extends Controller
      */
     public function index()
     {
-        //
+        $stok = Stok::all();
+        $barang = Barang::all();
+        $dist = Distributor::all();
+        return view('menu.stok', compact('stok', 'barang', 'dist'));
     }
 
     /**
@@ -35,7 +40,13 @@ class StokController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $barang = Barang::find($request->barang_id);
+        $stok = $barang->stok + $request->stok_masuk;
+        Stok::create($request->all());
+        $barang->update([
+            'stok' => $stok,
+        ]);
+        return redirect('stok');
     }
 
     /**
@@ -80,6 +91,11 @@ class StokController extends Controller
      */
     public function destroy(Stok $stok)
     {
-        //
+        $barang = Barang::find($stok->barang_id);
+        $barang->update([
+            'stok' => $barang->stok - $stok->stok_masuk,
+        ]);
+        $stok->delete();
+        return redirect('stok');
     }
 }

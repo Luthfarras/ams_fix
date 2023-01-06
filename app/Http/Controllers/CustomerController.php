@@ -36,7 +36,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Customer::create($request->all());
+        return redirect('customer');
     }
 
     /**
@@ -81,6 +82,7 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect('customer');
     }
 }

@@ -44,10 +44,14 @@ Route::get('barang/{barang}', [BarangController::class, 'destroy']);
 Route::get('distributor/{distributor}', [DistributorController::class, 'destroy']);
 Route::get('customer/{customer}', [CustomerController::class, 'destroy']);
 Route::get('faktur/{faktur}', [FakturController::class, 'destroy']);
+Route::get('dfaktur/{detailfaktur}', [DetailFakturController::class, 'destroy']);
 Route::get('pajak/{pajak}', [PajakController::class, 'destroy']);
 Route::get('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
 Route::get('setoran/{setoran}', [SetoranController::class, 'destroy']);
 Route::get('stok/{stok}', [StokController::class, 'destroy']);
+
+Route::get('getharga', [DetailFakturController::class, 'getHarga']);
+Route::get('getbarang/{id}', [DetailFakturController::class, 'getBarang']);
 
 Auth::routes();
 

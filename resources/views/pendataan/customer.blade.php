@@ -179,7 +179,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
+                                                <a href="/customer/{{ $item->id }}" class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
@@ -306,7 +306,8 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form id="kt_modal_new_target_form" class="form" action="#">
+                <form id="kt_modal_new_target_form" class="form" action="" method="POST">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
@@ -326,7 +327,7 @@
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sesuaikan Nama Customer"></i>
                         </label>
                         <!--end::Label-->
-                        <input type="text" class="form-control form-control-solid" placeholder="Masukkan Nama Customer..." name="" />
+                        <input type="text" class="form-control form-control-solid" placeholder="Masukkan Nama Customer..." name="nama_customer" />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -342,7 +343,7 @@
                                 <option value="4">Olivia Wild</option>
                                 <option value="5">Sean Bean</option>
                             </select> --}}
-                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Kode Customer" name="" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Kode Customer" name="kode_customer" />
                         </div>
                         <!--end::Col-->
                         <!--begin::Col-->
@@ -362,7 +363,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" class="form-control form-control-solid ps-12" placeholder="Masukkan No. Telepon..." name="" />
+                                <input type="text" class="form-control form-control-solid ps-12" placeholder="Masukkan No. Telepon..." name="telepon_customer" />
                                 <!--end::Datepicker-->
                             </div>
                             <!--end::Input-->
@@ -373,7 +374,7 @@
                     <!--begin::Input group-->
                     <div class="d-flex flex-column mb-8">
                         <label class="fs-6 fw-semibold mb-2">Alamat Customer</label>
-                        <textarea class="form-control form-control-solid" rows="3" placeholder="Masukkan Alamat Customer"></textarea>
+                        <textarea class="form-control form-control-solid" rows="3" placeholder="Masukkan Alamat Customer" name="alamat_customer"></textarea>
                     </div>
                     <!--end::Input group-->
                     {{-- <!--begin::Input group-->
@@ -436,7 +437,7 @@
                     <!--begin::Actions-->
                     <div class="text-center">
                         <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
-                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

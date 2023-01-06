@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Customer..." />
+                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Stok..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -132,6 +132,8 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
+                                @foreach ($stok as $item)
+                                    
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <td>
@@ -141,30 +143,24 @@
                                     </td>
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
-                                    <td>
-                                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
-                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
-                                    <td>
-                                        <div class="badge badge-light-success">Active</div>
-                                    </td>
+                                    <td>{{ $item->barang->nama_barang }}</td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
-                                    <td>
-                                        <div class="badge badge-light">Auto-debit</div>
-                                    </td>
+                                    <td>{{ $item->distributor->nama_distributor }}</td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
-                                    <td>Basic</td>
+                                    <td>{{ $item->stok_masuk }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>Mar 10, 2022</td>
+                                    <td>{{ $item->tanggal_masuk }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
                                         <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                         <span class="svg-icon svg-icon-5 m-0">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
@@ -185,7 +181,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
+                                                <a href="/stok/{{ $item->id }}" class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
@@ -193,7 +189,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
-                                
+                                @endforeach
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -349,7 +345,8 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form id="kt_modal_new_target_form" class="form" action="#">
+                <form id="kt_modal_new_target_form" class="form" action="" method="POST">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
@@ -367,18 +364,16 @@
                         <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                             <span class="required">Nama Barang</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Sesuaikan Nama Customer"></i>
+                                title="Sesuaikan Nama Barang\"></i>
                         </label>
                         <!--end::Label-->
                         <select class="form-select form-select-solid" data-control="select2"
                                 data-hide-search="true" data-placeholder="Pilih Nama Barang..."
                                 name="barang_id">
                                 <option selected disabled>Pilih Satuan...</option>
-                                <option value="liter">Liter</option>
-                                <option value="box">Box</option>
-                                <option value="satuan">Satuan</option>
-                                <option value="botol">Botol</option>
-                                <option value="pax">Pax</option>
+                                @foreach ($barang as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                @endforeach
                             </select>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
@@ -386,18 +381,16 @@
                         <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                             <span class="required">Nama Distributor</span>
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Sesuaikan Nama Customer"></i>
+                                title="Sesuaikan Nama Distributor"></i>
                         </label>
                         <!--end::Label-->
                         <select class="form-select form-select-solid" data-control="select2"
                                 data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
                                 name="distributor_id">
                                 <option selected disabled>Pilih Satuan...</option>
-                                <option value="liter">Liter</option>
-                                <option value="box">Box</option>
-                                <option value="satuan">Satuan</option>
-                                <option value="botol">Botol</option>
-                                <option value="pax">Pax</option>
+                                @foreach ($dist as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_distributor }}</option>
+                                @endforeach
                             </select>
                     </div>
                     <!--end::Input group-->
@@ -437,7 +430,7 @@
                     <div class="text-center">
                         <button type="reset" id="kt_modal_new_target_cancel"
                             class="btn btn-light me-3">Cancel</button>
-                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
