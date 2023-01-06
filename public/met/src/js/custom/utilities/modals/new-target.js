@@ -2,7 +2,6 @@
 
 // Class definition
 var KTModalNewTarget = function () {
-	var submitButton;
 	var cancelButton;
 	var validator;
 	var form;
@@ -96,70 +95,17 @@ var KTModalNewTarget = function () {
 			}
 		);
 
-		// Action buttons
-		submitButton.addEventListener('click', function (e) {
-			e.preventDefault();
-
-			// Validate form before submit
-			if (validator) {
-				validator.validate().then(function (status) {
-					console.log('validated!');
-
-					if (status == 'Valid') {
-						submitButton.setAttribute('data-kt-indicator', 'on');
-
-						// Disable button to avoid multiple click 
-						submitButton.disabled = true;
-
-						setTimeout(function() {
-							submitButton.removeAttribute('data-kt-indicator');
-
-							// Enable button
-							submitButton.disabled = false;
-							
-							// Show success message. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-							Swal.fire({
-								text: "Form has been successfully submitted!",
-								icon: "success",
-								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
-								customClass: {
-									confirmButton: "btn btn-primary"
-								}
-							}).then(function (result) {
-								if (result.isConfirmed) {
-									modal.hide();
-								}
-							});
-
-							//form.submit(); // Submit form
-						}, 2000);   						
-					} else {
-						// Show error message.
-						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn btn-primary"
-							}
-						});
-					}
-				});
-			}
-		});
 
 		cancelButton.addEventListener('click', function (e) {
 			e.preventDefault();
 
 			Swal.fire({
-				text: "Are you sure you would like to cancel?",
+				text: "Apa Kamu ingin membatalkan ?",
 				icon: "warning",
 				showCancelButton: true,
 				buttonsStyling: false,
-				confirmButtonText: "Yes, cancel it!",
-				cancelButtonText: "No, return",
+				confirmButtonText: "Ya, Batalkan",
+				cancelButtonText: "Tidak, Kembali",
 				customClass: {
 					confirmButton: "btn btn-primary",
 					cancelButton: "btn btn-active-light"
@@ -170,10 +116,10 @@ var KTModalNewTarget = function () {
 					modal.hide(); // Hide modal				
 				} else if (result.dismiss === 'cancel') {
 					Swal.fire({
-						text: "Your form has not been cancelled!.",
+						text: "Form anda tidak jadi dibatalkan!.",
 						icon: "error",
 						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
+						confirmButtonText: "Oke, Paham",
 						customClass: {
 							confirmButton: "btn btn-primary",
 						}
@@ -196,7 +142,6 @@ var KTModalNewTarget = function () {
 			modal = new bootstrap.Modal(modalEl);
 
 			form = document.querySelector('#kt_modal_new_target_form');
-			submitButton = document.getElementById('kt_modal_new_target_submit');
 			cancelButton = document.getElementById('kt_modal_new_target_cancel');
 
 			initForm();

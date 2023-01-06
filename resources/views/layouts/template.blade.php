@@ -534,12 +534,12 @@
 		<!--begin::Custom Javascript(used by this page)-->
 		<script src="{{ asset('met/dist/assets/js/custom/apps/subscriptions/list/export.js') }}"></script>
 		<script src="{{ asset('met/src/js/custom/apps/subscriptions/list/list.js') }}"></script>
+		<script src="{{ asset('met/src/js/custom/utilities/modals/new-target.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/widgets.bundle.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/widgets.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/apps/chat/chat.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/apps/invoices/create.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-target.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-address.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/users-search.js') }}"></script>
 		<!--end::Custom Javascript-->
