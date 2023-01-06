@@ -52,10 +52,12 @@ let KTAppInvoicesCreate = function () {
 			e.preventDefault();
 
 			let item = form.querySelector('[data-kt-element="item-template"]  tr').cloneNode(true);
+			let tr = $('tr[id^="tabelitem"]:last');
+
 			let items1 = $('.additem');
-			// let barang = items1.length;
-			// console.log(item);
-			form.querySelector('[data-kt-element="items"] tbody').appendChild(item);
+			let barang = items1.length;
+			console.log(barang);
+			form.querySelector('[data-kt-element="items"] tbody').appendChild(item, barang);
 
 			handleEmptyState();
 			updateTotal();			
@@ -113,6 +115,8 @@ let KTAppInvoicesCreate = function () {
 		dataType: "JSON",
 		success: function (response) {
 			response.map((value) => {
+				let item1 = $('.additem');
+				let brg = item1.length
 				$('#nama_barang').append($('<option>', {
 					value: value.id,
 					text: value.nama_barang
@@ -141,23 +145,77 @@ let KTAppInvoicesCreate = function () {
 		});
 	}
 
-			function hasil() {
-				let stok = $('#stok_keluar').val()
-				let hargabarang = $('#harga_barang').val()
-				let diskon = $('#diskon').val()
-		
-				let total = hargabarang * stok
-		
-				$('#total').text(total);
-		
-				let sementara = parseInt(total) * (parseInt(diskon) / 100);
-				let subtotal = parseInt(total) - sementara
-		
-				if (!isNaN(subtotal)) {
-					$('#subtotal').val(subtotal);
-					$('#sub').val(subtotal);
-				}
+	function bharga(id){
+		$.ajax({
+			type: "get",
+			url: `/getbarang/${id}`,
+			dataType: "json",
+			success: function (response) {
+				console.log(response);
+				$(`#h_barang`).children().remove()
+				response.map((value) => { 
+					$('#h_barang').val(value.harga_jual)
+					// $(`#harga_barang`).append($('<option>', {
+					//     value: value.id,
+					//     text: value.harga_jual
+					// }));
+				});
 			}
+		});
+	}
+
+	function hasil() {
+		let stok = $('#stok_keluar').val()
+		let hargabarang = $('#harga_barang').val()
+		let diskon = $('#diskon').val()
+
+		let total = hargabarang * stok
+
+		$('#total').text(total);
+
+		let sementara = parseInt(total) * (parseInt(diskon) / 100);
+		let subtotal = parseInt(total) - sementara
+
+		if (!isNaN(subtotal)) {
+			$('#subtotal').val(subtotal);
+			$('#sub').val(subtotal);
+		}
+	}
+
+	function bhasil() {
+		let stok = $('#s_keluar').val()
+		let hargabarang = $('#h_barang').val()
+		let diskon = $('#diskon').val()
+
+		let total = hargabarang * stok
+
+		$('#ttotal').text(total);
+
+		let sementara = parseInt(total) * (parseInt(diskon) / 100);
+		let subtotal = parseInt(total) - sementara
+
+		if (!isNaN(subtotal)) {
+			$('#subtotal').val(subtotal);
+			$('#sub').val(subtotal);
+		}
+	}
+
+	$('#cloneDiv').click(function(){
+
+		// get the last DIV which ID starts with ^= "klon"
+		var $div = $('div[id^="klon"]:last');
+	  
+		// Read the Number from that DIV's ID (i.e: 3 from "klon3")
+		// And increment that number by 1
+		var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
+	  
+		// Clone it and assign the new ID (i.e: from num 4 to ID "klon4")
+		var $klon = $div.clone().prop('id', 'klon'+num );
+	  
+		// Finally insert $klon wherever you want
+		// $div.after( $klon.text('klon'+num) );
+	  
+	  });
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
