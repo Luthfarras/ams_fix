@@ -52,7 +52,8 @@ let KTAppInvoicesCreate = function () {
 			e.preventDefault();
 
 			let item = form.querySelector('[data-kt-element="item-template"] tr').cloneNode(true);
-
+			let items1 = $('.additem');
+			console.log(items1.length);
 			form.querySelector('[data-kt-element="items"] tbody').appendChild(item);
 
 			handleEmptyState();
@@ -138,25 +139,6 @@ let KTAppInvoicesCreate = function () {
 		});
 	}
 
-			function bharga(id){
-				$.ajax({
-					type: "get",
-					url: `/getbarang/${id}`,
-					dataType: "json",
-					success: function (response) {
-						console.log(response);
-						$(`#h_barang`).children().remove()
-						response.map((value) => { 
-							$('#h_barang').val(value.harga_jual)
-							// $(`#harga_barang`).append($('<option>', {
-							//     value: value.id,
-							//     text: value.harga_jual
-							// }));
-						});
-					}
-				});
-			}
-
 			function hasil() {
 				let stok = $('#stok_keluar').val()
 				let hargabarang = $('#harga_barang').val()
@@ -165,24 +147,6 @@ let KTAppInvoicesCreate = function () {
 				let total = hargabarang * stok
 		
 				$('#total').text(total);
-		
-				let sementara = parseInt(total) * (parseInt(diskon) / 100);
-				let subtotal = parseInt(total) - sementara
-		
-				if (!isNaN(subtotal)) {
-					$('#subtotal').val(subtotal);
-					$('#sub').val(subtotal);
-				}
-			}
-
-			function bhasil() {
-				let stok = $('#s_keluar').val()
-				let hargabarang = $('#h_barang').val()
-				let diskon = $('#diskon').val()
-		
-				let total = hargabarang * stok
-		
-				$('#ttotal').text(total);
 		
 				let sementara = parseInt(total) * (parseInt(diskon) / 100);
 				let subtotal = parseInt(total) - sementara

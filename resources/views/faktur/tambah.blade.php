@@ -255,7 +255,7 @@
                                                 <tr class="border-bottom border-bottom-dashed"
                                                             data-kt-element="item">
                                                             <td class="pe-7">
-                                                                <select class="form-select form-select-solid"
+                                                                <select class="form-select form-select-solid additem"
                                                                     data-hide-search="true" data-placeholder="Pilih Nama Barang..."
                                                                     name="barang_id" onchange="bharga(value)" required>
                                                                     <option selected value="">Pilih Barang...</option>
