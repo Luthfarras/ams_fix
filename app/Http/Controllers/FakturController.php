@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\Faktur;
 use App\Models\Customer;
 use App\Models\DetailFaktur;
@@ -28,9 +29,10 @@ class FakturController extends Controller
     public function create()
     {
         $cust = Customer::all();
+        $barang = Barang::all();
         $detail = DetailFaktur::all();
         $dfaktur = $detail->unique('kode_faktur');
-        return view('faktur.tambah', compact('cust', 'detail', 'dfaktur'));
+        return view('faktur.tambah', compact('cust', 'barang', 'detail', 'dfaktur'));
 
     }
 

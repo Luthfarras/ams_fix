@@ -9,7 +9,7 @@
             <!--begin::Toolbar-->
             <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
                 <!--begin::Toolbar container-->
-                <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+                <div id="kt_app_toolbar_container" class="app-container d-flex flex-stack">
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
@@ -64,7 +64,7 @@
             <!--begin::Content-->
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
-                <div id="kt_app_content_container" class="app-container container-xxl">
+                <div id="kt_app_content_container" class="app-container">
                     <!--begin::Layout-->
                     <div class="d-flex flex-column flex-lg-row">
                         <!--begin::Content-->
@@ -87,8 +87,8 @@
                                                 <!--begin::Input-->
                                                 <div class="position-relative d-flex align-items-center w-150px">
                                                     <!--begin::Datepicker-->
-                                                    <input class="form-control form-control-transparent fw-bold pe-5"
-                                                        placeholder="Select date" name="invoice_date" />
+                                                    <input type="date" class="form-control form-control-transparent fw-bold pe-5"
+                                                        placeholder="Select date" name="tanggal_faktur" />
                                                     <!--end::Datepicker-->
                                                     <!--begin::Icon-->
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
@@ -112,9 +112,8 @@
                                                 data-bs-toggle="tooltip" data-bs-trigger="hover"
                                                 title="Enter invoice number">
                                                 <span class="fs-2x fw-bold text-gray-800">Invoice #</span>
-                                                <input type="text"
-                                                    class="form-control form-control-flush fw-bold text-muted fs-3 w-125px"
-                                                    value="2021001" placehoder="..." />
+                                                    <input type="text" class="form-control form-control-flush fw-bold text-muted fs-3 w-125px"
+                                                    value=". . ." placehoder="Masukkan Kode..." name="kode_faktur"/>
                                             </div>
                                             <!--end::Input group-->
                                         </div>
@@ -125,55 +124,23 @@
                                         <!--begin::Wrapper-->
                                         <div class="mb-0">
                                             <!--begin::Row-->
-                                            <div class="row gx-10 mb-5">
+                                            
                                                 <!--begin::Col-->
-                                                <div class="col-lg-6">
+                                                <div class="flex-wrap">
                                                     <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Bill
                                                         From</label>
                                                     <!--begin::Input group-->
-                                                    <div class="mb-5">
-                                                        <input type="text" class="form-control form-control-solid"
-                                                            placeholder="Name" />
-                                                    </div>
-                                                    <!--end::Input group-->
-                                                    <!--begin::Input group-->
-                                                    <div class="mb-5">
-                                                        <input type="text" class="form-control form-control-solid"
-                                                            placeholder="Email" />
-                                                    </div>
-                                                    <!--end::Input group-->
-                                                    <!--begin::Input group-->
-                                                    <div class="mb-5">
-                                                        <textarea name="notes" class="form-control form-control-solid" rows="3" placeholder="Who is this invoice from?"></textarea>
-                                                    </div>
+                                                    <select class="form-select form-select-solid" data-control="select2"
+                                                        data-hide-search="true" data-placeholder="Pilih Customer..."
+                                                        name="customer_id">
+                                                        <option selected disabled>Pilih Customer...</option>
+                                                        @foreach ($cust as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->nama_customer }}</option>
+                                                        @endforeach
+                                                    </select>
                                                     <!--end::Input group-->
                                                 </div>
                                                 <!--end::Col-->
-                                                <!--begin::Col-->
-                                                <div class="col-lg-6">
-                                                    <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Bill
-                                                        To</label>
-                                                    <!--begin::Input group-->
-                                                    <div class="mb-5">
-                                                        <input type="text" class="form-control form-control-solid"
-                                                            placeholder="Name" />
-                                                    </div>
-                                                    <!--end::Input group-->
-                                                    <!--begin::Input group-->
-                                                    <div class="mb-5">
-                                                        <input type="text" class="form-control form-control-solid"
-                                                            placeholder="Email" />
-                                                    </div>
-                                                    <!--end::Input group-->
-                                                    <!--begin::Input group-->
-                                                    <div class="mb-5">
-                                                        <textarea name="notes" class="form-control form-control-solid" rows="3"
-                                                            placeholder="What is this invoice for?"></textarea>
-                                                    </div>
-                                                    <!--end::Input group-->
-                                                </div>
-                                                <!--end::Col-->
-                                            </div>
                                             <!--end::Row-->
                                             <!--begin::Table wrapper-->
                                             <div class="table-responsive mb-10">
@@ -197,27 +164,28 @@
                                                         <tr class="border-bottom border-bottom-dashed"
                                                             data-kt-element="item">
                                                             <td class="pe-7">
-                                                                <input type="text"
-                                                                    class="form-control form-control-solid mb-2"
-                                                                    name="name[]" placeholder="Item name" />
-                                                                <input type="text"
-                                                                    class="form-control form-control-solid"
-                                                                    name="description[]" placeholder="Description" />
+                                                                <select class="form-select form-select-solid" data-control="select2"
+                                                                    data-hide-search="true" data-placeholder="Pilih Nama Barang..."
+                                                                    name="barang_id" id="nama_barang" onchange="harga(value)" required>
+                                                                    <option selected value="">Pilih Barang...</option>
+                                                                    @foreach ($barang as $item)
+                                                                        <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </td>
                                                             <td class="ps-0">
                                                                 <input class="form-control form-control-solid"
-                                                                    type="number" min="1" name="quantity[]"
-                                                                    placeholder="1" value="1"
-                                                                    data-kt-element="quantity" />
+                                                                    type="number" min="1" name="stok_keluar" id="stok_keluar"
+                                                                    placeholder="1" data-kt-element="quantity" onkeyup="hasil()"/>
                                                             </td>
                                                             <td>
                                                                 <input type="text"
-                                                                    class="form-control form-control-solid text-end"
-                                                                    name="price[]" placeholder="0.00" value="0.00"
+                                                                    class="form-control form-control-solid text-end" id="harga_barang"
+                                                                    name="price[]" placeholder="0.00" onchange="harga('value')"
                                                                     data-kt-element="price" />
                                                             </td>
-                                                            <td class="pt-8 text-end text-nowrap">$
-                                                                <span data-kt-element="total">0.00</span>
+                                                            <td class="pt-8 text-end text-nowrap">Rp.
+                                                                <span data-kt-element="total" id="total">0,00</span>
                                                             </td>
                                                             <td class="pt-5 text-end">
                                                                 <button type="button"
@@ -286,10 +254,14 @@
                                             <table class="table d-none" data-kt-element="item-template">
                                                 <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
                                                     <td class="pe-7">
-                                                        <input type="text" class="form-control form-control-solid mb-2"
-                                                            name="name[]" placeholder="Item name" />
-                                                        <input type="text" class="form-control form-control-solid"
-                                                            name="description[]" placeholder="Description" />
+                                                        <select class="form-select form-select-solid" data-control="select2"
+                                                            data-hide-search="true" data-placeholder="Pilih Nama Barang..."
+                                                            name="barang_id" id="nama_barang" onchange="harga(value)" required>
+                                                            <option selected value="">Pilih Barang...</option>
+                                                            @foreach ($barang as $item)
+                                                                <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </td>
                                                     <td class="ps-0">
                                                         <input class="form-control form-control-solid" type="number"
@@ -477,34 +449,60 @@
             <!--end::Content-->
         </div>
         <!--end::Content wrapper-->
-        <!--begin::Footer-->
-        <div id="kt_app_footer" class="app-footer">
-            <!--begin::Footer container-->
-            <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
-                <!--begin::Copyright-->
-                <div class="text-dark order-2 order-md-1">
-                    <span class="text-muted fw-semibold me-1">2022&copy;</span>
-                    <a href="https://keenthemes.com" target="_blank"
-                        class="text-gray-800 text-hover-primary">Keenthemes</a>
-                </div>
-                <!--end::Copyright-->
-                <!--begin::Menu-->
-                <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-                    <li class="menu-item">
-                        <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
-                    </li>
-                </ul>
-                <!--end::Menu-->
-            </div>
-            <!--end::Footer container-->
-        </div>
-        <!--end::Footer-->
     </div>
     <!--end:::Main-->
+
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "/getharga",
+            dataType: "JSON",
+            success: function (response) {
+                response.map((value) => {
+                    $('#nama_barang').append($('<option>', {
+                        value: value.id,
+                        text: value.nama_barang
+                    }));
+                })
+            }
+        });
+    
+    function harga(id){
+        $.ajax({
+            type: "get",
+            url: `/getbarang/${id}`,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $(`#harga_barang`).children().remove()
+                response.map((value) => { 
+                    $('#harga_barang').val(value.harga_jual)
+                    // $(`#harga_barang`).append($('<option>', {
+                    //     value: value.id,
+                    //     text: value.harga_jual
+                    // }));
+                });
+            }
+        });
+    }
+    </script>
+    <script>
+        function hasil() {
+            let stok = $('#stok_keluar').val()
+            let hargabarang = $('#harga_barang').val()
+            let diskon = $('#diskon').val()
+    
+            let total = hargabarang * stok
+    
+            $('#total').text(total);
+    
+            let sementara = parseInt(total) * (parseInt(diskon) / 100);
+            let subtotal = parseInt(total) - sementara
+    
+            if (!isNaN(subtotal)) {
+                $('#subtotal').val(subtotal);
+                $('#sub').val(subtotal);
+            }
+        }
+    </script>    
 @endsection
