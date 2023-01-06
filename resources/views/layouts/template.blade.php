@@ -537,6 +537,7 @@
 		<script src="{{ asset('met/dist/assets/js/widgets.bundle.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/widgets.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/apps/chat/chat.js') }}"></script>
+		<script src="{{ asset('met/dist/assets/js/custom/apps/invoices/create.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-target.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-address.js') }}"></script>
