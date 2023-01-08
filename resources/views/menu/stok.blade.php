@@ -317,6 +317,7 @@
     <!--end::Content wrapper-->
 </div>
 <!--end:::Main-->
+
  <!--begin::Modal - New Target-->
  <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->

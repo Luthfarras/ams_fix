@@ -255,7 +255,7 @@
                                                 <tr class="border-bottom border-bottom-dashed" id="tableitem1"
                                                             data-kt-element="item">
                                                             <td class="pe-7">
-                                                                <select class="form-select form-select-solid additem"
+                                                                <select class="form-select form-select-solid additem" data-control="select"
                                                                     data-hide-search="true" data-placeholder="Pilih Nama Barang..."
                                                                     name="barang_id" onchange="bharga(value)" required>
                                                                     <option selected value="">Pilih Barang...</option>
@@ -276,7 +276,7 @@
                                                                     data-kt-element="price" />
                                                             </td>
                                                             <td class="pt-8 text-end text-nowrap">Rp.
-                                                                <span data-kt-element="total" id="total" >1</span>
+                                                                <span data-kt-element="total" id="ttotal" >1</span>
                                                             </td>
                                                             <td class="pt-5 text-end">
                                                                 <button type="button"
@@ -455,9 +455,4 @@
     </div>
     <!--end:::Main-->
 
-    <script>
-       
-    </script>
-    <script>
-        
 @endsection

@@ -18,7 +18,8 @@ class FakturController extends Controller
     public function index()
     {
         $faktur = Faktur::all();
-        return view('faktur.faktur', compact('faktur'));
+        $detail = DetailFaktur::all();
+        return view('faktur.faktur', compact('faktur', 'detail'));
     }
 
     /**

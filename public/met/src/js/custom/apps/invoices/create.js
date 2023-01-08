@@ -53,7 +53,14 @@ let KTAppInvoicesCreate = function () {
 
 			let item = form.querySelector('[data-kt-element="item-template"]  tr').cloneNode(true);
 			// let tr = $('tr[id^="tabelitem"]:last');
+			
 			let items1 = $('.additem');
+
+			// for (let i = 0; i < items1.length; i++) {
+			// 	const element = items1[i];
+				
+			// }
+
 			// var num = parseInt( tr.prop("id").match(/\d+/g), 10 ) +1;
 			let barang = items1.length;
 			item.id = 'tabelitem'+barang;
