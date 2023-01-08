@@ -14,7 +14,8 @@ class SetoranController extends Controller
      */
     public function index()
     {
-        //
+        $setoran = Setoran::all();
+        return view('menu.setoran', compact('setoran'));
     }
 
     /**

@@ -14,7 +14,8 @@ class PajakController extends Controller
      */
     public function index()
     {
-        //
+        $pajak = Pajak::all();
+        return view('menu.pajak', compact('pajak'));
     }
 
     /**

@@ -13,7 +13,7 @@
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
-                    <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Laporan</h1>
+                    <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Laporan Faktur Pajak</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -28,7 +28,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Laporan</li>
+                        <li class="breadcrumb-item text-muted">Laporan Faktur Pajak</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -435,7 +435,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input id="due_date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_upload" />
+                                <input id="due_date" class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" />
                                 <!--end::Datepicker-->
                             </div>
                             

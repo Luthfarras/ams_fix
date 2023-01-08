@@ -112,7 +112,7 @@
                                                 data-bs-toggle="tooltip" data-bs-trigger="hover"
                                                 title="Enter invoice number">
                                                 <span class="fs-2x fw-bold text-gray-800">Invoice #</span>
-                                                    <input type="text" class="form-control form-control-flush fw-bold text-muted fs-3 w-125px"
+                                                    <input type="text" class="form-control form-control-flush fw-bold text-muted fs-3"
                                                     value=". . ." placehoder="Masukkan Kode..." name="kode_faktur"/>
                                             </div>
                                             <!--end::Input group-->
@@ -227,10 +227,10 @@
                                                                     <div class="fs-5">Subtotal</div>
                                                                     <button class="btn btn-link py-1"
                                                                         data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                                        title="Coming soon">Add tax</button>
+                                                                        title="Coming soon">Tambah Pajak PPN</button>
                                                                     <button class="btn btn-link py-1"
                                                                         data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                                        title="Coming soon">Add discount</button>
+                                                                        title="Coming soon">Tambah Diskon</button>
                                                                 </div>
                                                             </th>
                                                             <th colspan="2"
