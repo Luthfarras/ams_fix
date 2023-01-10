@@ -46,14 +46,12 @@ License: For each use you must have a valid license purchased only from above li
 						<img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{ asset('met/dist/assets/media/auth/agency-dark.png') }}" alt="" />
 						<!--end::Image-->
 						<!--begin::Title-->
-						<h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
+						<h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Cepat, Efisien dan Produktif</h1>
 						<!--end::Title-->
 						<!--begin::Text-->
-						<div class="text-gray-600 fs-base text-center fw-semibold">In this kind of post,
-						<a href="#" class="opacity-75-hover text-primary me-1">the blogger</a>introduces a person they’ve interviewed
-						<br />and provides some background information about
-						<a href="#" class="opacity-75-hover text-primary me-1">the interviewee</a>and their
-						<br />work following this is a transcript of the interview.</div>
+						<div class="text-gray-600 fs-base text-center fw-semibold">Sistem Pencatatan Modern yang membantu 
+							perusahaan dan mampu meminimalisir banyaknya data yang digunakan sehari-hari
+						</div>
 						<!--end::Text-->
 					</div>
 					<!--end::Content-->
@@ -111,7 +109,7 @@ License: For each use you must have a valid license purchased only from above li
 										<span class="indicator-label">Login</span>
 										<!--end::Indicator label-->
 										<!--begin::Indicator progress-->
-										<span class="indicator-progress">Please wait...
+										<span class="indicator-progress">Tunggu sebentar
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 										<!--end::Indicator progress-->
 									</button>
@@ -121,8 +119,6 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Sign up-->
                             </form>
                             <!--end::Form-->
-								<div class="text-gray-500 text-center fw-semibold fs-6">Belum memiliki Akun ? 
-								<a href="{{ route('register') }}" class="link-primary">Daftar</a></div>
 						</div>
 						<!--end::Content-->
 					</div>
@@ -139,7 +135,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="{{ asset('met/dist/assets/js/scripts.bundle.js') }}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Custom Javascript(used by this page)-->
-		<script src="{{ asset('met/dist/assets/js/custom/authentication/sign-in/general.js') }}"></script>
+		<script src="{{ asset('met/src/js/custom/authentication/sign-in/general.js') }}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
