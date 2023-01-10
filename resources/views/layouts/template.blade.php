@@ -196,7 +196,11 @@
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-5">
-											<a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Log Out</a>
+											<a href="{{ route('logout') }}"  class="menu-link px-5" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Log Out</a>
+													 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
 										</div>
 										<!--end::Menu item-->
 									</div>

@@ -26,32 +26,37 @@ use App\Http\Controllers\DetailFakturController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');
 });
 
-Route::resource('pengguna', UserController::class);
-Route::resource('barang', BarangController::class);
-Route::resource('distributor', DistributorController::class);
-Route::resource('customer', CustomerController::class);
-Route::resource('faktur', FakturController::class);
-Route::resource('detailfaktur', DetailFakturController::class);
-Route::resource('pajak', PajakController::class);
-Route::resource('penjualan', PenjualanController::class);
-Route::resource('setoran', SetoranController::class);
-Route::resource('stok', StokController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', [HomeController::class, 'index']);
+    Route::resource('pengguna', UserController::class);
+    Route::resource('barang', BarangController::class);
+    Route::resource('distributor', DistributorController::class);
+    Route::resource('customer', CustomerController::class);
+    Route::resource('faktur', FakturController::class);
+    Route::resource('detailfaktur', DetailFakturController::class);
+    Route::resource('pajak', PajakController::class);
+    Route::resource('penjualan', PenjualanController::class);
+    Route::resource('setoran', SetoranController::class);
+    Route::resource('stok', StokController::class);
+    
+    Route::get('barang/{barang}', [BarangController::class, 'destroy']);
+    Route::get('distributor/{distributor}', [DistributorController::class, 'destroy']);
+    Route::get('customer/{customer}', [CustomerController::class, 'destroy']);
+    Route::get('faktur/{faktur}', [FakturController::class, 'destroy']);
+    Route::get('dfaktur/{detailfaktur}', [DetailFakturController::class, 'destroy']);
+    Route::get('pajak/{pajak}', [PajakController::class, 'destroy']);
+    Route::get('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
+    Route::get('setoran/{setoran}', [SetoranController::class, 'destroy']);
+    Route::get('stok/{stok}', [StokController::class, 'destroy']);
+    
+    Route::get('getharga', [DetailFakturController::class, 'getHarga']);
+    Route::get('getbarang/{id}', [DetailFakturController::class, 'getBarang']);
+    
+});
 
-Route::get('barang/{barang}', [BarangController::class, 'destroy']);
-Route::get('distributor/{distributor}', [DistributorController::class, 'destroy']);
-Route::get('customer/{customer}', [CustomerController::class, 'destroy']);
-Route::get('faktur/{faktur}', [FakturController::class, 'destroy']);
-Route::get('dfaktur/{detailfaktur}', [DetailFakturController::class, 'destroy']);
-Route::get('pajak/{pajak}', [PajakController::class, 'destroy']);
-Route::get('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
-Route::get('setoran/{setoran}', [SetoranController::class, 'destroy']);
-Route::get('stok/{stok}', [StokController::class, 'destroy']);
-
-Route::get('getharga', [DetailFakturController::class, 'getHarga']);
-Route::get('getbarang/{id}', [DetailFakturController::class, 'getBarang']);
 
 Auth::routes();
 

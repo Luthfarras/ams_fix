@@ -33,20 +33,27 @@ var KTSignupGeneral = function() {
                         validators: {
                             regexp: {
                                 regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: 'The value is not a valid email address',
+                                message: 'Data yang anda masukkan salah, bukan email',
                             },
 							notEmpty: {
-								message: 'Email address is required'
+								message: 'Email harus diisi'
+							}
+						}
+					},
+					'username': {
+                        validators: {
+							notEmpty: {
+								message: 'Username harus diisi'
 							}
 						}
 					},
                     'password': {
                         validators: {
                             notEmpty: {
-                                message: 'The password is required'
+                                message: 'Password dibutuhkan!'
                             },
                             callback: {
-                                message: 'Please enter valid password',
+                                message: 'Masukkan password yang benar',
                                 callback: function(input) {
                                     if (input.value.length > 0) {
                                         return validatePassword();
@@ -58,20 +65,20 @@ var KTSignupGeneral = function() {
                     'confirm-password': {
                         validators: {
                             notEmpty: {
-                                message: 'The password confirmation is required'
+                                message: 'Konfirmasi Password dibutuhkan'
                             },
                             identical: {
                                 compare: function() {
                                     return form.querySelector('[name="password"]').value;
                                 },
-                                message: 'The password and its confirm are not the same'
+                                message: 'Password dan Konfirmasi Password tidak sama'
                             }
                         }
                     },
                     'toc': {
                         validators: {
                             notEmpty: {
-                                message: 'You must accept the terms and conditions'
+                                message: 'Kamu harus menyetujui Ketentuan yang berlaku'
                             }
                         }
                     }
