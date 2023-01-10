@@ -112,8 +112,14 @@
                                                 data-bs-toggle="tooltip" data-bs-trigger="hover"
                                                 title="Enter invoice number">
                                                 <span class="fs-2x fw-bold text-gray-800">Invoice #</span>
-                                                    <input type="text" class="form-control form-control-flush fw-bold text-muted fs-3"
-                                                    value=". . ." placehoder="Masukkan Kode..." name="kode_faktur"/>
+                                                <select class="form-select form-select-solid" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Pilih Kode Faktur..."
+                                                name="customer_id">
+                                                <option selected disabled>Pilih Kode Faktur...</option>
+                                                @foreach ($detail as $item)
+                                                <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}</option>
+                                                @endforeach
+                                            </select>
                                             </div>
                                             <!--end::Input group-->
                                         </div>
@@ -132,11 +138,7 @@
                                                     <!--begin::Input group-->
                                                     <select class="form-select form-select-solid" data-control="select2"
                                                         data-hide-search="true" data-placeholder="Pilih Customer..."
-                                                        name="customer_id">
-                                                        <option selected disabled>Pilih Customer...</option>
-                                                        @foreach ($cust as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama_customer }}</option>
-                                                        @endforeach
+                                                        name="customer_id" id="nama_cust">
                                                     </select>
                                                     <!--end::Input group-->
                                                 </div>
@@ -164,14 +166,7 @@
                                                         <tr class="border-bottom border-bottom-dashed"
                                                             data-kt-element="item">
                                                             <td class="pe-7">
-                                                                <select class="form-select form-select-solid" data-control="select2"
-                                                                    data-hide-search="true" data-placeholder="Pilih Nama Barang..."
-                                                                    name="barang_id" onchange="harga(value)" required>
-                                                                    <option selected value="">Pilih Barang...</option>
-                                                                    @foreach ($barang as $item)
-                                                                        <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                                memek
                                                             </td>
                                                             <td class="ps-0">
                                                                 <input class="form-control form-control-solid"
@@ -454,5 +449,37 @@
         <!--end::Content wrapper-->
     </div>
     <!--end:::Main-->
+    <script>
+        function nama(id) {
+            $.ajax({
+                type: "get",
+                url: `/getname/${id}`,
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    response.map((value) => {
+                        $(`#nama_cust`).val(value.nama_customer)
+                    });
 
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                url: `/gettotal/${id}`,
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    let hasil = 0;
+                    response.map((value) => {
+                        let total = value.subtotal
+                        if (total != null && total != ""){
+                            hasil += parseInt(total);
+                        }
+                        $(`#total_harga`).val(hasil)
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

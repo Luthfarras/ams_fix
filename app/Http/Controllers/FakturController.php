@@ -92,4 +92,22 @@ class FakturController extends Controller
     {
         //
     }
+    public function getNama($id)
+    {
+        $data = DetailFaktur::join('customers', 'customers.id', 'detail_fakturs.customer_id')->where('detail_fakturs.kode_faktur', $id)->get();
+        // $good = response()->json($data);
+        // dd($good);
+        return response()->json($data);
+    }
+
+    public function getTotal($id)
+    {
+        $data = DetailFaktur::join('customers', 'customers.id', 'detail_fakturs.customer_id')->where('detail_fakturs.kode_faktur', $id)->get();
+        $total = 0;
+        foreach ($data as $item) {
+            $total += $item->subtotal;
+        }
+        // dd($total);
+        return response()->json($data);
+    }
 }
