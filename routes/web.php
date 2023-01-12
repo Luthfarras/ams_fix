@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
     Route::get('setoran/{setoran}', [SetoranController::class, 'destroy']);
     Route::get('stok/{stok}', [StokController::class, 'destroy']);
+    Route::get('pengguna/{pengguna}', [UserController::class, 'destroy']);
     
     Route::get('getharga', [DetailFakturController::class, 'getHarga']);
     Route::get('getbarang/{id}', [DetailFakturController::class, 'getBarang']);

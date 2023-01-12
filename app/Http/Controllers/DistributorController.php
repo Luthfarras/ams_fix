@@ -71,7 +71,8 @@ class DistributorController extends Controller
      */
     public function update(Request $request, Distributor $distributor)
     {
-        //
+        $distributor->update($request->all());
+        return redirect('distributor');
     }
 
     /**

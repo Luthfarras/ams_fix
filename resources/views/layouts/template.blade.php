@@ -196,11 +196,17 @@
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-5">
-											<a href="{{ route('logout') }}"  class="menu-link px-5" onclick="event.preventDefault();
+											{{--  <a href="{{ route('logout') }}"  class="menu-link px-5" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Log Out</a>
 													 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                        				@csrf
+                                    				</form> --}}
+
+											<a class="menu-link px-5" type="button" id="logout"/>Logout</a>
+											<form name="logoutform" method="post" action="{{ route('logout') }}" id="logout-form" class="d-none">
+												@csrf
+												<input type="hidden" name="form_name" value="logoutform">
+											</form>
 										</div>
 										<!--end::Menu item-->
 									</div>
@@ -536,6 +542,7 @@
 		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used by this page)-->
+		<script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/apps/subscriptions/list/export.js') }}"></script>
 		<script src="{{ asset('met/src/js/custom/apps/subscriptions/list/list.js') }}"></script>
 		<script src="{{ asset('met/src/js/custom/utilities/modals/new-target.js') }}"></script>
@@ -546,6 +553,25 @@
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-address.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+		<script>
+			$('#logout').on("click", function() {
+				swal.fire({
+					title: 'Apa Kamu Yakin mau Logout?',
+					text: "Kamu tidak bisa mengulang lagi",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Ya, Keluar!'
+				}).then((result) => { 
+					if (result.value===true) {
+						$('#logout-form').submit() // this submits the form
+						 
+					} 
+				}) 
+		});   
+		</script>
+		
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

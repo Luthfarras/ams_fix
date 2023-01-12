@@ -163,7 +163,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
+                                                <a href="pengguna/{{ $item->id }}" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>

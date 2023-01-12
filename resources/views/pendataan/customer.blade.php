@@ -174,12 +174,12 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo1/dist/apps/subscriptions/add.html" class="menu-link px-3">Edit</a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#editcustomer{{ $item->id }}" class="menu-link px-3">Edit</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="/customer/{{ $item->id }}" class="menu-link px-3">Delete</a>
+                                                <a href="/customer/{{ $item->id }}"  class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
@@ -187,6 +187,113 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
+                                <!--begin::Modal - New Target-->
+                                <div class="modal fade" id="editcustomer{{ $item->id }}" tabindex="-1" aria-hidden="true">
+                                    <!--begin::Modal dialog-->
+                                    <div class="modal-dialog modal-dialog-centered mw-650px">
+                                        <!--begin::Modal content-->
+                                        <div class="modal-content rounded">
+                                            <!--begin::Modal header-->
+                                            <div class="modal-header pb-0 border-0 justify-content-end">
+                                                <!--begin::Close-->
+                                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                    <span class="svg-icon svg-icon-1">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <!--end::Close-->
+                                            </div>
+                                            <!--begin::Modal header-->
+                                            <!--begin::Modal body-->
+                                            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                                                <!--begin:Form-->
+                                                <form id="kt_modal_new_target_form" class="form" action="{{ route('customer.update', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <!--begin::Heading-->
+                                                    <div class="mb-13 text-center">
+                                                        <!--begin::Title-->
+                                                        <h1 class="mb-3">Tambah Data Customer</h1>
+                                                        <!--end::Title-->
+                                                        <!--begin::Description-->
+                                                        <div class="text-muted fw-semibold fs-5">Sesuaikan dengan data yang dibutuhkan
+                                                        </div>
+                                                        <!--end::Description-->
+                                                    </div>
+                                                    <!--end::Heading-->
+                                                    <!--begin::Input group-->
+                                                    <div class="d-flex flex-column mb-8 fv-row">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                                            <span class="required">Nama Customer</span>
+                                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sesuaikan Nama Customer"></i>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <input type="text" class="form-control form-control-solid" placeholder="Masukkan Nama Customer..." value="{{ $item->nama_customer }}" name="nama_customer" />
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                    <!--begin::Input group-->
+                                                    <div class="row g-9 mb-8">
+                                                        <!--begin::Col-->
+                                                        <div class="col-md-6 fv-row">
+                                                            <label class="required fs-6 fw-semibold mb-2">Kode Customer</label>
+                                                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Kode Customer" value="{{ $item->kode_customer }}" name="kode_customer" />
+                                                        </div>
+                                                        <!--end::Col-->
+                                                        <!--begin::Col-->
+                                                        <div class="col-md-6 fv-row">
+                                                            <label class="required fs-6 fw-semibold mb-2">No. Telepon</label>
+                                                            <!--begin::Input-->
+                                                            <div class="position-relative d-flex align-items-center">
+                                                                <!--begin::Icon-->
+                                                                <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                                                                <span class="svg-icon svg-icon-2 position-absolute mx-4">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor"/>
+                                                                        <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor"/>
+                                                                    </svg>
+                                                                        
+                                                                </span>
+                                                                <!--end::Svg Icon-->
+                                                                <!--end::Icon-->
+                                                                <!--begin::Datepicker-->
+                                                                <input type="text" class="form-control form-control-solid ps-12" value="{{ $item->telepon_customer }}" placeholder="Masukkan No. Telepon..." name="telepon_customer" />
+                                                                <!--end::Datepicker-->
+                                                            </div>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                    <!--begin::Input group-->
+                                                    <div class="d-flex flex-column mb-8">
+                                                        <label class="fs-6 fw-semibold mb-2">Alamat Customer</label>
+                                                        <textarea class="form-control form-control-solid" rows="3" placeholder="Masukkan Alamat Customer" name="alamat_customer">{{ $item->alamat_customer }}</textarea>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <span class="indicator-label">Submit</span>
+                                                            <span class="indicator-progress">Please wait...
+                                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                        </button>
+                                                    </div>
+                                                    <!--end::Actions-->
+                                                </form>
+                                                <!--end:Form-->
+                                            </div>
+                                            <!--end::Modal body-->
+                                        </div>
+                                        <!--end::Modal content-->
+                                    </div>
+                                    <!--end::Modal dialog-->
+                                </div>
+                                <!--end::Modal - New Target-->
                                 @endforeach                                
                             </tbody>
                             <!--end::Table body-->
@@ -335,14 +442,6 @@
                         <!--begin::Col-->
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Kode Customer</label>
-                            {{-- <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="target_assign">
-                                <option value="">Select user...</option>
-                                <option value="1">Karina Clark</option>
-                                <option value="2">Robert Doe</option>
-                                <option value="3">Niel Owen</option>
-                                <option value="4">Olivia Wild</option>
-                                <option value="5">Sean Bean</option>
-                            </select> --}}
                             <input type="text" class="form-control form-control-solid" placeholder="Masukkan Kode Customer" name="kode_customer" />
                         </div>
                         <!--end::Col-->
@@ -376,65 +475,6 @@
                         <label class="fs-6 fw-semibold mb-2">Alamat Customer</label>
                         <textarea class="form-control form-control-solid" rows="3" placeholder="Masukkan Alamat Customer" name="alamat_customer"></textarea>
                     </div>
-                    <!--end::Input group-->
-                    {{-- <!--begin::Input group-->
-                    <div class="d-flex flex-column mb-8 fv-row">
-                        <!--begin::Label-->
-                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                            <span class="required">Tags</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target priorty"></i>
-                        </label>
-                        <!--end::Label-->
-                        <input class="form-control form-control-solid" value="Important, Urgent" name="tags" />
-                    </div>
-                    <!--end::Input group--> --}}
-                    {{-- <!--begin::Input group-->
-                    <div class="d-flex flex-stack mb-8">
-                        <!--begin::Label-->
-                        <div class="me-5">
-                            <label class="fs-6 fw-semibold">Adding Users by Team Members</label>
-                            <div class="fs-7 fw-semibold text-muted">If you need more info, please check budget planning</div>
-                        </div>
-                        <!--end::Label-->
-                        <!--begin::Switch-->
-                        <label class="form-check form-switch form-check-custom form-check-solid">
-                            <input class="form-check-input" type="checkbox" value="1" checked="checked" />
-                            <span class="form-check-label fw-semibold text-muted">Allowed</span>
-                        </label>
-                        <!--end::Switch-->
-                    </div>
-                    <!--end::Input group--> --}}
-                    {{-- <!--begin::Input group-->
-                    <div class="mb-15 fv-row">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack">
-                            <!--begin::Label-->
-                            <div class="fw-semibold me-5">
-                                <label class="fs-6">Notifications</label>
-                                <div class="fs-7 text-muted">Allow Notifications by Phone or Email</div>
-                            </div>
-                            <!--end::Label-->
-                            <!--begin::Checkboxes-->
-                            <div class="d-flex align-items-center">
-                                <!--begin::Checkbox-->
-                                <label class="form-check form-check-custom form-check-solid me-10">
-                                    <input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="email" checked="checked" />
-                                    <span class="form-check-label fw-semibold">Email</span>
-                                </label>
-                                <!--end::Checkbox-->
-                                <!--begin::Checkbox-->
-                                <label class="form-check form-check-custom form-check-solid">
-                                    <input class="form-check-input h-20px w-20px" type="checkbox" name="communication[]" value="phone" />
-                                    <span class="form-check-label fw-semibold">Phone</span>
-                                </label>
-                                <!--end::Checkbox-->
-                            </div>
-                            <!--end::Checkboxes-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                    <!--end::Input group--> --}}
-                    <!--begin::Actions-->
                     <div class="text-center">
                         <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
                         <button type="submit" class="btn btn-primary">
