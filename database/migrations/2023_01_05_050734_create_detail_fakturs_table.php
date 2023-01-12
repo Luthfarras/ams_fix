@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('kode_faktur');
             $table->date('tanggal_keluar');
-            $table->foreignId('barang_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
+            $table->foreignId('barang_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('stok_keluar');
             $table->integer('diskon');
             $table->integer('subtotal');
-            $table->foreignId('customer_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

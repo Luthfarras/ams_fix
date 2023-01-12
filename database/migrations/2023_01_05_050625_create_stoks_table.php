@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('stoks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
+            $table->foreignId('barang_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('stok_masuk');
             $table->date('tanggal_masuk');
-            $table->foreignId('distributor_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
+            $table->foreignId('distributor_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

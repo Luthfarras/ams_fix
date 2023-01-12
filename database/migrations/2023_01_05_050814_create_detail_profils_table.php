@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('foto');
             $table->date('tanggal_lahir');
             $table->string('telepon');
-            $table->foreignId('user_id')->constrained()->onCascadeDelete()->onCascadeUpdate();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
