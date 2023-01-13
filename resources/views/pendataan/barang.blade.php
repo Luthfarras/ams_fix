@@ -419,6 +419,23 @@
                                     </div>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr class="text-start text-muted fw-bold fs-7 gs-0">
+                                        <th class="min-w-125px"></th>
+                                        <th class="min-w-125px">JUMLAH</th>
+                                        <th class="min-w-125px"></th>
+                                        <th class="min-w-125px"></th>
+                                        <th class="min-w-125px"></th>
+                                        <th class="min-w-125px"><span class="badge bg-primary">Rp {{ number_format("$jual",0,",",".") }}</span> </th>
+                                        <th class="min-w-125px"><span class="badge bg-warning">{{ $qty }} QTY</span></th>
+                                        <th class="min-w-125px"><span class="badge bg-warning">{{ $stok }} Stok</span></th>
+                                        <th class="min-w-125px"></th>
+                                        <th class="min-w-125px"><span class="badge bg-primary">Rp {{ number_format("$netto",0,",",".") }}</span></th>
+                                        <th class="min-w-125px"></th>
+                                        <th class="min-w-125px"></th>
+                                        <th class="text-end min-w-70px"></th>
+                                    </tr>
+                                </tfoot>
                                 <!--end::Table body-->
                             </table>
                             <!--end::Table-->

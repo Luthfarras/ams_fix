@@ -296,6 +296,17 @@
                                 <!--end::Modal - New Target-->
                                 @endforeach                                
                             </tbody>
+                            <tfoot>
+                                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                                    <th class="min-w-125px">#</th>
+                                    <th class="min-w-125px">No</th>
+                                    <th class="min-w-125px">Kode Customer</th>
+                                    <th class="min-w-125px">Nama Customer</th>
+                                    <th class="min-w-125px">Alamat Customer</th>
+                                    <th class="min-w-125px">Telepon</th>
+                                    <th class="text-end min-w-70px">#</th>
+                                </tr>
+                            </tfoot>
                             <!--end::Table body-->
                         </table>
                         <!--end::Table-->

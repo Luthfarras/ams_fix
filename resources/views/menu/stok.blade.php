@@ -191,6 +191,17 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr class="text-start text-muted fw-bold fs-7 gs-0">
+                                    <th class="min-w-125px"></th>
+                                    <th class="min-w-125px">Jumlah</th>
+                                    <th class="min-w-125px"></th>
+                                    <th class="min-w-125px"></th>
+                                    <th class="min-w-125px"><span class="badge bg-warning">{{ $jumlah }}</span></th>
+                                    <th class="min-w-125px"></th>
+                                    <th class="text-end min-w-70px"></th>
+                                </tr>
+                            </tfoot>
                             <!--end::Table body-->
                         </table>
                         <!--end::Table-->
