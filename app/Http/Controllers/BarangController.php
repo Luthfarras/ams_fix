@@ -71,7 +71,8 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        $barang->update($request->all());
+        return redirect('barang');
     }
 
     /**

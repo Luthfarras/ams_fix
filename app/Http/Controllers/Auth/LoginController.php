@@ -36,6 +36,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = '/home';
         $this->middleware('guest')->except('logout');
     }
     public function username()

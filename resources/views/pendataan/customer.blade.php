@@ -494,4 +494,5 @@
     <!--end::Modal dialog-->
 </div>
 <!--end::Modal - New Target-->
+
 @endsection

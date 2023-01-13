@@ -40,12 +40,21 @@ class StokController extends Controller
      */
     public function store(Request $request)
     {
+        // Mencari ID Barang yang diambil dari Request
         $barang = Barang::find($request->barang_id);
+
+        // Stok Barang yang sudah ada akan dijumlahkan dengan isi Form yang diambil dari stok_masuk
         $stok = $barang->stok + $request->stok_masuk;
+
+        // Stok akan menyimpan semua yang ada dalam Form
         Stok::create($request->all());
+
+        // TABLE barang akan mengupdate stok
         $barang->update([
             'stok' => $stok,
         ]);
+
+        // Kembali ke halaman Stok
         return redirect('stok');
     }
 
@@ -91,10 +100,15 @@ class StokController extends Controller
      */
     public function destroy(Stok $stok)
     {
+        // Jika ID barang ada dan diambil dari ID Stok
         $barang = Barang::find($stok->barang_id);
+
+        // Maka Table barang kolom stok barang dilakukan update dari (Table Barang kolom Stok) dikurangi dari (Table Stok kolom stok Masuk)
         $barang->update([
             'stok' => $barang->stok - $stok->stok_masuk,
         ]);
+
+        // Setelah itu id stok akan dihapus
         $stok->delete();
         return redirect('stok');
     }
