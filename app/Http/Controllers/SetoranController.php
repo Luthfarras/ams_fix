@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setoran;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SetoranController extends Controller
 {
@@ -15,7 +17,8 @@ class SetoranController extends Controller
     public function index()
     {
         $setoran = Setoran::all();
-        return view('menu.setoran', compact('setoran'));
+        $customer = DB::table('customers')->select('nama_customer', 'id')->get();
+        return view('menu.setoran', compact('setoran', 'customer'));
     }
 
     /**
@@ -36,7 +39,10 @@ class SetoranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['foto_dep'] = $request->file('foto_dep')->store('foto');
+        Setoran::create($data);
+        return redirect('setoran');
     }
 
     /**
@@ -70,7 +76,8 @@ class SetoranController extends Controller
      */
     public function update(Request $request, Setoran $setoran)
     {
-        //
+        $setoran->update($request->all());
+        return redirect('setoran');
     }
 
     /**
@@ -81,6 +88,7 @@ class SetoranController extends Controller
      */
     public function destroy(Setoran $setoran)
     {
-        //
+        $setoran->delete();
+        return redirect('setoran');
     }
 }

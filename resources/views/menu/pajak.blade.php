@@ -129,31 +129,30 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
+                                @foreach ($pajak as $item)
                                 <tr>
-                                    <!--begin::Checkbox-->
-                                    <!--end::Checkbox-->
                                     <!--begin::Customer=-->
                                     <td>
-                                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $loop->iteration }}</a>
                                     </td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
                                     <td>
-                                        <div class="badge badge-light-success">Active</div>
+                                        <div class="badge badge-light-success">{{ $item->kode_laporan }}</div>
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
                                     <td>
-                                        <div class="badge badge-light">Auto-debit</div>
+                                        <div class="badge badge-light">{{ $item->customer->nama_customer }}</div>
                                     </td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
-                                    <td>Basic</td>
-                                    <td>Basic</td>
-                                    <td>Basic</td>
+                                    <td>{{ $item->tanggal_rep }}</td>
+                                    <td>{{ $item->no_fakpajak }}</td>
+                                    <td>{{ $item->tanggal_upload }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>Mar 10, 2022</td>
+                                    <td>{{ $item->ket_rep }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
@@ -187,7 +186,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
-                                
+                                @endforeach
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -343,7 +342,8 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form id="kt_modal_new_target_form" class="form" action="#">
+                <form id="kt_modal_new_target_form" class="form" action="{{ route('pajak.store') }}" method="POST">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
@@ -377,11 +377,9 @@
                                 data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
                                 name="customer_id">
                                 <option selected disabled>Pilih Satuan...</option>
-                                <option value="liter">Liter</option>
-                                <option value="box">Box</option>
-                                <option value="satuan">Satuan</option>
-                                <option value="botol">Botol</option>
-                                <option value="pax">Pax</option>
+                                @foreach ($customer as $data)
+                                    <option value="{{ $data->id }}">{{ $data->nama_customer }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <!--end::Col-->
@@ -425,7 +423,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input id="due_date" class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" />
+                                <input type="date" class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" />
                                 <!--end::Datepicker-->
                             </div>
                             

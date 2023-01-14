@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pajak;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PajakController extends Controller
 {
@@ -15,7 +16,8 @@ class PajakController extends Controller
     public function index()
     {
         $pajak = Pajak::all();
-        return view('menu.pajak', compact('pajak'));
+        $customer = DB::table('customers')->select('nama_customer', 'id')->get();
+        return view('menu.pajak', compact('pajak', 'customer'));
     }
 
     /**
@@ -36,7 +38,8 @@ class PajakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pajak::create($request->all());
+        return redirect('pajak');
     }
 
     /**
@@ -70,7 +73,8 @@ class PajakController extends Controller
      */
     public function update(Request $request, Pajak $pajak)
     {
-        //
+        $pajak->update($request->all());
+        return redirect('pajak');
     }
 
     /**
@@ -81,6 +85,7 @@ class PajakController extends Controller
      */
     public function destroy(Pajak $pajak)
     {
-        //
+        $pajak->delete();
+        return redirect('pajak');
     }
 }
