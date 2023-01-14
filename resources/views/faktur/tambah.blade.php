@@ -62,19 +62,19 @@
             </div>
             <!--end::Toolbar-->
             <!--begin::Content-->
-            <div id="kt_app_content" class="app-content flex-column-fluid">
+            <div id="kt_app_content" class="app-content ">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container">
                     <!--begin::Layout-->
-                    <div class="d-flex flex-column flex-lg-row">
+                    <div class="d-flex flex-column ">
                         <!--begin::Content-->
-                        <div class="flex-lg-row-fluid mb-10 mb-lg-0 me-lg-7 me-xl-10">
+                        <div class=" mb-10 mb-lg-0">
                             <!--begin::Card-->
                             <div class="card">
                                 <!--begin::Card body-->
                                 <div class="card-body p-12">
                                     <!--begin::Form-->
-                                    <form action="{{ route('faktur.store') }}" id="kt_invoice_form" method="POST">
+                                    <form action="{{ route('faktur.store') }}" method="POST">
                                         @csrf
                                         <!--begin::Wrapper-->
                                         <div class="d-flex flex-column align-items-start flex-xxl-row">
@@ -88,7 +88,8 @@
                                                 <!--begin::Input-->
                                                 <div class="position-relative d-flex align-items-center w-150px">
                                                     <!--begin::Datepicker-->
-                                                    <input type="text" id="invoice_date" class="form-control form-control-transparent fw-bold pe-5"
+                                                    <input type="date" id="invoice_date"
+                                                        class="form-control form-control-transparent fw-bold pe-5"
                                                         placeholder="Select date" name="tanggal_faktur" />
                                                     <!--end::Datepicker-->
                                                     <!--begin::Icon-->
@@ -114,13 +115,14 @@
                                                 title="Enter invoice number">
                                                 <span class="fs-2x fw-bold text-gray-800">Invoice #</span>
                                                 <select class="form-select form-select-solid" data-control="select2"
-                                                data-hide-search="true" data-placeholder="Pilih Kode Faktur..."
-                                                name="kode_faktur" onchange="nama(value)">
-                                                <option selected disabled>Pilih Kode Faktur...</option>
-                                                @foreach ($dfaktur as $item)
-                                                <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}</option>
-                                                @endforeach
-                                            </select>
+                                                    data-hide-search="true" data-placeholder="Pilih Kode Faktur..."
+                                                    name="kode_faktur" onchange="nama(value)">
+                                                    <option selected disabled>Pilih Kode Faktur...</option>
+                                                    @foreach ($dfaktur as $item)
+                                                        <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <!--end::Input group-->
                                         </div>
@@ -131,22 +133,22 @@
                                         <!--begin::Wrapper-->
                                         <div class="mb-0">
                                             <!--begin::Row-->
-                                            
-                                                <!--begin::Col-->
-                                                <div class="flex-wrap">
-                                                    <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Bill
-                                                        From</label>
-                                                    <!--begin::Input group-->
-                                                    <input type="text" id="nama_cust" class="form-control form-control-solid" 
+
+                                            <!--begin::Col-->
+                                            <div class="flex-wrap">
+                                                <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Bill
+                                                    From</label>
+                                                <!--begin::Input group-->
+                                                <input type="text" id="nama_cust" class="form-control form-control-solid"
                                                     placeholder="Nama Customer..." onkeyup="nama(value)" disabled>
-                                                    <input type="hidden" name="customer_id" id="cust_id">
-                                                    {{-- <select class="form-select form-select-solid" data-control="select2"
+                                                <input type="hidden" name="customer_id" id="cust_id">
+                                                {{-- <select class="form-select form-select-solid" data-control="select2"
                                                         data-hide-search="true" data-placeholder="Pilih Customer..."
                                                         id="nama_cust" onkeyup="nama(value)">
                                                     </select> --}}
-                                                    <!--end::Input group-->
-                                                </div>
-                                                <!--end::Col-->
+                                                <!--end::Input group-->
+                                            </div>
+                                            <!--end::Col-->
                                             <!--end::Row-->
                                             <!--begin::Table wrapper-->
                                             <div class="table-responsive mb-10">
@@ -155,13 +157,10 @@
                                                     data-kt-element="items">
                                                     <!--begin::Table head-->
                                                     <thead>
-                                                        <tr
-                                                            class="border-bottom fs-7 fw-bold text-gray-700 text-uppercase">
+                                                        <tr class="border-bottom fs-7 fw-bold text-gray-700 text-uppercase">
                                                             <th class="min-w-300px w-475px">Item</th>
                                                             <th class="min-w-100px w-100px">PPN</th>
                                                             <th class="min-w-100px w-100px">PPH</th>
-                                                            <th class="min-w-150px w-150px">Price</th>
-                                                            <th class="min-w-100px w-150px text-end">Total</th>
                                                             <th class="min-w-75px w-75px text-end">Action</th>
                                                         </tr>
                                                     </thead>
@@ -171,22 +170,20 @@
                                                         <tr class="border-bottom border-bottom-dashed"
                                                             data-kt-element="item">
                                                             <td class="pe-7">
-                                                                <input type="text" class="form-control form-control-solid" name="total_harga" id="total_harga" onkeyup="nama(value)">
-                                                            </td>
-                                                            <td class="ps-0">
-                                                                <input class="form-control form-control-solid" type="text" name="ppn" id="ppn" onkeyup="total()"/>
-                                                            </td>
-                                                            <td class="ps-0">
-                                                                <input class="form-control form-control-solid" type="text" name="pph" id="pph" onkeyup="total()"/>
-                                                            </td>
-                                                            <td>
                                                                 <input type="text"
-                                                                    class="form-control form-control-solid text-end" id="harga_barang"
-                                                                    name="price[]" placeholder="0.00" onchange="harga(value)"
-                                                                    data-kt-element="price" />
+                                                                    class="form-control form-control-solid"
+                                                                    name="total_harga" id="total_harga"
+                                                                    onkeyup="nama(value)">
                                                             </td>
-                                                            <td class="pt-8 text-end text-nowrap">Rp.
-                                                                <span data-kt-element="total" id="total">0</span>
+                                                            <td class="ps-0">
+                                                                <input class="form-control form-control-solid"
+                                                                    type="text" name="ppn" id="ppn"
+                                                                    onkeyup="total()" />
+                                                            </td>
+                                                            <td class="ps-0">
+                                                                <input class="form-control form-control-solid"
+                                                                    type="text" name="pph" id="pph"
+                                                                    onkeyup="total()" />
                                                             </td>
                                                             <td class="pt-5 text-end">
                                                                 <button type="button"
@@ -216,34 +213,13 @@
                                                     <!--end::Table body-->
                                                     <!--begin::Table foot-->
                                                     <tfoot>
-                                                        <tr
-                                                            class="border-top border-top-dashed align-top fs-6 fw-bold text-gray-700">
-                                                            <th class="text-primary">
-                                                                <button class="btn btn-link py-1"
-                                                                    data-kt-element="add-item">Add item</button>
-                                                            </th>
-                                                            <th colspan="2"
-                                                                class="border-bottom border-bottom-dashed ps-0">
-                                                                <div class="d-flex flex-column align-items-start">
-                                                                    <div class="fs-5">Subtotal</div>
-                                                                    <button class="btn btn-link py-1"
-                                                                        data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                                        title="Coming soon">Tambah Pajak PPN</button>
-                                                                    <button class="btn btn-link py-1"
-                                                                        data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                                        title="Coming soon">Tambah Diskon</button>
-                                                                </div>
-                                                            </th>
-                                                            <th colspan="2"
-                                                                class="border-bottom border-bottom-dashed text-end">Rp.
-                                                                <span data-kt-element="sub-total">0.00</span>
-                                                            </th>
-                                                        </tr>
+                                                        
                                                         <tr class="align-top fw-bold text-gray-700">
                                                             <th></th>
                                                             <th colspan="2" class="fs-4 ps-0">Total</th>
                                                             <th colspan="2" class="text-end fs-4 text-nowrap">Rp.
-                                                                <span data-kt-element="grand-total" id="total_pp">0.00</span>
+                                                                <span data-kt-element="grand-total"
+                                                                    id="total_pp">0.00</span>
                                                             </th>
                                                         </tr>
                                                     </tfoot>
@@ -251,65 +227,6 @@
                                                 </table>
                                             </div>
                                             <!--end::Table-->
-                                            <!--begin::Item template-->
-                                            <table class="table d-none" data-kt-element="item-template">
-                                                <tr class="border-bottom border-bottom-dashed" id="tableitem1"
-                                                            data-kt-element="item">
-                                                            <td class="pe-7">
-                                                                <select class="form-select form-select-solid additem" data-control="select"
-                                                                    data-hide-search="true" data-placeholder="Pilih Nama Barang..."
-                                                                    name="barang_id" onchange="bharga(value)" required>
-                                                                    <option selected value="">Pilih Barang...</option>
-                                                                    @foreach ($barang as $item)
-                                                                        <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </td>
-                                                            <td class="ps-0">
-                                                                <input class="form-control form-control-solid"
-                                                                    type="number" min="1" name="stok_keluar" id="s_keluar"
-                                                                    placeholder="1" data-kt-element="quantity" onkeyup="bhasil()"/>
-                                                            </td>
-                                                            <td>
-                                                                <input type="text"
-                                                                    class="form-control form-control-solid text-end" id="h_barang"
-                                                                    name="price[]" placeholder="0.00" onchange="bharga(value)"
-                                                                    data-kt-element="price" />
-                                                            </td>
-                                                            <td class="pt-8 text-end text-nowrap">Rp.
-                                                                <span data-kt-element="total" id="ttotal" >1</span>
-                                                            </td>
-                                                            <td class="pt-5 text-end">
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-icon btn-active-color-primary"
-                                                                    data-kt-element="remove-item">
-                                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-                                                                    <span class="svg-icon svg-icon-3">
-                                                                        <svg width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
-                                                                                fill="currentColor" />
-                                                                            <path opacity="0.5"
-                                                                                d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
-                                                                                fill="currentColor" />
-                                                                            <path opacity="0.5"
-                                                                                d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
-                                                                                fill="currentColor" />
-                                                                        </svg>
-                                                                    </span>
-                                                                    <!--end::Svg Icon-->
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                            </table>
-                                            <table class="table d-none" data-kt-element="empty-template">
-                                                <tr data-kt-element="empty">
-                                                    <th colspan="5" class="text-muted text-center py-10">No items</th>
-                                                </tr>
-                                            </table>
-                                            <!--end::Item template-->
                                             <!--begin::Notes-->
                                             <div class="mb-5">
                                                 <label class="form-label fs-6 fw-bold text-gray-700">Notes</label>
@@ -318,127 +235,7 @@
                                             </div>
                                             <!--end::Notes-->
                                         </div>
-                                        <button type="submit" class="btn btn-primary w-100">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen016.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M15.43 8.56949L10.744 15.1395C10.6422 15.282 10.5804 15.4492 10.5651 15.6236C10.5498 15.7981 10.5815 15.9734 10.657 16.1315L13.194 21.4425C13.2737 21.6097 13.3991 21.751 13.5557 21.8499C13.7123 21.9488 13.8938 22.0014 14.079 22.0015H14.117C14.3087 21.9941 14.4941 21.9307 14.6502 21.8191C14.8062 21.7075 14.9261 21.5526 14.995 21.3735L21.933 3.33649C22.0011 3.15918 22.0164 2.96594 21.977 2.78013C21.9376 2.59432 21.8452 2.4239 21.711 2.28949L15.43 8.56949Z"
-                                                    fill="currentColor" />
-                                                <path opacity="0.3"
-                                                    d="M20.664 2.06648L2.62602 9.00148C2.44768 9.07085 2.29348 9.19082 2.1824 9.34663C2.07131 9.50244 2.00818 9.68731 2.00074 9.87853C1.99331 10.0697 2.04189 10.259 2.14054 10.4229C2.23919 10.5869 2.38359 10.7185 2.55601 10.8015L7.86601 13.3365C8.02383 13.4126 8.19925 13.4448 8.37382 13.4297C8.54839 13.4145 8.71565 13.3526 8.85801 13.2505L15.43 8.56548L21.711 2.28448C21.5762 2.15096 21.4055 2.05932 21.2198 2.02064C21.034 1.98196 20.8409 1.99788 20.664 2.06648Z"
-                                                    fill="currentColor" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->Send Invoice
-                                    </button>
-
-                                        <!--end::Wrapper-->
-                                    </form>
-                                    <!--end::Form-->
-                                </div>
-                                <!--end::Card body-->
-                            </div>
-                            <!--end::Card-->
-                        </div>
-                        <!--end::Content-->
-                        <!--begin::Sidebar-->
-                        <div class="flex-lg-auto min-w-lg-300px">
-                            <!--begin::Card-->
-                            <div class="card" data-kt-sticky="true" data-kt-sticky-name="invoice"
-                                data-kt-sticky-offset="{default: false, lg: '200px'}"
-                                data-kt-sticky-width="{lg: '250px', lg: '300px'}" data-kt-sticky-left="auto"
-                                data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
-                                <!--begin::Card body-->
-                                <div class="card-body p-10">
-                                    <!--begin::Input group-->
-                                    <div class="mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label fw-bold fs-6 text-gray-700">Currency</label>
-                                        <!--end::Label-->
-                                        <!--begin::Select-->
-                                        <select name="currnecy" aria-label="Select a Timezone" data-control="select2"
-                                            data-placeholder="Select currency" class="form-select form-select-solid">
-                                            <option value=""></option>
-                                            <option data-kt-flag="flags/united-states.svg" value="USD">
-                                                <b>USD</b>&nbsp;-&nbsp;USA dollar
-                                            </option>
-                                            <option data-kt-flag="flags/united-kingdom.svg" value="GBP">
-                                                <b>GBP</b>&nbsp;-&nbsp;British pound
-                                            </option>
-                                            <option data-kt-flag="flags/australia.svg" value="AUD">
-                                                <b>AUD</b>&nbsp;-&nbsp;Australian dollar
-                                            </option>
-                                            <option data-kt-flag="flags/japan.svg" value="JPY">
-                                                <b>JPY</b>&nbsp;-&nbsp;Japanese yen
-                                            </option>
-                                            <option data-kt-flag="flags/sweden.svg" value="SEK">
-                                                <b>SEK</b>&nbsp;-&nbsp;Swedish krona
-                                            </option>
-                                            <option data-kt-flag="flags/canada.svg" value="CAD">
-                                                <b>CAD</b>&nbsp;-&nbsp;Canadian dollar
-                                            </option>
-                                            <option data-kt-flag="flags/switzerland.svg" value="CHF">
-                                                <b>CHF</b>&nbsp;-&nbsp;Swiss franc
-                                            </option>
-                                        </select>
-                                        <!--end::Select-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Separator-->
-                                    <div class="separator separator-dashed mb-8"></div>
-                                    <!--end::Separator-->
-                                    <!--begin::Input group-->
-                                    <div class="mb-8">
-                                        <!--begin::Option-->
-                                        <label
-                                            class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack mb-5">
-                                            <span class="form-check-label ms-0 fw-bold fs-6 text-gray-700">Payment
-                                                method</span>
-                                            <input class="form-check-input" type="checkbox" checked="checked"
-                                                value="" />
-                                        </label>
-                                        <!--end::Option-->
-                                        <!--begin::Option-->
-                                        <label
-                                            class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack mb-5">
-                                            <span class="form-check-label ms-0 fw-bold fs-6 text-gray-700">Late fees</span>
-                                            <input class="form-check-input" type="checkbox" value="" />
-                                        </label>
-                                        <!--end::Option-->
-                                        <!--begin::Option-->
-                                        <label
-                                            class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                            <span class="form-check-label ms-0 fw-bold fs-6 text-gray-700">Notes</span>
-                                            <input class="form-check-input" type="checkbox" value="" />
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Separator-->
-                                    <div class="separator separator-dashed mb-8"></div>
-                                    <!--end::Separator-->
-                                    <!--begin::Actions-->
-                                    <div class="mb-0">
-                                        <!--begin::Row-->
-                                        <div class="row mb-5">
-                                            <!--begin::Col-->
-                                            <div class="col">
-                                                <a href="#"
-                                                    class="btn btn-light btn-active-light-primary w-100">Preview</a>
-                                            </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col">
-                                                <a href="#"
-                                                    class="btn btn-light btn-active-light-primary w-100">Download</a>
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Row-->
-                                        <button type="submit" href="#" class="btn btn-primary w-100"
-                                            id="kt_invoice_submit_button">
+                                        {{-- <button type="submit" class="btn btn-primary w-100">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen016.svg-->
                                             <span class="svg-icon svg-icon-3">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -451,14 +248,20 @@
                                                         fill="currentColor" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->Send Invoice
-                                        </button>
-                                    </div>
-                                    <!--end::Actions-->
+                                            <!--end::Svg Icon-->Submit
+                                        </button> --}}
+                                        <button type="submit" class="btn btn-primary w-100">SUBMIT COK</button>
+                                        <!--end::Wrapper-->
+                                    </form>
+                                    <!--end::Form-->
                                 </div>
                                 <!--end::Card body-->
                             </div>
                             <!--end::Card-->
+                        </div>
+                        <!--end::Content-->
+                        <!--begin::Sidebar-->
+                        <div class="flex-lg-auto min-w-lg-300px">
                         </div>
                         <!--end::Sidebar-->
                     </div>
@@ -483,7 +286,7 @@
                     response.map((value) => {
                         $(`#cust_id`).val(value.customer_id)
                         $(`#nama_cust`).val(value.nama_customer)
-                    });                
+                    });
                 }
             });
 
@@ -496,7 +299,7 @@
                     let hasil = 0;
                     response.map((value) => {
                         let total = value.subtotal
-                        if (total != null && total != ""){
+                        if (total != null && total != "") {
                             hasil += parseInt(total);
                         }
                         $(`#total_harga`).val(hasil)
@@ -522,5 +325,5 @@
             $('#total_pp').text(total_final)
         }
     </script>
-    
+
 @endsection
