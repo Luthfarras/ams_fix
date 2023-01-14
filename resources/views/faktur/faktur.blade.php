@@ -79,7 +79,7 @@
                                 </span>
                                 <!--end::Svg Icon-->Export</button>
                                 <!--end::Export-->
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                {{-- <a href="#" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#kt_modal_new_target">
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                         <span class="svg-icon svg-icon-2">
@@ -93,8 +93,8 @@
                                             </svg>
                                         </span>
                                         <!--end::Svg Icon-->Tambah Data
-                                    </a>
-                                {{-- <a href="/faktur/create" class="btn btn-primary">
+                                    </a> --}}
+                                <a href="/faktur/create" class="btn btn-primary">
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                         <span class="svg-icon svg-icon-2">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -107,7 +107,7 @@
                                             </svg>
                                         </span>
                                         <!--end::Svg Icon-->Tambah Data
-                                    </a> --}}
+                                    </a>
                             </div>
                             <!--end::Toolbar-->
                             <!--begin::Group actions-->
@@ -144,38 +144,40 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
+                                @foreach ($faktur as $item)
+                                    
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
                                     <td>
-                                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
+                                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">{{ $loop->iteration }}</a>
                                     </td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
                                     <td>
-                                        <div class="badge badge-light-success">Active</div>
+                                        <div class="badge badge-light-success">{{ $item->kode_faktur }}</div>
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
                                     <td>
-                                        <div class="badge badge-light">Auto-debit</div>
+                                        <div class="badge badge-light">{{ $item->tanggal_faktur }}</div>
                                     </td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
-                                    <td>Basic</td>
-                                    <td>Basic</td>
-                                    <td>Basic</td>
-                                    <td>Basic</td>
+                                    <td>{{ $item->customer->nama_customer }}</td>
+                                    <td>{{ $item->ket_faktur }}</td>
+                                    <td>{{ $item->ppn }}</td>
+                                    <td>{{ $item->pph }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>Mar 10, 2022</td>
+                                    <td>{{ $item->total_harga }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
                                         <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                        <span class="svg-icon svg-icon-5 m-0">
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                            <span class="svg-icon svg-icon-5 m-0">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
                                             </svg>
@@ -203,6 +205,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
+                                @endforeach
                                 
                             </tbody>
                             <!--end::Table body-->

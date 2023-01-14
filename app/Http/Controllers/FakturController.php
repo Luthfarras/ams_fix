@@ -9,6 +9,7 @@ use App\Models\Penjualan;
 use App\Models\DetailFaktur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FakturController extends Controller
 {
@@ -47,7 +48,7 @@ class FakturController extends Controller
      */
     public function store(Request $request)
     {
-        if (DB::table('faktur')->where('kode_faktur', $request->kode_faktur)->exists()) {
+        if (DB::table('fakturs')->where('kode_faktur', $request->kode_faktur)->exists()) {
             Alert::error('Oops..', 'Invoice sudah terdaftar');
             return redirect('faktur/create');
         }else {
@@ -73,7 +74,7 @@ class FakturController extends Controller
             Penjualan::create([
                 'customer_id' => $request->customer_id,
                 'tanggal_kirim' => $request->tanggal_faktur,
-                'kode' => $invoices->kode_faktur,
+                'kode' => $fakturs->kode_faktur,
                 'jumlah' => $total,
                 'keterangan' => $request->ket_faktur,
             ]);

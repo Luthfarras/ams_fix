@@ -221,6 +221,7 @@
                                                                 <span data-kt-element="grand-total"
                                                                     id="total_pp">0.00</span>
                                                             </th>
+                                                            <input type="hidden" name="total_pp" id="total_fix">
                                                         </tr>
                                                     </tfoot>
                                                     <!--end::Table foot-->
@@ -235,7 +236,7 @@
                                             </div>
                                             <!--end::Notes-->
                                         </div>
-                                        {{-- <button type="submit" class="btn btn-primary w-100">
+                                        <button type="submit" class="btn btn-primary w-100">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen016.svg-->
                                             <span class="svg-icon svg-icon-3">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -249,8 +250,8 @@
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->Submit
-                                        </button> --}}
-                                        <button type="submit" class="btn btn-primary w-100">SUBMIT COK</button>
+                                        </button>
+                                        {{-- <button type="submit" class="btn btn-primary w-100">SUBMIT COK</button> --}}
                                         <!--end::Wrapper-->
                                     </form>
                                     <!--end::Form-->
@@ -323,6 +324,7 @@
 
             let total_final = parseInt(total_harga) + hitungPPN + hitungPPH
             $('#total_pp').text(total_final)
+            $('#total_fix').val(total_final)
         }
     </script>
 
