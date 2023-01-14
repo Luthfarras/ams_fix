@@ -114,31 +114,32 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
+                                @foreach ($penjualan as $item)
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
                                     <td>
-                                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $loop->iteration }}</a>
                                     </td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
                                     <td>
-                                        <div class="badge badge-light-success">Active</div>
+                                        <div class="badge badge-light-success">{{ $item->kode }}</div>
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
                                     <td>
-                                        <div class="badge badge-light">Auto-debit</div>
+                                        <div class="badge badge-light">{{ $item->customer->nama_customer }}</div>
                                     </td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
-                                    <td>Basic</td>
-                                    <td>Basic</td>
-                                    <td>Basic</td>
+                                    <td>{{ $item->tanggal_kirim }}</td>
+                                    <td>{{ $item->jumlah }}</td>
+                                    <td>{{ $item->keterangan }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>Mar 10, 2022</td>
+                                    <td>{{ $item->status }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
@@ -172,7 +173,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
-                                
+                                @endforeach
                             </tbody>
                             <!--end::Table body-->
                         </table>
