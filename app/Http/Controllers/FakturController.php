@@ -146,8 +146,9 @@ class FakturController extends Controller
         return response()->json($data);
     }
 
-    // public function getBarang($id)
-    // {
-    //     $data = Barang::
-    // }
+    public function getBarang($id)
+    {
+        $data = DetailFaktur::join('barangs', 'barangs.id', 'detail_fakturs.barang_id')->where('detail_fakturs.kode_faktur', $id)->get();
+        return response()->json($data);
+    }
 }

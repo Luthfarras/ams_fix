@@ -17,7 +17,6 @@
 		<link href="{{ asset('met/dist/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('met/dist/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-		@toastr_css
 		<!--end::Global Stylesheets Bundle-->
 	</head>
 	<!--end::Head-->

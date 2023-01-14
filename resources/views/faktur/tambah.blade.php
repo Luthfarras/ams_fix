@@ -142,10 +142,6 @@
                                                 <input type="text" id="nama_cust" class="form-control form-control-solid"
                                                     placeholder="Nama Customer..." onkeyup="nama(value)" disabled>
                                                 <input type="hidden" name="customer_id" id="cust_id">
-                                                {{-- <select class="form-select form-select-solid" data-control="select2"
-                                                        data-hide-search="true" data-placeholder="Pilih Customer..."
-                                                        id="nama_cust" onkeyup="nama(value)">
-                                                    </select> --}}
                                                 <!--end::Input group-->
                                             </div>
                                             <!--end::Col-->
@@ -158,7 +154,7 @@
                                                     <!--begin::Table head-->
                                                     <thead>
                                                         <tr class="border-bottom fs-7 fw-bold text-gray-700 text-uppercase">
-                                                            <th class="min-w-300px w-475px">Item</th>
+                                                            <th class="min-w-300px w-475px">Total Harga</th>
                                                             <th class="min-w-100px w-100px">PPN</th>
                                                             <th class="min-w-100px w-100px">PPH</th>
                                                             <th class="min-w-75px w-75px text-end">Action</th>
@@ -251,7 +247,6 @@
                                             </span>
                                             <!--end::Svg Icon-->Submit
                                         </button>
-                                        {{-- <button type="submit" class="btn btn-primary w-100">SUBMIT COK</button> --}}
                                         <!--end::Wrapper-->
                                     </form>
                                     <!--end::Form-->
@@ -305,6 +300,17 @@
                         }
                         $(`#total_harga`).val(hasil)
                     });
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                url: `/getbfaktur/${id}`,
+                dataType: "json",
+                success: function (response) {
+                    response.map((value) => {
+                        
+                    })
                 }
             });
         }
