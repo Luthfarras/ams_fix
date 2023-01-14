@@ -331,7 +331,7 @@
             let hitungPPH = parseFloat(total_harga * (pph / 100))
             // let hasilPPH = 
 
-            let total_final = parseInt(total_harga) + hitungPPN + hitungPPH
+            let total_final = parseInt(parseInt(total_harga) + hitungPPN + hitungPPH)
             $('#total_pp').text(total_final)
             $('#total_fix').val(total_final)
         }
