@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BarangController extends Controller
 {
@@ -42,6 +43,7 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         Barang::create($request->all());
+        Alert::toast('Berhasil Menyimpan Data Barang', 'success');
         return redirect('barang');
     }
 
@@ -89,6 +91,7 @@ class BarangController extends Controller
     public function destroy(Barang $barang)
     {
         $barang->delete();
+        Alert::toast('Berhasil Menghapus Data Barang', 'success');
         return redirect('barang');
     }
 }

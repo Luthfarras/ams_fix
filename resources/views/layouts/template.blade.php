@@ -16,6 +16,8 @@
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="{{ asset('met/dist/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('met/dist/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+		@toastr_css
 		<!--end::Global Stylesheets Bundle-->
 	</head>
 	<!--end::Head-->
@@ -24,6 +26,7 @@
 		<!--begin::Theme mode setup on page load-->
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-theme-mode")) { themeMode = document.documentElement.getAttribute("data-theme-mode"); } else { if ( localStorage.getItem("data-theme") !== null ) { themeMode = localStorage.getItem("data-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-theme", themeMode); }</script>
 		<!--end::Theme mode setup on page load-->
+		@include('sweetalert::alert')
 		<!--begin::App-->
 		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
 			<!--begin::Page-->
@@ -525,6 +528,7 @@
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{ asset('met/dist/assets/plugins/global/plugins.bundle.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/scripts.bundle.js') }}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.jss"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Vendors Javascript(used by this page)-->
 		<script src="{{ asset('met/dist/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>

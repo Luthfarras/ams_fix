@@ -622,7 +622,7 @@
                             </label>
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid"
-                                placeholder="Masukkan Nama Barang..." name="nama_barang" />
+                                placeholder="Masukkan Nama Barang..." name="nama_barang" required/>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -631,7 +631,7 @@
                             <div class="col-md-6 fv-row">
                                 <label class="required fs-6 fw-semibold mb-2">Kode Barang</label>
                                 <input type="text" class="form-control form-control-solid"
-                                    placeholder="Masukkan Kode Barang..." name="kode_barang" />
+                                    placeholder="Masukkan Kode Barang..." name="kode_barang" required/>
                             </div>
                             <!--end::Col-->
                             <!--begin::Col-->
@@ -657,7 +657,7 @@
                                     <!--end::Icon-->
                                     <!--begin::Datepicker-->
                                     <input type="text" class="form-control form-control-solid ps-12"
-                                        placeholder="Masukkan Kode Harga..." name="kode_harga" />
+                                        placeholder="Masukkan Kode Harga..." name="kode_harga" required/>
                                     <!--end::Datepicker-->
                                 </div>
                                 <!--end::Input-->

@@ -434,7 +434,7 @@
                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sesuaikan Nama Customer"></i>
                         </label>
                         <!--end::Label-->
-                        <input type="text" class="form-control form-control-solid" placeholder="Masukkan Nama Customer..." name="nama_customer" />
+                        <input type="text" class="form-control form-control-solid" placeholder="Masukkan Nama Customer..." name="nama_customer" required/>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -442,7 +442,7 @@
                         <!--begin::Col-->
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Kode Customer</label>
-                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Kode Customer" name="kode_customer" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Kode Customer" name="kode_customer" required/>
                         </div>
                         <!--end::Col-->
                         <!--begin::Col-->
@@ -462,7 +462,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" class="form-control form-control-solid ps-12" placeholder="Masukkan No. Telepon..." name="telepon_customer" />
+                                <input type="text" class="form-control form-control-solid ps-12" placeholder="Masukkan No. Telepon..." name="telepon_customer" required/>
                                 <!--end::Datepicker-->
                             </div>
                             <!--end::Input-->

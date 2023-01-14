@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
 {
@@ -37,6 +38,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         Customer::create($request->all());
+        Alert::toast('Berhasil Menyimpan Data Customer', 'success');
         return redirect('customer');
     }
 
@@ -84,6 +86,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
+        Alert::toast('Berhasil Menghapus Data Customer', 'success');
         return redirect('customer');
     }
 }

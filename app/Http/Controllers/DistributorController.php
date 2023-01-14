@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Distributor;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DistributorController extends Controller
 {
@@ -37,6 +38,7 @@ class DistributorController extends Controller
     public function store(Request $request)
     {
         Distributor::create($request->all());
+        Alert::toast('Berhasil Menyimpan Data Distributor', 'success');
         return redirect('distributor');
     }
 
@@ -84,6 +86,7 @@ class DistributorController extends Controller
     public function destroy(Distributor $distributor)
     {
         $distributor->delete();
+        Alert::toast('Berhasil Menghapus Data Distributor', 'success');
         return redirect('distributor');
     }
 }
