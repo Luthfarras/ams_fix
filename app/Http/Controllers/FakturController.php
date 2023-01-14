@@ -151,7 +151,7 @@ class FakturController extends Controller
         $data = DetailFaktur::join('barangs', 'barangs.id', 'detail_fakturs.barang_id')->where('detail_fakturs.kode_faktur', $id)->get();
         $li = '';
         foreach ($data as $item) {
-            $li .= $item->nama_barang. '<br>';
+            $li .= $item->nama_barang. ' &  ';
         }
         $li .= '';
         return response()->json([$li]);
