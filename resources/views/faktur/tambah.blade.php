@@ -74,7 +74,8 @@
                                 <!--begin::Card body-->
                                 <div class="card-body p-12">
                                     <!--begin::Form-->
-                                    <form action="" id="kt_invoice_form">
+                                    <form action="{{ route('faktur.store') }}" id="kt_invoice_form" method="POST">
+                                        @csrf
                                         <!--begin::Wrapper-->
                                         <div class="d-flex flex-column align-items-start flex-xxl-row">
                                             <!--begin::Input group-->
@@ -114,9 +115,9 @@
                                                 <span class="fs-2x fw-bold text-gray-800">Invoice #</span>
                                                 <select class="form-select form-select-solid" data-control="select2"
                                                 data-hide-search="true" data-placeholder="Pilih Kode Faktur..."
-                                                name="customer_id">
+                                                name="kode_faktur" onchange="nama(value)">
                                                 <option selected disabled>Pilih Kode Faktur...</option>
-                                                @foreach ($detail as $item)
+                                                @foreach ($dfaktur as $item)
                                                 <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}</option>
                                                 @endforeach
                                             </select>
@@ -136,10 +137,13 @@
                                                     <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Bill
                                                         From</label>
                                                     <!--begin::Input group-->
-                                                    <select class="form-select form-select-solid" data-control="select2"
+                                                    <input type="text" id="nama_cust" class="form-control form-control-solid" 
+                                                    placeholder="Nama Customer..." onkeyup="nama(value)" disabled>
+                                                    <input type="hidden" name="customer_id" id="cust_id">
+                                                    {{-- <select class="form-select form-select-solid" data-control="select2"
                                                         data-hide-search="true" data-placeholder="Pilih Customer..."
-                                                        name="customer_id" id="nama_cust">
-                                                    </select>
+                                                        id="nama_cust" onkeyup="nama(value)">
+                                                    </select> --}}
                                                     <!--end::Input group-->
                                                 </div>
                                                 <!--end::Col-->
@@ -154,7 +158,8 @@
                                                         <tr
                                                             class="border-bottom fs-7 fw-bold text-gray-700 text-uppercase">
                                                             <th class="min-w-300px w-475px">Item</th>
-                                                            <th class="min-w-100px w-100px">QTY</th>
+                                                            <th class="min-w-100px w-100px">PPN</th>
+                                                            <th class="min-w-100px w-100px">PPH</th>
                                                             <th class="min-w-150px w-150px">Price</th>
                                                             <th class="min-w-100px w-150px text-end">Total</th>
                                                             <th class="min-w-75px w-75px text-end">Action</th>
@@ -166,12 +171,13 @@
                                                         <tr class="border-bottom border-bottom-dashed"
                                                             data-kt-element="item">
                                                             <td class="pe-7">
-                                                                memek
+                                                                <input type="text" class="form-control form-control-solid" name="total_harga" id="total_harga" onkeyup="nama(value)">
                                                             </td>
                                                             <td class="ps-0">
-                                                                <input class="form-control form-control-solid"
-                                                                    type="number" min="1" name="stok_keluar" id="stok_keluar"
-                                                                    placeholder="1" data-kt-element="quantity" onkeyup="hasil()"/>
+                                                                <input class="form-control form-control-solid" type="text" name="ppn" id="ppn" onkeyup="total()"/>
+                                                            </td>
+                                                            <td class="ps-0">
+                                                                <input class="form-control form-control-solid" type="text" name="pph" id="pph" onkeyup="total()"/>
                                                             </td>
                                                             <td>
                                                                 <input type="text"
@@ -237,7 +243,7 @@
                                                             <th></th>
                                                             <th colspan="2" class="fs-4 ps-0">Total</th>
                                                             <th colspan="2" class="text-end fs-4 text-nowrap">Rp.
-                                                                <span data-kt-element="grand-total">0.00</span>
+                                                                <span data-kt-element="grand-total" id="total_pp">0.00</span>
                                                             </th>
                                                         </tr>
                                                     </tfoot>
@@ -305,13 +311,29 @@
                                             </table>
                                             <!--end::Item template-->
                                             <!--begin::Notes-->
-                                            <div class="mb-0">
+                                            <div class="mb-5">
                                                 <label class="form-label fs-6 fw-bold text-gray-700">Notes</label>
-                                                <textarea name="notes" class="form-control form-control-solid" rows="3"
+                                                <textarea name="ket_faktur" class="form-control form-control-solid" rows="3"
                                                     placeholder="Thanks for your business"></textarea>
                                             </div>
                                             <!--end::Notes-->
                                         </div>
+                                        <button type="submit" class="btn btn-primary w-100">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen016.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M15.43 8.56949L10.744 15.1395C10.6422 15.282 10.5804 15.4492 10.5651 15.6236C10.5498 15.7981 10.5815 15.9734 10.657 16.1315L13.194 21.4425C13.2737 21.6097 13.3991 21.751 13.5557 21.8499C13.7123 21.9488 13.8938 22.0014 14.079 22.0015H14.117C14.3087 21.9941 14.4941 21.9307 14.6502 21.8191C14.8062 21.7075 14.9261 21.5526 14.995 21.3735L21.933 3.33649C22.0011 3.15918 22.0164 2.96594 21.977 2.78013C21.9376 2.59432 21.8452 2.4239 21.711 2.28949L15.43 8.56949Z"
+                                                    fill="currentColor" />
+                                                <path opacity="0.3"
+                                                    d="M20.664 2.06648L2.62602 9.00148C2.44768 9.07085 2.29348 9.19082 2.1824 9.34663C2.07131 9.50244 2.00818 9.68731 2.00074 9.87853C1.99331 10.0697 2.04189 10.259 2.14054 10.4229C2.23919 10.5869 2.38359 10.7185 2.55601 10.8015L7.86601 13.3365C8.02383 13.4126 8.19925 13.4448 8.37382 13.4297C8.54839 13.4145 8.71565 13.3526 8.85801 13.2505L15.43 8.56548L21.711 2.28448C21.5762 2.15096 21.4055 2.05932 21.2198 2.02064C21.034 1.98196 20.8409 1.99788 20.664 2.06648Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->Send Invoice
+                                    </button>
+
                                         <!--end::Wrapper-->
                                     </form>
                                     <!--end::Form-->
@@ -457,10 +479,11 @@
                 dataType: "json",
                 success: function(response) {
                     console.log(response);
+                    $(`#nama_cust`).children().remove()
                     response.map((value) => {
+                        $(`#cust_id`).val(value.customer_id)
                         $(`#nama_cust`).val(value.nama_customer)
-                    });
-
+                    });                
                 }
             });
 
@@ -482,4 +505,22 @@
             });
         }
     </script>
+    <script>
+        function total() {
+            let ppn = $('#ppn').val()
+            let pph = $('#pph').val()
+            let total_harga = $('#total_harga').val()
+            // let total_pp = $('#total_pp').val()
+
+            let hitungPPN = parseFloat(total_harga * (parseInt(ppn) / 100))
+            // let hasilPPN = total_harga - hitungPPN
+
+            let hitungPPH = parseFloat(total_harga * (pph / 100))
+            // let hasilPPH = 
+
+            let total_final = parseInt(total_harga) + hitungPPN + hitungPPH
+            $('#total_pp').text(total_final)
+        }
+    </script>
+    
 @endsection

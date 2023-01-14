@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Faktur;
 use App\Models\Customer;
+use App\Models\Penjualan;
 use App\Models\DetailFaktur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FakturController extends Controller
 {
@@ -45,7 +47,39 @@ class FakturController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (DB::table('faktur')->where('kode_faktur', $request->kode_faktur)->exists()) {
+            Alert::error('Oops..', 'Invoice sudah terdaftar');
+            return redirect('faktur/create');
+        }else {
+            $data = $request->all();
+            $data['total_harga'] = 0;
+            Faktur::create($data);
+
+            $faktur = Faktur::latest()->first()->id; // Mengambil ID terakhir (Angkanya saja)
+            $fakturs = Faktur::where('id', $faktur)->first(); // Mengambil data dari ID Terbaru
+           
+            $total = 0;
+
+            $price = DB::table('detail_fakturs')->select('subtotal')->where('detail_fakturs.kode_faktur', $fakturs->kode_faktur)->get();
+
+            foreach ($price as $item) {
+                $total += $item->subtotal;
+            }
+
+            $fakturs->update([
+                'total_harga' => $total,
+            ]);
+
+            Penjualan::create([
+                'customer_id' => $request->customer_id,
+                'tanggal_kirim' => $request->tanggal_faktur,
+                'kode' => $invoices->kode_faktur,
+                'jumlah' => $total,
+                'keterangan' => $request->ket_faktur,
+            ]);
+            
+            return redirect('faktur');
+        }
     }
 
     /**
@@ -110,4 +144,9 @@ class FakturController extends Controller
         // dd($total);
         return response()->json($data);
     }
+
+    // public function getBarang($id)
+    // {
+    //     $data = Barang::
+    // }
 }

@@ -434,8 +434,8 @@
                         <!--begin::Col-->
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Total</label>
-                            <input type="text" disabled class="form-control form-control-solid"
-                                placeholder="Total..." name="" id="total"/>
+                            <input type="text" disabled class="form-control form-control-solid" 
+                            id="total" placeholder="Total..."/>
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Diskon</label>
