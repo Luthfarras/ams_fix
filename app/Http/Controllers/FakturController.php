@@ -149,6 +149,11 @@ class FakturController extends Controller
     public function getBarang($id)
     {
         $data = DetailFaktur::join('barangs', 'barangs.id', 'detail_fakturs.barang_id')->where('detail_fakturs.kode_faktur', $id)->get();
-        return response()->json($data);
+        $li = '';
+        foreach ($data as $item) {
+            $li .= $item->nama_barang. '<br>';
+        }
+        $li .= '';
+        return response()->json([$li]);
     }
 }

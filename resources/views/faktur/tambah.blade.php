@@ -154,6 +154,7 @@
                                                     <!--begin::Table head-->
                                                     <thead>
                                                         <tr class="border-bottom fs-7 fw-bold text-gray-700 text-uppercase">
+                                                            <th class="min-w-300px w-475px">Nama Barang</th>
                                                             <th class="min-w-300px w-475px">Total Harga</th>
                                                             <th class="min-w-100px w-100px">PPN</th>
                                                             <th class="min-w-100px w-100px">PPH</th>
@@ -164,7 +165,9 @@
                                                     <!--begin::Table body-->
                                                     <tbody>
                                                         <tr class="border-bottom border-bottom-dashed"
-                                                            data-kt-element="item">
+                                                            data-kt-element="item" id="barang_barang">
+                                                            <td class="pe-7" id="barang_faktur">
+                                                            </td>
                                                             <td class="pe-7">
                                                                 <input type="text"
                                                                     class="form-control form-control-solid"
@@ -309,7 +312,7 @@
                 dataType: "json",
                 success: function (response) {
                     response.map((value) => {
-                        
+                        $('#barang_faktur').text(value)
                     })
                 }
             });
