@@ -167,11 +167,11 @@
                                     <!--begin::Product=-->
                                     <td>{{ $item->customer->nama_customer }}</td>
                                     <td>{{ $item->ket_faktur }}</td>
-                                    <td>{{ $item->ppn }}</td>
-                                    <td>{{ $item->pph }}</td>
+                                    <td>{{ $item->ppn }} %</td>
+                                    <td>{{ $item->pph }} %</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>{{ $item->total_harga }}</td>
+                                    <td>Rp {{ number_format("$item->total_harga",0,",",".") }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">

@@ -136,8 +136,7 @@
 
                                             <!--begin::Col-->
                                             <div class="flex-wrap">
-                                                <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Bill
-                                                    From</label>
+                                                <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Ditujukan Kepada</label>
                                                 <!--begin::Input group-->
                                                 <input type="text" id="nama_cust" class="form-control form-control-solid"
                                                     placeholder="Nama Customer..." onkeyup="nama(value)" disabled>
@@ -158,7 +157,6 @@
                                                             <th class="min-w-300px w-475px">Total Harga</th>
                                                             <th class="min-w-100px w-100px">PPN</th>
                                                             <th class="min-w-100px w-100px">PPH</th>
-                                                            <th class="min-w-75px w-75px text-end">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <!--end::Table head-->
@@ -184,29 +182,7 @@
                                                                     type="text" name="pph" id="pph"
                                                                     onkeyup="total()" />
                                                             </td>
-                                                            <td class="pt-5 text-end">
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-icon btn-active-color-primary"
-                                                                    data-kt-element="remove-item">
-                                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-                                                                    <span class="svg-icon svg-icon-3">
-                                                                        <svg width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
-                                                                                fill="currentColor" />
-                                                                            <path opacity="0.5"
-                                                                                d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
-                                                                                fill="currentColor" />
-                                                                            <path opacity="0.5"
-                                                                                d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
-                                                                                fill="currentColor" />
-                                                                        </svg>
-                                                                    </span>
-                                                                    <!--end::Svg Icon-->
-                                                                </button>
-                                                            </td>
+                                                           
                                                         </tr>
                                                     </tbody>
                                                     <!--end::Table body-->
@@ -229,9 +205,9 @@
                                             <!--end::Table-->
                                             <!--begin::Notes-->
                                             <div class="mb-5">
-                                                <label class="form-label fs-6 fw-bold text-gray-700">Notes</label>
+                                                <label class="form-label fs-6 fw-bold text-gray-700">Catatan</label>
                                                 <textarea name="ket_faktur" class="form-control form-control-solid" rows="3"
-                                                    placeholder="Thanks for your business"></textarea>
+                                                    placeholder="Keterangan..."></textarea>
                                             </div>
                                             <!--end::Notes-->
                                         </div>
@@ -332,8 +308,10 @@
             // let hasilPPH = 
 
             let total_final = parseInt(parseInt(total_harga) + hitungPPN + hitungPPH)
-            $('#total_pp').text(total_final)
-            $('#total_fix').val(total_final)
+            let idFormat = total_final.toLocaleString('id-ID');
+            $('#total_pp').text(idFormat)
+            $('#total_fix').val(idFormat)
+
         }
     </script>
 

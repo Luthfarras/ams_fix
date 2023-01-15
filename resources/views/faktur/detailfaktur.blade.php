@@ -151,7 +151,7 @@
                                     <td>{{ $item->barang->nama_barang }}</td>
                                     <td>{{ $item->stok_keluar }}</td>
                                     <td>{{ $item->diskon }}</td>
-                                    <td>{{ $item->subtotal }}</td>
+                                    <td>Rp {{ number_format("$item->subtotal",0,",",".") }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
@@ -519,7 +519,7 @@ function harga(id){
         $('#total').val(total);
 
         let sementara = parseInt(total) * (parseInt(diskon) / 100);
-        let subtotal = parseInt(total) - sementara
+        let subtotal = parseInt(parseInt(total) - sementara)
 
         if (!isNaN(subtotal)) {
             $('#subtotal').val(subtotal);
