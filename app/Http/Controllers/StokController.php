@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stok;
 use App\Models\Barang;
 use App\Models\Distributor;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,8 @@ class StokController extends Controller
         $barang = Barang::all();
         $dist = Distributor::all();
         $jumlah = DB::table('stoks')->select('stok_masuk')->sum('stok_masuk');
-        return view('menu.stok', compact('stok', 'barang', 'dist', 'jumlah'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('menu.stok', compact('stok', 'barang', 'dist', 'jumlah', 'profil'));
     }
 
     /**

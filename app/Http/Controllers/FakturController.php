@@ -7,6 +7,7 @@ use App\Models\Faktur;
 use App\Models\Customer;
 use App\Models\Penjualan;
 use App\Models\DetailFaktur;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,7 +23,8 @@ class FakturController extends Controller
     {
         $faktur = Faktur::all();
         $detail = DetailFaktur::all();
-        return view('faktur.faktur', compact('faktur', 'detail'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('faktur.faktur', compact('faktur', 'detail', 'profil'));
     }
 
     /**
@@ -36,7 +38,8 @@ class FakturController extends Controller
         $barang = Barang::all();
         $detail = DetailFaktur::all();
         $dfaktur = $detail->unique('kode_faktur');
-        return view('faktur.tambah', compact('cust', 'barang', 'detail', 'dfaktur'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('faktur.tambah', compact('cust', 'barang', 'detail', 'dfaktur', 'profil'));
 
     }
 

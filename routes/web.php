@@ -13,6 +13,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\DetailFakturController;
+use App\Http\Controllers\DetailProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('penjualan', PenjualanController::class);
     Route::resource('setoran', SetoranController::class);
     Route::resource('stok', StokController::class);
+    Route::resource('profil', DetailProfilController::class);
     
     Route::get('barang/{barang}', [BarangController::class, 'destroy']);
     Route::get('distributor/{distributor}', [DistributorController::class, 'destroy']);

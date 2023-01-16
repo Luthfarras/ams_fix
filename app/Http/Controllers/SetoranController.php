@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setoran;
 use App\Models\Customer;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,8 @@ class SetoranController extends Controller
     {
         $setoran = Setoran::all();
         $customer = DB::table('customers')->select('nama_customer', 'id')->get();
-        return view('menu.setoran', compact('setoran', 'customer'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('menu.setoran', compact('setoran', 'customer', 'profil'));
     }
 
     /**

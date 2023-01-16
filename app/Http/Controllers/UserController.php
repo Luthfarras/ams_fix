@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return view('pendataan.pengguna', compact('user'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.pengguna', compact('user', 'profil'));
     }
 
     /**

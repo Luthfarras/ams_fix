@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pajak;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,8 @@ class PajakController extends Controller
     {
         $pajak = Pajak::all();
         $customer = DB::table('customers')->select('nama_customer', 'id')->get();
-        return view('menu.pajak', compact('pajak', 'customer'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('menu.pajak', compact('pajak', 'customer', 'profil'));
     }
 
     /**

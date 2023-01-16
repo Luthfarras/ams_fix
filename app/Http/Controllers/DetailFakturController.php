@@ -6,6 +6,7 @@ use App\Models\Stok;
 use App\Models\Barang;
 use App\Models\Customer;
 use App\Models\DetailFaktur;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 
 class DetailFakturController extends Controller
@@ -18,10 +19,11 @@ class DetailFakturController extends Controller
     public function index()
     {
         $detail = DetailFaktur::all();
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         $barang = Barang::all();
         $cust = Customer::all();
         $stok = Stok::all();
-        return view('faktur.detailfaktur', compact('detail', 'barang', 'cust', 'stok'));
+        return view('faktur.detailfaktur', compact('detail', 'barang', 'cust', 'stok', 'profil'));
     }
 
     /**

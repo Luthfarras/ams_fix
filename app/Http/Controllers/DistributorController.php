@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Distributor;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,7 +17,8 @@ class DistributorController extends Controller
     public function index()
     {
         $dist = Distributor::all();
-        return view('pendataan.distributor', compact('dist'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.distributor', compact('dist', 'profil'));
     }
 
     /**

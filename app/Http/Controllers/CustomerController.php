@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,7 +17,8 @@ class CustomerController extends Controller
     public function index()
     {
         $cust = Customer::all();
-        return view('pendataan.customer', compact('cust'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.customer', compact('cust', 'profil'));
     }
 
     /**

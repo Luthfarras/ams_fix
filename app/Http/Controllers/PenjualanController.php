@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 
 class PenjualanController extends Controller
@@ -15,7 +16,8 @@ class PenjualanController extends Controller
     public function index()
     {
         $penjualan = Penjualan::all();
-        return view('menu.penjualan', compact('penjualan'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('menu.penjualan', compact('penjualan', 'profil'));
     }
 
     /**

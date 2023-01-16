@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DetailProfilController extends Controller
 {
@@ -14,7 +15,9 @@ class DetailProfilController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('profil', compact('user', 'profil'));
     }
 
     /**
@@ -35,7 +38,11 @@ class DetailProfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['foto'] = $request->file('foto')->store('img');
+        $data['user_id'] = Auth::user()->id;
+        DetailProfil::create($data);
+        return redirect('profil');
     }
 
     /**
