@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -90,5 +89,19 @@ class CustomerController extends Controller
         $customer->delete();
         Alert::toast('Berhasil Menghapus Data Customer', 'success');
         return redirect('customer');
+    }
+    
+    public function previewprint()
+    {
+        $customer = Customer::all();
+        return view('print.custprint', compact('customer'));
+    }
+    
+    public function printCust()
+    {
+        $customer = Customer::all();
+        $pdf = Pdf::loadView('print.custprint', ['customer' => $customer]);
+
+        return $pdf->setPaper('a4', 'potrait')->download('Data Customer.pdf');
     }
 }
