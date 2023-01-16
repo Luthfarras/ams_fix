@@ -239,14 +239,16 @@
 											<!--end:Menu item-->
 											<!--begin:Menu item-->
 											<div class="menu-item">
-												<!--begin:Menu link-->
-												<a class="menu-link {{ request()->is('pengguna') ? 'active' : '' }}" href="/pengguna">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-													<span class="menu-title">Data Pengguna</span>
-												</a>
-												<!--end:Menu link-->
+												@if (Auth::user()->role == 'Owner')
+													<!--begin:Menu link-->
+													<a class="menu-link {{ request()->is('pengguna') ? 'active' : '' }}" href="/pengguna">
+														<span class="menu-bullet">
+															<span class="bullet bullet-dot"></span>
+														</span>
+														<span class="menu-title">Data Pengguna</span>
+													</a>
+													<!--end:Menu link-->
+												@endif
 											</div>
 											<!--end:Menu item-->
 										</div>

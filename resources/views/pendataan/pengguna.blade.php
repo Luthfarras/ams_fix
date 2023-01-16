@@ -79,6 +79,15 @@
                                 </span>
                                 <!--end::Svg Icon-->Export</button>
                                 <!--end::Export-->
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor" />
+                                            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                <!--end::Svg Icon-->Tambah Data</a>
                             </div>
                             <!--end::Toolbar-->
                             <!--begin::Group actions-->
@@ -153,7 +162,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="/pengguna/{{ $item->id }}" class="menu-link px-3">Delete</a>
+                                                <a href="pengguna/{{ $item->id }}" class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
@@ -287,6 +296,123 @@
         <!--end::Content-->
     </div>
     <!--end::Content wrapper-->
+    <!--begin::Modal - New Target-->
+<div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                <form id="kt_modal_new_target_form" class="form" action="" method="POST">
+                    @csrf
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Tambah Data Pengguna</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-muted fw-semibold fs-5">Sesuaikan dengan data yang dibutuhkan
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span class="required">Username</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sesuaikan Nama Customer"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" placeholder="Masukkan username..." name="username" required/>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row g-9 mb-8">
+                        <!--begin::Col-->
+                        <div class="col-md-6 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Email</label>
+                            <input type="email" class="form-control form-control-solid" placeholder="Masukkan Email. . ." name="email" required/>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-md-6 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Password</label>
+                            <!--begin::Input-->
+                            <div class="position-relative d-flex align-items-center">
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                                <span class="svg-icon svg-icon-2 position-absolute mx-4">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor"/>
+                                        <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor"/>
+                                    </svg>
+                                        
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Datepicker-->
+                                <input type="password" class="form-control form-control-solid ps-12" placeholder="Masukkan Password..." name="password" required/>
+                                <!--end::Datepicker-->
+                            </div>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span class="required">Role</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Sesuaikan Nama Distributor"></i>
+                        </label>
+                        <!--end::Label-->
+                        <select class="form-select form-select-solid" data-control="select2"
+                                data-hide-search="true" data-placeholder="Pilih Distributor..."
+                                name="role" required>
+                                <option selected disabled>Pilih Role...</option>
+                                <option value="Owner">Owner</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                    </div>
+                    <!--begin::Actions-->
+                    <div class="text-center">
+                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end:Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
 </div>
 <!--end:::Main-->
 @endsection

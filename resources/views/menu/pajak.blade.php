@@ -312,9 +312,7 @@
         <!--end::Content-->
     </div>
     <!--end::Content wrapper-->
-</div>
-<!--end:::Main-->
- <!--begin::Modal - New Target-->
+    <!--begin::Modal - New Target-->
  <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
     <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -434,12 +432,9 @@
                         <select class="form-select form-select-solid" data-control="select2"
                             data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
                             name="ket_rep">
-                            <option selected disabled>Pilih Satuan...</option>
-                            <option value="liter">Liter</option>
-                            <option value="box">Box</option>
-                            <option value="satuan">Satuan</option>
-                            <option value="botol">Botol</option>
-                            <option value="pax">Pax</option>
+                            <option selected disabled>Pilih Status...</option>
+                            <option value="Sudah Upload">Sudah Upload</option>
+                            <option value="Belum Upload">Belum Upload</option>
                         </select>
                     </div>
                     <!--end::Input group-->
@@ -463,4 +458,7 @@
     </div>
     <!--end::Modal dialog-->
 </div>
+</div>
+<!--end:::Main-->
+ 
 @endsection

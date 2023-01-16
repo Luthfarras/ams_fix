@@ -30,10 +30,13 @@ Route::middleware(['guest'])->group(function () {
     });
     
 });
+Route::middleware(['Owner'])->group(function () {
+    Route::resource('pengguna', UserController::class);
+    Route::get('pengguna/{pengguna}', [UserController::class, 'destroy']);
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('home', [HomeController::class, 'index']);
-    Route::resource('pengguna', UserController::class);
     Route::resource('barang', BarangController::class);
     Route::resource('distributor', DistributorController::class);
     Route::resource('customer', CustomerController::class);
@@ -44,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('setoran', SetoranController::class);
     Route::resource('stok', StokController::class);
     
+    // DELETE
     Route::get('barang/{barang}', [BarangController::class, 'destroy']);
     Route::get('distributor/{distributor}', [DistributorController::class, 'destroy']);
     Route::get('customer/{customer}', [CustomerController::class, 'destroy']);
@@ -53,13 +57,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
     Route::get('setoran/{setoran}', [SetoranController::class, 'destroy']);
     Route::get('stok/{stok}', [StokController::class, 'destroy']);
-    Route::get('pengguna/{pengguna}', [UserController::class, 'destroy']);
     
+
+    // AJAX
     Route::get('getharga', [DetailFakturController::class, 'getHarga']);
     Route::get('getbarang/{id}', [DetailFakturController::class, 'getBarang']);
     Route::get('getname/{id}', [FakturController::class, 'getNama']);
     Route::get('gettotal/{id}', [FakturController::class, 'getTotal']);
     Route::get('getbfaktur/{id}', [FakturController::class, 'getBarang']);
+
+    Route::get('precust', [CustomerController::class, 'previewprint']);
+
+    // Print
+    Route::get('printcust', [CustomerController::class, 'printCust']);
     
 });
 
