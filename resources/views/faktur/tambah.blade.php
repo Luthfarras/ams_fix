@@ -308,9 +308,8 @@
             // let hasilPPH = 
 
             let total_final = parseInt(parseInt(total_harga) + hitungPPN + hitungPPH)
-            let idFormat = total_final.toLocaleString('id-ID');
-            $('#total_pp').text(idFormat)
-            $('#total_fix').val(idFormat)
+            $('#total_pp').text(total_final)
+            $('#total_fix').val(total_final)
 
         }
     </script>
