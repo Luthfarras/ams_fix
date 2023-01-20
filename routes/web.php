@@ -76,10 +76,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('status/{penjualan}', [PenjualanController::class, 'status']);
 
-    Route::get('precust', [CustomerController::class, 'previewprint']);
 
     // Print
     Route::get('printcust', [CustomerController::class, 'printCust']);
+    Route::get('printdist', [DistributorController::class, 'printDist']);
+    Route::get('printbarang', [BarangController::class, 'printBarang']);
     
 });
 

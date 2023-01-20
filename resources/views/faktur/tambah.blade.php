@@ -28,13 +28,13 @@
                             <!--end::Svg Icon-->Kembali
                         </a>
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Create</h1>
+                            Tambah Faktur</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Home</a>
+                                <a href="#" class="text-muted text-hover-primary">Faktur</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -43,7 +43,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Invoice Manager</li>
+                            <li class="breadcrumb-item text-muted">Tambah Faktur</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->

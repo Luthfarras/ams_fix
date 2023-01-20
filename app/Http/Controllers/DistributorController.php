@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Distributor;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DistributorController extends Controller
 {
@@ -91,5 +93,13 @@ class DistributorController extends Controller
         $distributor->delete();
         Alert::toast('Berhasil Menghapus Data Distributor', 'success');
         return redirect('distributor');
+    }
+
+    public function printDist()
+    {
+        $distributor = Distributor::all();
+        $pdf = Pdf::loadView('print.distprint', ['distributor' => $distributor]);
+        
+        return $pdf->setPaper('a4', 'potrait')->stream('Data Distributor - '. Carbon::now(). '.pdf');
     }
 }

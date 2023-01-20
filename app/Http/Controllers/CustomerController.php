@@ -95,12 +95,6 @@ class CustomerController extends Controller
         return redirect('customer');
     }
     
-    public function previewprint()
-    {
-        $customer = Customer::all();
-        return view('print.custprint', compact('customer'));
-    }
-    
     public function printCust()
     {
         $customer = Customer::all();

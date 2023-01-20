@@ -58,7 +58,7 @@
                             @else
                             <div class="me-7 mb-4">
                                 <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                    <img src="{{ asset('storage/user-286.png') }}" alt="image" />
+                                    <img src="{{ asset('met/dist/assets/media/svg/avatars/002-girl.svg') }}" alt="image" />
                                 </div>
                             </div>
                             @endif
@@ -76,7 +76,7 @@
                                                     <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $item->nama }}</a>
                                                 @endforeach
                                             @else
-                                                <a href="#" class="text-gray-900 text-hover-primary fs-2 p me-1">(Silahkan isi Detail profil !)</a>
+                                                <a href="#" class="text-gray-900 text-hover-primary fs-2 p me-1">Silahkan isi Detail profil !</a>
                                             @endif
                                         </div>
                                         <!--end::Name-->

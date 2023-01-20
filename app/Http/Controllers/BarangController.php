@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Barang;
-use App\Models\DetailProfil;
 use App\Models\Satuan;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -98,5 +100,16 @@ class BarangController extends Controller
         $barang->delete();
         Alert::toast('Berhasil Menghapus Data Barang', 'success');
         return redirect('barang');
+    }
+
+    public function printBarang()
+    {
+        $barang = Barang::all();
+        $jumlahstok = DB::table('barangs')->select('stok')->sum('stok');
+        $jumlahjual = DB::table('barangs')->select('harga_jual')->sum('harga_jual');
+        $jumlahnetto = DB::table('barangs')->select('harga_netto')->sum('harga_netto');
+        $pdf = Pdf::loadView('print.barangprint', ['barang' => $barang, 'jumlahstok' => $jumlahstok, 'jumlahjual' => $jumlahjual, 'jumlahnetto' => $jumlahnetto]);
+        
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Barang - '. Carbon::now(). '.pdf');
     }
 }

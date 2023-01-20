@@ -270,3 +270,14 @@ var KTSubscriptionsList = function () {
 KTUtil.onDOMContentLoaded(function () {
     KTSubscriptionsList.init();
 });
+
+
+let satuan = $('#satuantabel').DataTable();
+$('#satuancari').on('keyup', function () {
+        satuan.search( this.value ).draw();
+    } );
+
+let barang = $('#barangtabel').DataTable();
+$('#barangcari').on('keyup', function () {
+    barang.search( this.value ).draw();
+} );
