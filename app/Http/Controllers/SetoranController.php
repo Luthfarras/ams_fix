@@ -23,7 +23,8 @@ class SetoranController extends Controller
         $setoran = Setoran::all();
         $customer = DB::table('customers')->select('nama_customer', 'id')->get();
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
-        return view('menu.setoran', compact('setoran', 'customer', 'profil'));
+        $cust = Customer::all();
+        return view('menu.setoran', compact('cust','setoran', 'customer', 'profil'));
     }
 
     /**
@@ -91,6 +92,15 @@ class SetoranController extends Controller
     public function update(Request $request, Setoran $setoran)
     {
         $setoran->update($request->all());
+        $data = $request->all();
+        if ($request->file('foto_dep')) {
+            $data['foto_dep'] = $request->file('foto_dep')->store('foto');
+            Storage::delete($setoran->foto_dep);
+            $setoran->update($data);
+        }else {
+            $data['foto_dep'] = $setoran->foto_dep;
+            $setoran->update($data);
+        }
         return redirect('setoran');
     }
 
