@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penjualan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenjualanController extends Controller
 {
@@ -84,5 +85,19 @@ class PenjualanController extends Controller
     public function destroy(Penjualan $penjualan)
     {
         //
+    }
+
+    public function status(Penjualan $penjualan)
+    {
+        if ($penjualan->status == 'Belum Lunas') {
+            $penjualan->update([
+                'status' => "Lunas"
+            ]);
+        }else {
+            $penjualan->update([
+                'status' => "Belum Lunas"
+            ]);
+        }
+        return redirect('penjualan');
     }
 }

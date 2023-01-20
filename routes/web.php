@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('gettotal/{id}', [FakturController::class, 'getTotal']);
     Route::get('getbfaktur/{id}', [FakturController::class, 'getBarang']);
 
+    Route::get('status/{penjualan}', [PenjualanController::class, 'status']);
+
     Route::get('precust', [CustomerController::class, 'previewprint']);
 
     // Print

@@ -153,14 +153,14 @@
                                     <td>{{ $item->tanggal_dep }}</td>
                                     <td>{{ $item->jumlah_masuk }}</td>
                                     <td>{{ $item->jumlah_keluar }}</td>
-                                    <td>{{ $item->foto_dep }}</td>
+                                    <td><img src="{{ asset('storage/' .$item->foto_dep) }}" width="100px" alt="" srcset=""></td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
                                     <td>{{ $item->ket_dep }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
-                                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                        <a class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                         <span class="svg-icon svg-icon-5 m-0">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,7 +182,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
+                                                <a href="setoran/{{ $item->id }}" class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
