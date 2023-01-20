@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SetoranController extends Controller
 {

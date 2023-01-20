@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DetailProfilController extends Controller
 {
@@ -39,7 +41,15 @@ class DetailProfilController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['foto'] = $request->file('foto')->store('img');
+
+        $newName = '';
+        if($request->file('foto')){
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $newName = $request->nama.'-'.now()->timestamp.'.'.$extension;
+            $isi = $request->file('foto')->storeAs('img', $newName);
+        };
+
+        $data['foto'] = $isi;
         $data['user_id'] = Auth::user()->id;
         DetailProfil::create($data);
         return redirect('profil');
@@ -76,7 +86,39 @@ class DetailProfilController extends Controller
      */
     public function update(Request $request, DetailProfil $detailProfil)
     {
-        //
+
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        
+        // Jika foto akan diganti
+        if ($request->file('foto')) {
+            // Foto yang didalam database akan dihapus 
+            Storage::delete($detailProfil->foto);
+            
+            // mengambil ekstensi dari foto yang diinput
+            $extension = $request->file('foto')->getClientOriginalExtension();
+
+            // Mengganti nama file dengan Nama - timestamp - dan ekstensi
+            $newName = $request->name . '-' . now()->timestamp . '.' . $extension;
+
+            // Setelah itu foto disimpan
+            $isi = $request->file('foto')->storeAs('img', $newName);
+
+            $data['foto'] = $isi;
+
+            $detailProfil->update($data);
+        } else {
+            $detailProfil->update([
+                'nama' => $request->nama,
+                'alamat' =>  $request->alamat,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'telepon' => $request->telepon,
+                'user_id' => Auth::user()->id,
+                'foto'=> $detailProfil->foto
+            ]);
+        }
+
+        return redirect('profil');
     }
 
     /**
