@@ -72,7 +72,7 @@
 										<img alt="user" src="{{ asset('storage/' . $item->foto) }}" />
 										@endforeach
 										@else
-										<img alt="user" src="{{ asset('storage/default.png') }}" />
+										<img alt="user" src="{{ asset('storage/user-286.png') }}" />
 										@endif
 									</div>
 									<!--begin::User account menu-->
@@ -87,7 +87,7 @@
 													<img alt="Logo" src="{{ asset('storage/' . $item->foto) }}" />
 													@endforeach
 													@else
-													<img alt="Logo" src="{{ asset('storage/default.png') }}" />
+													<img alt="Logo" src="{{ asset('storage/user-286.png') }}" />
 													@endif
 												</div>
 												<!--end::Avatar-->
@@ -480,6 +480,11 @@
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-address.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+		<script>
+    $(document).ready( function () {
+			$('#satuantabel').DataTable();
+		} );
+		</script>
 		<script>
 			$('#logout').on("click", function() {
 				swal.fire({

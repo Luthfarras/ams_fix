@@ -90,7 +90,7 @@
                                                     <!--begin::Datepicker-->
                                                     <input type="date" id="invoice_date"
                                                         class="form-control form-control-transparent fw-bold pe-5"
-                                                        placeholder="Select date" name="tanggal_faktur" />
+                                                        placeholder="Select date" name="tanggal_faktur" required/>
                                                     <!--end::Datepicker-->
                                                     <!--begin::Icon-->
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
@@ -116,7 +116,7 @@
                                                 <span class="fs-2x fw-bold text-gray-800">Invoice #</span>
                                                 <select class="form-select form-select-solid" data-control="select2"
                                                     data-hide-search="true" data-placeholder="Pilih Kode Faktur..."
-                                                    name="kode_faktur" onchange="nama(value)">
+                                                    name="kode_faktur" onchange="nama(value)" required>
                                                     <option selected disabled>Pilih Kode Faktur...</option>
                                                     @foreach ($dfaktur as $item)
                                                         <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}
@@ -175,12 +175,12 @@
                                                             <td class="ps-0">
                                                                 <input class="form-control form-control-solid"
                                                                     type="text" name="ppn" id="ppn"
-                                                                    onkeyup="total()" />
+                                                                    onkeyup="total()" required/>
                                                             </td>
                                                             <td class="ps-0">
                                                                 <input class="form-control form-control-solid"
                                                                     type="text" name="pph" id="pph"
-                                                                    onkeyup="total()" />
+                                                                    onkeyup="total()" required/>
                                                             </td>
                                                            
                                                         </tr>
@@ -207,7 +207,7 @@
                                             <div class="mb-5">
                                                 <label class="form-label fs-6 fw-bold text-gray-700">Catatan</label>
                                                 <textarea name="ket_faktur" class="form-control form-control-solid" rows="3"
-                                                    placeholder="Keterangan..."></textarea>
+                                                    placeholder="Keterangan..." required></textarea>
                                             </div>
                                             <!--end::Notes-->
                                         </div>
