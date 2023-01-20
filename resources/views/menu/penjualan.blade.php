@@ -139,9 +139,15 @@
                                     <td>{{ $item->keterangan }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>
-                                        <div class="badge badge-light-danger"><a href="status/{{ $item->id }}">{{ $item->status }}</a></div>
-                                    </td>
+                                    @if (DB::table('penjualans')->where('id', $item->id)->where('status', 'Belum Lunas')->exists())
+                                        <td>
+                                            <div class="badge badge-light-danger"><a href="status/{{ $item->id }}">{{ $item->status }}</a></div>
+                                        </td>
+                                    @else    
+                                        <td>
+                                            <div class="badge badge-light-success">{{ $item->status }}</div>
+                                        </td>
+                                    @endif
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
@@ -170,6 +176,11 @@
                                                 <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
                                             </div>
                                             <!--end::Menu item-->
+                                            @if (DB::table('penjualans')->where('id', $item->id)->where('status', 'Lunas'))
+                                            <div class="menu-item px-3">
+                                                <a href="status/{{ $item->id }}" class="menu-link px-3">Edit Status</a>
+                                            </div>
+                                            @endif
                                         </div>
                                         <!--end::Menu-->
                                     </td>
