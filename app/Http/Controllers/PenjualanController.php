@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penjualan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PenjualanController extends Controller
@@ -18,7 +19,8 @@ class PenjualanController extends Controller
     {
         $penjualan = Penjualan::all();
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
-        return view('menu.penjualan', compact('penjualan', 'profil'));
+        $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+        return view('menu.penjualan', compact('penjualan', 'profil', 'jumlah'));
     }
 
     /**

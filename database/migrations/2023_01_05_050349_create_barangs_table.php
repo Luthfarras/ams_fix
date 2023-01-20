@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('harga_jual');
             $table->integer('qty_barang');
             $table->integer('stok');
-            $table->string('satuan_barang');
             $table->integer('harga_netto');
             $table->string('ket_barang');
             $table->date('tgl_kadaluarsa');

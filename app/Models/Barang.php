@@ -20,4 +20,9 @@ class Barang extends Model
     {
         return $this->hasMany(DetailFaktur::class);
     }
+
+    public function satuan()
+    {
+        return $this->belongsTo(Satuan::class);
+    }
 }

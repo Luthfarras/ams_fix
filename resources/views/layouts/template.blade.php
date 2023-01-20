@@ -481,6 +481,11 @@
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-address.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/users-search.js') }}"></script>
 		<script>
+    $(document).ready( function () {
+			$('#satuantabel').DataTable();
+		} );
+		</script>
+		<script>
 			$('#logout').on("click", function() {
 				swal.fire({
 					title: 'Apa Kamu Yakin mau Logout?',

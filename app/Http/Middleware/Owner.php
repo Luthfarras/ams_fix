@@ -19,7 +19,7 @@ class Owner
     {
         if (Auth::user()->role == 'Owner') {
             return $next($request);
-        }else {
+        } else {
             return redirect('/');
         }
     }
