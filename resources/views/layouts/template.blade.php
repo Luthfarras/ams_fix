@@ -72,7 +72,7 @@
 										<img alt="user" src="{{ asset('storage/' . $item->foto) }}" />
 										@endforeach
 										@else
-										<img alt="user" src="{{ asset('storage/default.png') }}" />
+										<img alt="user" src="{{ asset('storage/user-286.png') }}" />
 										@endif
 									</div>
 									<!--begin::User account menu-->
@@ -87,7 +87,7 @@
 													<img alt="Logo" src="{{ asset('storage/' . $item->foto) }}" />
 													@endforeach
 													@else
-													<img alt="Logo" src="{{ asset('storage/default.png') }}" />
+													<img alt="Logo" src="{{ asset('storage/user-286.png') }}" />
 													@endif
 												</div>
 												<!--end::Avatar-->

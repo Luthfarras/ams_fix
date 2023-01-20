@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -104,7 +105,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::all();
         $pdf = Pdf::loadView('print.custprint', ['customer' => $customer]);
-
-        return $pdf->setPaper('a4', 'potrait')->download('Data Customer.pdf');
+        
+        return $pdf->setPaper('a4', 'potrait')->stream('Data Customer - '. Carbon::now(). '.pdf');
     }
 }
