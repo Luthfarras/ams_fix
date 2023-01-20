@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\DetailFaktur;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DetailFakturController extends Controller
 {

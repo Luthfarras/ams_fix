@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BarangController extends Controller
@@ -17,11 +19,12 @@ class BarangController extends Controller
     public function index()
     {
         $barang = Barang::all();
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         $jual = DB::table('barangs')->select('harga_jual')->sum('harga_jual');
         $stok = DB::table('barangs')->select('stok')->sum('stok');
         $netto = DB::table('barangs')->select('harga_netto')->sum('harga_netto');
         $qty = DB::table('barangs')->select('qty_barang')->sum('qty_barang');
-        return view('pendataan.barang', compact('barang', 'jual', 'stok', 'netto', 'qty'));
+        return view('pendataan.barang', compact('barang', 'jual', 'stok', 'netto', 'qty', 'profil'));
     }
 
     /**

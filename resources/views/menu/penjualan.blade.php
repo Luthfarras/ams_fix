@@ -139,7 +139,9 @@
                                     <td>{{ $item->keterangan }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>{{ $item->status }}</td>
+                                    <td>
+                                        <div class="badge badge-light-danger"><a href="status/{{ $item->id }}">{{ $item->status }}</a></div>
+                                    </td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">

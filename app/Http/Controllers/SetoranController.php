@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setoran;
 use App\Models\Customer;
+use App\Models\Penjualan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,6 +46,15 @@ class SetoranController extends Controller
         $data = $request->all();
         $data['foto_dep'] = $request->file('foto_dep')->store('foto');
         Setoran::create($data);
+
+        Penjualan::create([
+            'customer_id' => $request->customer_id,
+            'tanggal_kirim' => $request->tanggal_dep,
+            'kode' => $request->kode_dep,
+            'jumlah' => $request->jumlah_masuk,
+            'keterangan' => $request->ket_dep,
+        ]);
+
         return redirect('setoran');
     }
 

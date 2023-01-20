@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Distributor;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DistributorController extends Controller
