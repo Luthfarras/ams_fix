@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Satuan;
+use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SatuanController extends Controller
 {
@@ -15,7 +17,8 @@ class SatuanController extends Controller
     public function index()
     {
         $satuan = Satuan::all();
-        return view('pendataan.satuan', compact('satuan'));
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.satuan', compact('satuan', 'profil'));
     }
 
     /**
