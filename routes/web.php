@@ -38,6 +38,7 @@ Route::middleware(['Owner'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('home', [HomeController::class, 'index']);
+    Route::get('profil', [DetailProfilController::class, 'index']);
     Route::resource('barang', BarangController::class);
     Route::resource('distributor', DistributorController::class);
     Route::resource('customer', CustomerController::class);
@@ -47,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('penjualan', PenjualanController::class);
     Route::resource('setoran', SetoranController::class);
     Route::resource('stok', StokController::class);
-    Route::resource('profil', DetailProfilController::class);
+    Route::resource('detailprofil', DetailProfilController::class);
     
     // DELETE
     Route::get('barang/{barang}', [BarangController::class, 'destroy']);
@@ -59,7 +60,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
     Route::get('setoran/{setoran}', [SetoranController::class, 'destroy']);
     Route::get('stok/{stok}', [StokController::class, 'destroy']);
-    
 
     // AJAX
     Route::get('getharga', [DetailFakturController::class, 'getHarga']);

@@ -84,7 +84,7 @@ class DetailProfilController extends Controller
      * @param  \App\Models\DetailProfil  $detailProfil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DetailProfil $detailProfil)
+    public function update(Request $request, DetailProfil $detailprofil)
     {
 
         $data = $request->all();
@@ -94,7 +94,7 @@ class DetailProfilController extends Controller
         // Jika foto akan diganti
         if ($request->file('foto')) {   
             // Foto yang didalam database akan dihapus 
-            !is_null($detailProfil->image) && Storage::delete($detailProfil->foto);
+            !is_null($detailprofil->image) && Storage::delete($detailprofil->foto);
             
             // mengambil ekstensi dari foto yang diinput
             $extension = $request->file('foto')->getClientOriginalExtension();
@@ -107,19 +107,19 @@ class DetailProfilController extends Controller
 
             $data['foto'] = $isi;
 
-            $detailProfil->update($data);
+            $detailprofil->update($data);
         } else {
-            $detailProfil->update([
+            $detailprofil->update([
                 'nama' => $request->nama,
                 'alamat' =>  $request->alamat,
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'telepon' => $request->telepon,
                 'user_id' => Auth::user()->id,
-                'foto' => $detailProfil->foto
+                'foto' => $detailprofil->foto
             ]);
         }
-        dd($detailProfil);
-        // return redirect('profil');
+        // dd($detailProfil);
+        return redirect('profil');
     }
 
     /**

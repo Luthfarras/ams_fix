@@ -268,7 +268,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
-                    <form action="{{ route('profil.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('detailprofil.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <!--begin::Heading-->
