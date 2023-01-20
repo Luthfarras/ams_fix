@@ -89,17 +89,18 @@ class DetailProfilController extends Controller
 
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
-        
+
+        $newName = '';
         // Jika foto akan diganti
-        if ($request->file('foto')) {
+        if ($request->file('foto')) {   
             // Foto yang didalam database akan dihapus 
-            Storage::delete($detailProfil->foto);
+            !is_null($detailProfil->image) && Storage::delete($detailProfil->foto);
             
             // mengambil ekstensi dari foto yang diinput
             $extension = $request->file('foto')->getClientOriginalExtension();
 
             // Mengganti nama file dengan Nama - timestamp - dan ekstensi
-            $newName = $request->name . '-' . now()->timestamp . '.' . $extension;
+            $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
 
             // Setelah itu foto disimpan
             $isi = $request->file('foto')->storeAs('img', $newName);
@@ -114,11 +115,11 @@ class DetailProfilController extends Controller
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'telepon' => $request->telepon,
                 'user_id' => Auth::user()->id,
-                'foto'=> $detailProfil->foto
+                'foto' => $detailProfil->foto
             ]);
         }
-
-        return redirect('profil');
+        dd($detailProfil);
+        // return redirect('profil');
     }
 
     /**

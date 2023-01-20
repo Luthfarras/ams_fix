@@ -9,6 +9,7 @@ use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SetoranController extends Controller
 {
@@ -101,6 +102,7 @@ class SetoranController extends Controller
      */
     public function destroy(Setoran $setoran)
     {
+        Storage::delete($setoran->foto_dep);
         $setoran->delete();
         return redirect('setoran');
     }
