@@ -42,7 +42,7 @@
         <header>
             <h1 class="text-center">Invoice</h1>
         </header>
-        @foreach ($faktur as $item)
+        @foreach ($kodenama as $item)
         <div class="h6">{{ $item->nama_customer }}</div>
         <div class="h6">{{ $item->kode_faktur }}</div>
         @endforeach
