@@ -11,9 +11,38 @@
             border: 1px solid black;
             border-collapse: collapse;
             text-align: center;
+            
         }
+
+        table {
+            width: 100%;
+        }
+
+        
         h1 {
             text-align: center;
+        }
+        p {
+            text-align: center;
+            margin-top: -15px
+        }
+       th, td {
+        width: auto;
+       }
+        
+        .badge-red {
+            padding: 5px;
+            background-color: red;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .badge-blue {
+            padding: 5px;
+            background-color: blue;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -22,12 +51,19 @@
     <div class="container">
         <header>
             <h1 class="text-center">Data Penjualan</h1>
+            <p class="text-center">
+                @php
+                    setlocale(LC_ALL, 'IND');
+                    $data = strftime('%A, %d %B %Y');
+                @endphp
+                 Dicetak : <span class="badge-blue">{{ $data }}</span>
+            </p>
         </header>
         <table class="table table-bordered">
             <thead>
-                <th>No</th>
+                <th class="nopenj">No</th>
                 <th>Kode Penjualan</th>
-                <th>Nama Customer</th>
+                <th class="cust">Nama Customer</th>
                 <th>Tanggal Kirim</th>
                 <th>Jumlah</th>
                 <th>Keterangan</th>
@@ -42,7 +78,11 @@
                         <td>{{ $item->tanggal_kirim }}</td>
                         <td>{{ $item->jumlah }}</td>
                         <td>{{ $item->keterangan }}</td>
-                        <td>{{ $item->status }}</td>
+                        @if ($item->status == 'Belum Lunas')
+                            <td><span class="badge-red">{{ $item->status }}</span></td>
+                        @else 
+                            <td><span class="badge-blue">{{ $item->status }}</span></td>
+                        @endif
                     </tr>
                     
                 @endforeach

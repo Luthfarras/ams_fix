@@ -70,7 +70,7 @@
                         <td>{{ $item->jumlah_masuk }}</td>
                         <td>{{ $item->jumlah_keluar }}</td>
                         <td>{{ $item->ket_dep }}</td>
-                        <td>{{ $item->foto_dep }}</td>
+                        <td><img src="{{ asset('storage/'. $item->foto_dep ) }}" alt="" srcset=""></td>
                     </tr>
                     
                 @endforeach
