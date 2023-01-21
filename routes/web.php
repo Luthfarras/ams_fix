@@ -78,12 +78,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('status/{penjualan}', [PenjualanController::class, 'status']);
 
 
-    // Print
-    Route::get('printcust', [CustomerController::class, 'printCust']);
-    Route::get('printdist', [DistributorController::class, 'printDist']);
-    Route::get('printbarang', [BarangController::class, 'printBarang']);
+    // Print 
+        // Pendataan
+        Route::get('printcust', [CustomerController::class, 'printCust']);
+        Route::get('printdist', [DistributorController::class, 'printDist']);
+        Route::get('printbarang', [BarangController::class, 'printBarang']);
+
+        // Menu
+        
     
 });
+
 
 Auth::routes();
 
