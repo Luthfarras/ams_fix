@@ -15,13 +15,32 @@
         h1 {
             text-align: center;
         }
+        p {
+            text-align: center;
+            margin-top: -15px
+        }
+        
+        .badge-red {
+            padding: 5px;
+            background-color: red;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .badge-blue {
+            padding: 5px;
+            background-color: blue;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1 class="text-center">Invoice</h1>
+            <h1 class="text-center">Data Customer</h1>
         </header>
         @foreach ($faktur as $item)
         <div class="h6">{{ $item->nama_customer }}</div>
