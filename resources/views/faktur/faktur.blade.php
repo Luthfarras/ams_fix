@@ -165,17 +165,12 @@
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="../../demo1/dist/apps/subscriptions/add.html" class="menu-link px-3">View</a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#cetakfaktur{{ $item->id }}" class="menu-link px-3">Cetak</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#cetakfaktur{{ $item->id }}" class="menu-link px-3">Print</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
+                                                <a href="/faktur/{{ $item->id }}" class="menu-link px-3">Hapus</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>

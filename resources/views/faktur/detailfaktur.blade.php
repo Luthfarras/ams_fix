@@ -280,8 +280,8 @@
                             <label class="required fs-6 fw-semibold mb-2">Nama Customer</label>
                             <select class="form-select form-select-solid" data-control="select2"
                                 data-hide-search="true" data-placeholder="Pilih Customer..."
-                                name="customer_id">
-                                <option selected disabled>Pilih Customer...</option>
+                                name="customer_id" required>
+                                <option selected value="">Pilih Customer...</option>
                                 @foreach ($cust as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_customer }}</option>
                                 @endforeach
@@ -293,8 +293,8 @@
                         <label class="required fs-6 fw-semibold mb-2">Nama Barang</label>
                         <select class="form-select form-select-solid" data-control="select2"
                             data-hide-search="true" data-placeholder="Pilih Barang..."
-                            name="barang_id" id="nama_barang" onchange="harga(value)">
-                            <option selected disabled>Pilih Barang...</option>
+                            name="barang_id" id="nama_barang" onchange="harga(value)" required>
+                            <option selected value="">Pilih Barang...</option>
                             @foreach ($barang as $item)
                             <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
                             @endforeach
@@ -311,7 +311,7 @@
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">QTY</label>
-                            <input type="number" class="form-control form-control-solid"
+                            <input type="number" class="form-control form-control-solid" required 
                                 placeholder="Masukkan Qty..." name="stok_keluar" id="stok_keluar" onkeyup="hasil()"/>
                         </div>
                     </div>

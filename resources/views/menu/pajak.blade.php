@@ -167,7 +167,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Hapus</a>
+                                                <a href="pajak/{{ $item->id }}" class="menu-link px-3">Hapus</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
@@ -312,8 +312,8 @@
                             <label class="required fs-6 fw-semibold mb-2">Nama Customer</label>
                             <select class="form-select form-select-solid" data-control="select2"
                                 data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                                name="customer_id">
-                                <option selected disabled>Pilih Satuan...</option>
+                                name="customer_id" required>
+                                <option selected value="">Pilih Satuan...</option>
                                 @foreach ($customer as $data)
                                     <option value="{{ $data->id }}">{{ $data->nama_customer }}</option>
                                 @endforeach
@@ -336,14 +336,14 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" id="due_date" class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" required/>
+                                <input type="date" required class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">No. Faktur Pajak</label>
-                            <input type="number" class="form-control form-control-solid"
-                                placeholder="Masukkan Harga Qty..." name="no_fakpajak" required/>
+                            <input type="text" class="form-control form-control-solid"
+                                placeholder="Masukkan No FakPajak..." name="no_fakpajak" required/>
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Tanggal Upload</label>
@@ -360,7 +360,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="date" class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" required/>
+                                <input type="date" required class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" required/>
                                 <!--end::Datepicker-->
                             </div>
                             
@@ -370,8 +370,8 @@
                         <label class="required fs-6 fw-semibold mb-2">Keterangan</label>
                         <select class="form-select form-select-solid" data-control="select2"
                             data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                            name="ket_rep">
-                            <option selected disabled>Pilih Status...</option>
+                            name="ket_rep" required>
+                            <option selected value="">Pilih Status...</option>
                             <option value="Sudah Upload">Sudah Upload</option>
                             <option value="Belum Upload">Belum Upload</option>
                         </select>

@@ -131,7 +131,8 @@ class FakturController extends Controller
      */
     public function destroy(Faktur $faktur)
     {
-        //
+        $faktur->delete();
+        return redirect('faktur');
     }
     public function getNama($id)
     {
@@ -182,3 +183,19 @@ class FakturController extends Controller
         return $pdf->setPaper('a4', 'landscape')->stream('Data Faktur - '. Carbon::now(). '.pdf');
     }
 }
+
+// barang  -> detail faktur
+//         -> stok 
+//         -> satuan 
+
+// detail  -> customer
+//         -> barang 
+
+// cust    -> faktur 
+//         -> penjualan
+//         -> pajak
+//         -> setoran 
+//         -> detail faktur
+
+// select from barang join ke detail join ke customer
+// select from customer join ke detail join ke barang

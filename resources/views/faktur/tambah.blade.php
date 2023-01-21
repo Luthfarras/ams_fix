@@ -117,7 +117,7 @@
                                                 <select class="form-select form-select-solid" data-control="select2"
                                                     data-hide-search="true" data-placeholder="Pilih Kode Faktur..."
                                                     name="kode_faktur" onchange="nama(value)" required>
-                                                    <option selected disabled>Pilih Kode Faktur...</option>
+                                                    <option selected value="">Pilih Kode Faktur...</option>
                                                     @foreach ($dfaktur as $item)
                                                         <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}
                                                         </option>
