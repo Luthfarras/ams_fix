@@ -86,7 +86,8 @@ class PenjualanController extends Controller
      */
     public function destroy(Penjualan $penjualan)
     {
-        //
+        $penjualan->delete();
+        return redirect('penjualan');
     }
 
     public function status(Penjualan $penjualan)

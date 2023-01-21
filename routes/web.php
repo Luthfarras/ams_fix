@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('setoran/{setoran}', [SetoranController::class, 'destroy']);
     Route::get('stok/{stok}', [StokController::class, 'destroy']);
     Route::get('satuan/{satuan}', [SatuanController::class, 'destroy']);
+    Route::get('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
 
     // AJAX
     Route::get('getharga', [DetailFakturController::class, 'getHarga']);

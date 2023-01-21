@@ -141,7 +141,7 @@
                                                         data-kt-menu="true">
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="#"
+                                                            <a href="/penjualan/{{ $item->id }}"
                                                                 data-kt-subscriptions-table-filter="delete_row"
                                                                 class="menu-link px-3">Hapus</a>
                                                         </div>
