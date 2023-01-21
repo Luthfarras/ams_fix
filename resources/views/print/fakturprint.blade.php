@@ -11,8 +11,8 @@
             border: 1px solid black;
             border-collapse: collapse;
             text-align: center;
-            width: 100%;
         }
+        
         h1 {
             text-align: center;
             
@@ -35,25 +35,25 @@
             border-radius: 6px;
             font-weight: bold;
         }
-            .col {
-                float: left;
-                padding: 10px;
-            }
+        .col {
+            float: left;
+            padding: 10px;
+        }
+        
+        .left {
+            width: 70%;
+        }
 
-            .left {
-                width: 70%;
-            }
+        .right {
+            width: 25%;
+        }
 
-            .right {
-                width: 25%;
-            }
-
-            /* Clear floats after the columns */
-            .row:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
     </style>
 </head>
 
@@ -87,9 +87,9 @@
             @endforeach
         </div>
         <div class="container">
-            <table class="table table-bordered">
+            <table style="width: 100%">
                 <thead>
-                    <th>No</th>
+                    <th style="width: 3%">No</th>
                     <th>Kode</th>
                     <th>Nama Barang</th>
                     <th>Qty</th>
@@ -106,9 +106,9 @@
                             <td>{{ $item->nama_barang }}</td>
                             <td>{{ $item->stok_keluar }}</td>
                             <td>{{ $item->nama_satuan }}</td>
-                            <td>{{ $item->harga_jual }}</td>
+                            <td>Rp {{ number_format($item->harga_jual, 0, ',', '.') }}</td>
                             <td>{{ $item->diskon }}</td>
-                            <td>{{ $item->subtotal }}</td>
+                            <td>Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
