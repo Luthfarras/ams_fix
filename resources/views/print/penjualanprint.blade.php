@@ -79,9 +79,9 @@
                         <td>{{ $item->jumlah }}</td>
                         <td>{{ $item->keterangan }}</td>
                         @if ($item->status == 'Belum Lunas')
-                            <td><span class="badge-red">{{ $item->status }}</span></td>
+                            <td>{{ $item->status }}</td>
                         @else 
-                            <td><span class="badge-blue">{{ $item->status }}</span></td>
+                            <td>{{ $item->status }}</td>
                         @endif
                     </tr>
                     

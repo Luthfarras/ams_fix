@@ -179,6 +179,6 @@ class FakturController extends Controller
 
         $pdf = Pdf::loadView('print.fakturprint', ['faktur' => $faktur, 'kodenama' => $kodenama]);
         
-        return $pdf->setPaper('a4', 'potrait')->stream('Data Faktur - '. Carbon::now(). '.pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Faktur - '. Carbon::now(). '.pdf');
     }
 }

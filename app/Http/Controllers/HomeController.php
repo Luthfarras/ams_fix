@@ -35,7 +35,7 @@ class HomeController extends Controller
         $distributor = Distributor::all()->count();
         $barang = Barang::all()->count();
         $stok = DB::table('barangs')->select('stok')->sum('stok');
-        $penjualan = Penjualan::all()->count();
+        $penjualan = DB::table('penjualans')->select('jumlah')->sum('jumlah');
         $faktur = Faktur::all()->count();
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         if (!Auth::user()->role == 'Admin') {

@@ -127,7 +127,7 @@
                                             <td>
                                                 <div class="badge badge-light">{{ $item->customer->nama_customer }}</div>
                                             </td>
-                                            < <td>{{ $item->tanggal_kirim }}</td>
+                                             <td>{{ $item->tanggal_kirim }}</td>
                                                 <td>Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
                                                 <td>{{ $item->keterangan }}</td>
 
@@ -170,10 +170,8 @@
                                                         <!--end::Menu item-->
                                                         @if (DB::table('penjualans')->where('id', $item->id)->where('status', 'Lunas')->exists())
                                                             <div class="menu-item px-3">
-                                                                @if (Auth::user()->role == 'Owner')
                                                                     <a href="status/{{ $item->id }}"
                                                                         class="menu-link px-3">Ganti Status</a>
-                                                                @endif
                                                             </div>
                                                         @endif
                                                     </div>
