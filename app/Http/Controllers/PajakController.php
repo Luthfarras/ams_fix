@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Pajak;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,5 +92,13 @@ class PajakController extends Controller
     {
         $pajak->delete();
         return redirect('pajak');
+    }
+
+    public function printPajak()
+    {
+        $pajak = Pajak::all();
+        $pdf = Pdf::loadView('print.pajakprint', ['pajak' => $pajak]);
+        
+        return $pdf->setPaper('a4', 'potrait')->stream('Data Laporan Faktur Pajak - '. Carbon::now(). '.pdf');
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Setoran;
 use App\Models\Customer;
 use App\Models\Penjualan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -115,5 +117,13 @@ class SetoranController extends Controller
         Storage::delete($setoran->foto_dep);
         $setoran->delete();
         return redirect('setoran');
+    }
+
+    public function printSetoran()
+    {
+        $setoran = Setoran::all();
+        $pdf = Pdf::loadView('print.setoranprint', ['setoran' => $setoran]);
+        
+        return $pdf->setPaper('a4', 'potrait')->stream('Data Setoran - '. Carbon::now(). '.pdf');
     }
 }

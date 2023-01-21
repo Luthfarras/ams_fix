@@ -43,7 +43,7 @@
     <div class="container">
         <header>
             <h1 class="text-center">Data Customer</h1>
-            <p class="text-center" id="tanggal">
+            <p class="text-center">
                 @php
                     setlocale(LC_ALL, 'IND');
                     $data = strftime('%A, %d %B %Y');
@@ -68,7 +68,6 @@
                         <td>{{ $item->alamat_customer }}</td>
                         <td>{{ $item->telepon_customer }}</td>
                     </tr>
-                    
                 @endforeach
             </tbody>
         </table>

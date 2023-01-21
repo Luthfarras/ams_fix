@@ -15,6 +15,7 @@ use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\DetailFakturController;
 use App\Http\Controllers\DetailProfilController;
 use App\Http\Controllers\SatuanController;
+use App\Models\Stok;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,8 +84,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('printcust', [CustomerController::class, 'printCust']);
         Route::get('printdist', [DistributorController::class, 'printDist']);
         Route::get('printbarang', [BarangController::class, 'printBarang']);
-
+        
         // Menu
+        Route::get('printsetoran', [SetoranController::class, 'printSetoran']);
+        Route::get('printstok', [StokController::class, 'printStok']);
+        Route::get('printpenjualan', [PenjualanController::class, 'printPenjualan']);
+        Route::get('printpajak', [PajakController::class, 'printPajak']);
         
     
 });

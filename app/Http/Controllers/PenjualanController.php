@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Penjualan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,5 +104,13 @@ class PenjualanController extends Controller
             ]);
         }
         return redirect('penjualan');
+    }
+
+    public function printPenjualan()
+    {
+        $penjualan = Penjualan::all();
+        $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan]);
+        
+        return $pdf->setPaper('a4', 'potrait')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
     }
 }

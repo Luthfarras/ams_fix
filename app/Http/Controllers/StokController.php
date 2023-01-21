@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Stok;
 use App\Models\Barang;
 use App\Models\Distributor;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -116,5 +118,13 @@ class StokController extends Controller
         // Setelah itu id stok akan dihapus
         $stok->delete();
         return redirect('stok');
+    }
+
+    public function printStok()
+    {
+        $stok = Stok::all();
+        $pdf = Pdf::loadView('print.stokprint', ['stok' => $stok]);
+        
+        return $pdf->setPaper('a4', 'potrait')->stream('Data Stok - '. Carbon::now(). '.pdf');
     }
 }
