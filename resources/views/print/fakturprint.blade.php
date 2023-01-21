@@ -40,7 +40,7 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="text-center">Data Customer</h1>
+            <h1 class="text-center">Invoice</h1>
         </header>
         @foreach ($faktur as $item)
         <div class="h6">{{ $item->nama_customer }}</div>
