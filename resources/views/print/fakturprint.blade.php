@@ -21,26 +21,27 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="text-center">Data Customer</h1>
+            <h1 class="text-center">Invoice</h1>
         </header>
+        @foreach ($faktur as $item)
+        <div class="h6">{{ $item->nama_customer }}</div>
+        <div class="h6">{{ $item->kode_faktur }}</div>
+        @endforeach
         <table class="table table-bordered">
             <thead>
                 <th>No</th>
-                <th>Kode Customer</th>
-                <th>Nama Customer</th>
-                <th>Alamat Customer</th>
-                <th>Telepon</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Satuan Barang</th>
             </thead>
             <tbody>
-                @foreach ($customer as $item)
+                @foreach ($faktur as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->kode_customer }}</td>
-                        <td>{{ $item->nama_customer }}</td>
-                        <td>{{ $item->alamat_customer }}</td>
-                        <td>{{ $item->telepon_customer }}</td>
+                        <td>{{ $item->kode_barang }}</td>
+                        <td>{{ $item->nama_barang }}</td>
+                        <td>{{ $item->nama_satuan }}</td>
                     </tr>
-                    
                 @endforeach
             </tbody>
         </table>

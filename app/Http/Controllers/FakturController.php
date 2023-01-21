@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Barang;
 use App\Models\Faktur;
 use App\Models\Customer;
@@ -9,6 +10,7 @@ use App\Models\Penjualan;
 use App\Models\DetailFaktur;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -159,5 +161,17 @@ class FakturController extends Controller
         }
         $li .= '';
         return response()->json([$li]);
+    }
+
+    public function printFaktur($id)
+    {
+        $faktur = DB::table('barangs')->select('*')->join('satuans', 'barangs.satuan_id', 'satuans.id')
+        ->join('detail_fakturs', 'detail_fakturs.barang_id', 'barangs.id')
+        ->join('fakturs', 'detail_fakturs.kode_faktur', 'fakturs.kode_faktur')
+        ->join('customers', 'fakturs.customer_id', 'customers.id')
+        ->where('fakturs.kode_faktur', $id)->get();
+        $pdf = Pdf::loadView('print.fakturprint', ['faktur' => $faktur]);
+        
+        return $pdf->setPaper('a4', 'potrait')->stream('Data Faktur - '. Carbon::now(). '.pdf');
     }
 }
