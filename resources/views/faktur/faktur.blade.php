@@ -154,7 +154,7 @@
                                     <td>{{ $item->pph }} %</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
-                                    <td>Rp {{ number_format("$item->total_harga",0,",",".") }}</td>
+                                    <td>Rp {{ number_format("$item->total_pp",0,",",".") }}</td>
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">

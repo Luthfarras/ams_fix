@@ -13,7 +13,7 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <a href="{{ url()->previous() }}" class="btn btn-primary mb-5">
+                        <a href="/faktur" class="btn btn-primary mb-5">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
                             <span class="svg-icon svg-icon-2">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

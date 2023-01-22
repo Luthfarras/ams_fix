@@ -54,6 +54,9 @@
             display: table;
             clear: both;
         }
+        .final {
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -119,52 +122,74 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col">
+                <div class="col left">
                     Terbilang :
                     <br>
-                    @php
-                        function penyebut($nilai) {
-                            $nilai = abs($nilai);
-                            $huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
-                            $temp = "";
-                            if ($nilai < 12) {
-                                $temp = " ". $huruf[$nilai];
-                            } else if ($nilai <20) {
-                                $temp = penyebut($nilai - 10). " belas";
-                            } else if ($nilai < 100) {
-                                $temp = penyebut($nilai/10)." puluh". penyebut($nilai % 10);
-                            } else if ($nilai < 200) {
-                                $temp = " Seratus" . penyebut($nilai - 100);
-                            } else if ($nilai < 1000) {
-                                $temp = penyebut($nilai/100) . " ratus" . penyebut($nilai % 100);
-                            } else if ($nilai < 2000) {
-                                $temp = " Seribu" . penyebut($nilai - 1000);
-                            } else if ($nilai < 1000000) {
-                                $temp = penyebut($nilai/1000) . " ribu" . penyebut($nilai % 1000);
-                            } else if ($nilai < 1000000000) {
-                                $temp = penyebut($nilai/1000000) . " juta" . penyebut($nilai % 1000000);
-                            } else if ($nilai < 1000000000000) {
-                                $temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
-                            } else if ($nilai < 1000000000000000) {
-                                $temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
-                            }     
-                            return $temp;
-                        }
-                    
-                        function terbilang($nilai) {
-                            if($nilai<0) {
-                                $hasil = "minus ". trim(penyebut($nilai));
-                            } else {
-                                $hasil = trim(penyebut($nilai));
-                            }     		
-                            return $hasil;
-                        }
-                    @endphp
+                        @php
+                            function penyebut($nilai) {
+                                $nilai = abs($nilai);
+                                $huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
+                                $temp = "";
+                                if ($nilai < 12) {
+                                    $temp = " ". $huruf[$nilai];
+                                } else if ($nilai <20) {
+                                    $temp = penyebut($nilai - 10). " belas";
+                                } else if ($nilai < 100) {
+                                    $temp = penyebut($nilai/10)." puluh". penyebut($nilai % 10);
+                                } else if ($nilai < 200) {
+                                    $temp = " Seratus" . penyebut($nilai - 100);
+                                } else if ($nilai < 1000) {
+                                    $temp = penyebut($nilai/100) . " ratus" . penyebut($nilai % 100);
+                                } else if ($nilai < 2000) {
+                                    $temp = " Seribu" . penyebut($nilai - 1000);
+                                } else if ($nilai < 1000000) {
+                                    $temp = penyebut($nilai/1000) . " ribu" . penyebut($nilai % 1000);
+                                } else if ($nilai < 1000000000) {
+                                    $temp = penyebut($nilai/1000000) . " juta" . penyebut($nilai % 1000000);
+                                } else if ($nilai < 1000000000000) {
+                                    $temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
+                                } else if ($nilai < 1000000000000000) {
+                                    $temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
+                                }     
+                                return $temp;
+                            }
+                        
+                            function terbilang($nilai) {
+                                if($nilai<0) {
+                                    $hasil = "minus ". trim(penyebut($nilai));
+                                } else {
+                                    $hasil = trim(penyebut($nilai));
+                                }     		
+                                return $hasil;
+                            }
+                        @endphp
+
                     @foreach ($kodenama as $item)
                         {{ terbilang($item->total_harga) }} rupiah
                     @endforeach 
                 </div>
+                <div class="col right">
+                    @foreach ($kodenama as $item)
+                        <p>Harga Jual : <span class="final">{{ number_format($item->total_harga, 0, ',', '.') }}</span></p>
+                        <p>PPN : <span class="final">{{ $item->ppn }} %</span></p>
+                        <p>PPH : <span class="final">{{ $item->pph }} %</span></p>
+                        <p>Total : <span class="final">{{ number_format($item->total_pp, 0, ',', '.') }}</span></p>
+                    @endforeach
+                </div>
             </div>
+
+        <div class="container">
+            <div class="row">
+                <p>Diterima Oleh : </p>
+                <br>
+                <p>(                      )</p>
+            </div>
+            <div class="row">
+                <p>Hormat Kami : </p>
+                <br>
+                <p></p>
+            </div>
+        </div>
         </div>
 </body>
 
