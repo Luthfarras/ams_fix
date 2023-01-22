@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Pengguna..." />
+                                <input type="text" id="carisesuatu" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Pengguna..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -95,7 +95,7 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_subscriptions_table">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="tabelumum">
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->

@@ -133,7 +133,12 @@
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
-                                    <td>{{ $item->tanggal_keluar }}</td>
+                                    @php
+                                        setlocale(LC_ALL, 'IND');
+                                        $tanggal = date_create($item->tanggal_keluar);
+                                        $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
+                                    @endphp
+                                    <td>{{ $data }}</td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
                                     <td>{{ $item->customer->nama_customer }}</td>
@@ -158,17 +163,7 @@
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="/detailfaktur/{{ $item->id }}" class="menu-link px-3">View</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Edit</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="/dfaktur/{{ $item->id }}" class="menu-link px-3">Delete</a>
+                                                <a href="/dfaktur/{{ $item->id }}" class="menu-link px-3">Hapus</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>

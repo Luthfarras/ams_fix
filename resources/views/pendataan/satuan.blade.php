@@ -67,7 +67,7 @@
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
-                            <input type="text" id="satuancari"
+                            <input type="text" id="carisesuatu"
                                 class="form-control form-control-solid w-250px ps-14"
                                 placeholder="Cari Data Satuan..." />
                         </div>
@@ -97,7 +97,7 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="satuantabel">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="tabelumum">
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->

@@ -66,7 +66,12 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->kode_dep }}</td>
                         <td>{{ $item->customer->nama_customer }}</td>
-                        <td>{{ $item->tanggal_dep }}</td>
+                        @php
+                            setlocale(LC_ALL, 'IND');
+                            $tanggal = date_create($item->tanggal_dep);
+                            $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
+                        @endphp
+                        <td>{{ $tgl }}</td>
                         <td>{{ $item->jumlah_masuk }}</td>
                         <td>{{ $item->jumlah_keluar }}</td>
                         <td>{{ $item->ket_dep }}</td>

@@ -76,7 +76,12 @@
                         <td>{{ $item->satuan->nama_satuan }}</td>
                         <td>{{ number_format($item->harga_netto,0,",",".") }}</td>
                         <td>{{ $item->ket_barang }}</td>
-                        <td>{{ $item->tgl_kadaluarsa }}</td>
+                        @php
+                            setlocale(LC_ALL, 'IND');
+                            $tanggal = date_create($item->tgl_kadaluarsa);
+                            $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
+                        @endphp
+                        <td>{{ $tgl }}</td>
                     </tr>
                     
                 @endforeach

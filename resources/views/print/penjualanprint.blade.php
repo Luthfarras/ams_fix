@@ -74,7 +74,12 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->kode }}</td>
                         <td>{{ $item->customer->nama_customer }}</td>
-                        <td>{{ $item->tanggal_kirim }}</td>
+                        @php
+                            setlocale(LC_ALL, 'IND');
+                            $tanggal = date_create($item->tanggal_kirim);
+                            $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
+                        @endphp
+                        <td>{{ $tgl }}</td>
                         <td>{{ $item->jumlah }}</td>
                         <td>{{ $item->keterangan }}</td>
                         @if ($item->status == 'Belum Lunas')

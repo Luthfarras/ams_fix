@@ -73,12 +73,11 @@
             <div class="col right">
                 @foreach ($kodenama as $item)
                     @php
-                        // setlocale(LC_ALL, 'IND');
+                        setlocale(LC_ALL, 'IND');
                         $tanggal = date_create($item->tanggal_faktur);
-                        $isi = date_format($tanggal, "d F Y");
-                        // $data = strftime('%d %B %Y');
+                        $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
                     @endphp
-                <p>Malang, {{ $isi }}
+                <p>Malang, {{ $data }}
                     <br>Kepada Yth :
                     <br> {{ $item->nama_customer }}
                     <br> {{ $item->alamat_customer }}

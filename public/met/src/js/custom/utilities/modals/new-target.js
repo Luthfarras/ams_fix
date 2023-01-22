@@ -153,3 +153,13 @@ var KTModalNewTarget = function () {
 KTUtil.onDOMContentLoaded(function () {
 	KTModalNewTarget.init();
 });
+
+let tanggal = $('#tanggalisi');
+		tanggal.flatpickr({
+			dateFormat: "Y-m-d",
+		});
+
+let isi = $('#tanggalisi2');
+		isi.flatpickr({
+			dateFormat: "Y-m-d",
+		});

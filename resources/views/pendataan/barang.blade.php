@@ -64,7 +64,7 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <input type="text" id="barangcari"
+                                    <input type="text" id="carisesuatu"
                                         class="form-control form-control-solid w-250px ps-14"
                                         placeholder="Cari Data Barang..." />
                                 </div>
@@ -126,7 +126,7 @@
                         <!--begin::Card body-->
                         <div class="card-body pt-0">
                             <!--begin::Table-->
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="barangtabel">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="tabelumum">
                                 <!--begin::Table head-->
                                 <thead>
                                     <!--begin::Table row-->
@@ -176,7 +176,12 @@
                                         <td>{{ $item->satuan->nama_satuan }}</td>
                                         <td>Rp. {{ number_format("$item->harga_netto",0,",",".") }}</td>
                                         <td>{{ $item->ket_barang }}</td>
-                                        <td><span class="badge badge-light-danger">{{ $item->tgl_kadaluarsa }}</span></td>
+                                        @php
+                                            setlocale(LC_ALL, 'IND');
+                                            $tanggal = date_create($item->tgl_kadaluarsa);
+                                            $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
+                                        @endphp
+                                        <td><span class="badge badge-light-danger">{{ $data }}</span></td>
                                         <!--end::Product=-->
                                         <!--begin::Action=-->
                                         <td class="text-end">
@@ -330,7 +335,7 @@
                                                                     <!--end::Svg Icon-->
                                                                     <!--end::Icon-->
                                                                     <!--begin::Datepicker-->
-                                                                    <input type="text"  id="due_date" class="form-control form-control-solid ps-12" value="{{ $item->tgl_kadaluarsa }}" placeholder="Select a date" name="tgl_kadaluarsa" />
+                                                                    <input type="date" class="form-control form-control-solid ps-12" value="{{ $item->tgl_kadaluarsa }}" placeholder="Select a date" name="tgl_kadaluarsa" />
                                                                     <!--end::Datepicker-->
                                                                 </div>
                                                             </div>
@@ -600,7 +605,7 @@
                                     <!--end::Svg Icon-->
                                     <!--end::Icon-->
                                     <!--begin::Datepicker-->
-                                    <input type="text" id="due_date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tgl_kadaluarsa" required/>
+                                    <input type="text" id="tanggalisi2" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tgl_kadaluarsa" required/>
                                     <!--end::Datepicker-->
                                 </div>
                             </div>

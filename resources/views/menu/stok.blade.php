@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Stok..." />
+                                <input type="text" id="carisesuatu" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Stok..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -104,7 +104,7 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_subscriptions_table">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="tabelumum">
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
@@ -128,7 +128,12 @@
                                     <td>{{ $item->barang->nama_barang }}</td>
                                     <td>{{ $item->distributor->nama_distributor }}</td>
                                     <td>{{ $item->stok_masuk }}</td>
-                                    <td>{{ $item->tanggal_masuk }}</td>
+                                    @php
+                                        setlocale(LC_ALL, 'IND');
+                                        $tanggal = date_create($item->tanggal_masuk);
+                                        $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
+                                    @endphp
+                                    <td>{{ $data }}</td>
                                     <!--begin::Action=-->
                                     <td class="text-end">
                                         <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -141,12 +146,6 @@
                                         <!--end::Svg Icon--></a>
                                         <!--begin::Menu-->
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                            
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Edit</a>
-                                            </div>
-                                            <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a href="/stok/{{ $item->id }}" class="menu-link px-3">Hapus</a>

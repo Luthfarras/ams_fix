@@ -63,7 +63,7 @@
                                 <!--begin::Section-->
                                 <div class="d-flex flex-column my-7">
                                     <!--begin::Number-->
-                                    <span class="fw-semibold fs-3x text-white lh-1 ls-n2 mb-2">{{ $customer }}</span>
+                                    <span class="fw-semibold fs-2x text-white lh-1 ls-n2 mb-2">{{ $customer }}</span>
                                     <!--end::Number-->
                                     <!--begin::Follower-->
                                     <div class="m-0">
@@ -104,7 +104,7 @@
                                 <!--begin::Section-->
                                 <div class="d-flex flex-column my-7">
                                     <!--begin::Number-->
-                                    <span class="fw-semibold fs-3x text-white lh-1 ls-n2 mb-2">{{ $distributor }}</span>
+                                    <span class="fw-semibold fs-2x text-white lh-1 ls-n2 mb-2">{{ $distributor }}</span>
                                     <!--end::Number-->
                                     <!--begin::Follower-->
                                     <div class="m-0">
@@ -148,7 +148,7 @@
                                 <!--begin::Section-->
                                 <div class="d-flex flex-column my-7">
                                     <!--begin::Number-->
-                                    <span class="fw-semibold fs-3x text-white lh-1 ls-n2 mb-2">{{ $barang }}</span>
+                                    <span class="fw-semibold fs-2x text-white lh-1 ls-n2 mb-2">{{ $barang }}</span>
                                     <!--end::Number-->
                                     <!--begin::Follower-->
                                     <div class="m-0">
@@ -187,7 +187,7 @@
                                 <!--begin::Section-->
                                 <div class="d-flex flex-column my-7">
                                     <!--begin::Number-->
-                                    <span class="fw-semibold fs-3x text-white lh-1 ls-n2 mb-2">{{ $stok }}</span>
+                                    <span class="fw-semibold fs-2x text-white lh-1 ls-n2 mb-2">{{ $stok }}</span>
                                     <!--end::Number-->
                                     <!--begin::Follower-->
                                     <div class="m-0">
@@ -225,7 +225,7 @@
                                 <!--begin::Section-->
                                 <div class="d-flex flex-column my-7">
                                     <!--begin::Number-->
-                                    <span class="fw-semibold fs-3x text-white lh-1 ls-n2 mb-2">Rp. {{  number_format($penjualan, 0, ',', '.') }}</span>
+                                    <span class="fw-semibold fs-2x text-white lh-1 ls-n2 mb-2">Rp. {{  number_format($penjualan, 0, ',', '.') }}</span>
                                     <!--end::Number-->
                                     <!--begin::Follower-->
                                     <div class="m-0">
@@ -265,7 +265,7 @@
                                 <!--begin::Section-->
                                 <div class="d-flex flex-column my-7">
                                     <!--begin::Number-->
-                                    <span class="fw-semibold fs-3x text-white lh-1 ls-n2 mb-2">{{ $faktur }}</span>
+                                    <span class="fw-semibold fs-2x text-white lh-1 ls-n2 mb-2">{{ $faktur }}</span>
                                     <!--end::Number-->
                                     <!--begin::Follower-->
                                     <div class="m-0">

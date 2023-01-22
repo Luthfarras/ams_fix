@@ -65,7 +65,7 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <input type="text" data-kt-subscription-table-filter="search"
+                                    <input type="text" id="carisesuatu"
                                         class="form-control form-control-solid w-250px ps-14"
                                         placeholder="Cari Laporan Penjualan..." />
                                         
@@ -95,7 +95,7 @@
                         </div>
                         <div class="card-body pt-0">
                             <!--begin::Table-->
-                           <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_subscriptions_table">
+                           <table class="table align-middle table-row-dashed fs-6 gy-5" id="tabelumum">
                                 <!--begin::Table head-->
                                 <thead>
                                     <!--begin::Table row-->
@@ -127,9 +127,14 @@
                                             <td>
                                                 <div class="badge badge-light">{{ $item->customer->nama_customer }}</div>
                                             </td>
-                                             <td>{{ $item->tanggal_kirim }}</td>
-                                                <td>Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
-                                                <td>{{ $item->keterangan }}</td>
+                                            @php
+                                                setlocale(LC_ALL, 'IND');
+                                                $tanggal = date_create($item->tanggal_kirim);
+                                                $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
+                                            @endphp
+                                            <td>{{ $data }}</td>
+                                            <td>Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
+                                            <td>{{ $item->keterangan }}</td>
 
                                                 @if (DB::table('penjualans')->where('id', $item->id)->where('status', 'Belum Lunas')->exists())
                                                     <td>

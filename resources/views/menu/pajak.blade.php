@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Laporan Pajak..." />
+                                <input type="text" id="carisesuatu" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Laporan Pajak..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -104,7 +104,7 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_subscriptions_table">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="tabelumum">
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
@@ -143,7 +143,12 @@
                                     <!--begin::Product=-->
                                     <td>{{ $item->tanggal_rep }}</td>
                                     <td>{{ $item->no_fakpajak }}</td>
-                                    <td>{{ $item->tanggal_upload }}</td>
+                                         @php
+                                            setlocale(LC_ALL, 'IND');
+                                            $tanggal = date_create($item->tanggal_upload);
+                                            $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
+                                        @endphp
+                                    <td>{{ $data }}</td>
                                     <!--end::Product=-->
                                     <!--begin::Date=-->
                                     <td>{{ $item->ket_rep }}</td>
@@ -336,7 +341,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="date" required class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" required/>
+                                <input type="text" id="tanggalisi" required class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>
@@ -360,7 +365,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="date" required class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" required/>
+                                <input type="text" id="tanggalisi2" required class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" required/>
                                 <!--end::Datepicker-->
                             </div>
                             

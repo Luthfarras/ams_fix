@@ -66,7 +66,12 @@
                         <td>{{ $item->barang->nama_barang }}</td>
                         <td>{{ $item->distributor->nama_distributor }}</td>
                         <td>{{ $item->stok_masuk }}</td>
-                        <td>{{ $item->tanggal_masuk }}</td>
+                        @php
+                            setlocale(LC_ALL, 'IND');
+                            $tanggal = date_create($item->tanggal_masuk);
+                            $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
+                        @endphp
+                        <td>{{ $tgl }}</td>
                     </tr>
                 @endforeach
             </tbody>

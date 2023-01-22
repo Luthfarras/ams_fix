@@ -58,7 +58,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-subscription-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Setoran..." />
+                                <input type="text" id="carisesuatu" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Data Setoran..." />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -103,7 +103,7 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_subscriptions_table">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="tabelumum">
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
@@ -143,7 +143,12 @@
                                     </td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
-                                    <td>{{ $item->tanggal_dep }}</td>
+                                    @php
+                                        setlocale(LC_ALL, 'IND');
+                                        $tanggal = date_create($item->tanggal_dep);
+                                        $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
+                                    @endphp
+                                    <td>{{ $data }}</td>
                                     <td>{{ $item->jumlah_masuk }}</td>
                                     <td>{{ $item->jumlah_keluar }}</td>
                                     <td><img src="{{ asset('storage/' .$item->foto_dep) }}" width="100px" alt="" srcset=""></td>
@@ -277,7 +282,7 @@
                                                                 <!--end::Svg Icon-->
                                                                 <!--end::Icon-->
                                                                 <!--begin::Datepicker-->
-                                                                <input id="due_date" class="form-control form-control-solid ps-12"
+                                                                <input type="date" class="form-control form-control-solid ps-12"
                                                                     placeholder="Select a date" name="tanggal_dep" value="{{ $item->tanggal_dep }}"/>
                                                                 <!--end::Datepicker-->
                                                             </div>
@@ -456,7 +461,7 @@
                         </label>
                         <!--end::Label-->
                         <input type="text" class="form-control form-control-solid"
-                            placeholder="Masukkan Kode Setoran..." name="kode_dep" />
+                            placeholder="Masukkan Kode Setoran..." name="kode_dep" required/>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -466,8 +471,8 @@
                             <label class="required fs-6 fw-semibold mb-2">Nama Customer</label>
                             <select class="form-select form-select-solid" data-control="select2"
                             data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                            name="customer_id">
-                            <option selected disabled>Pilih Nama Customer...</option>
+                            name="customer_id" required>
+                            <option selected value="">Pilih Nama Customer...</option>
                             @foreach ($customer as $data)
                                 <option value="{{ $data->id }}">{{ $data->nama_customer }}</option>
                             @endforeach
@@ -490,7 +495,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input id="due_date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_dep" />
+                                <input id="tanggalisi" type="text" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_dep" required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>
@@ -500,25 +505,25 @@
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Jumlah Masuk</label>
                             <input type="number" class="form-control form-control-solid"
-                                placeholder="Masukkan Jumlah Masuk..." name="jumlah_masuk" />
+                                placeholder="Masukkan Jumlah Masuk..." name="jumlah_masuk" required/>
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Jumlah Keluar</label>
                             <input type="number" class="form-control form-control-solid"
-                                placeholder="Masukkan Jumlah Keluar..." name="jumlah_keluar" />
+                                placeholder="Masukkan Jumlah Keluar..." name="jumlah_keluar" required/>
                         </div>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
                         <!--begin::Col-->
                             <label class="required fs-6 fw-semibold mb-2">Foto</label>
                             <input type="file" class="form-control form-control-solid"
-                                placeholder="Masukkan Foto..." name="foto_dep" />
+                                placeholder="Masukkan Foto..." name="foto_dep" required/>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="d-flex flex-column mb-8">
                         <label class="fs-6 fw-semibold mb-2">Keterangan</label>
-                        <textarea class="form-control form-control-solid" rows="3" name="ket_dep" placeholder="Masukkan Keterangan..."></textarea>
+                        <textarea class="form-control form-control-solid" rows="3" name="ket_dep" placeholder="Masukkan Keterangan..." required></textarea>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Actions-->

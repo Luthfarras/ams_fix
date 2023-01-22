@@ -88,7 +88,7 @@
                                                 <!--begin::Input-->
                                                 <div class="position-relative d-flex align-items-center w-150px">
                                                     <!--begin::Datepicker-->
-                                                    <input type="date" id="invoice_date"
+                                                    <input type="text" id="tanggalisi"
                                                         class="form-control form-control-transparent fw-bold pe-5"
                                                         placeholder="Select date" name="tanggal_faktur" required/>
                                                     <!--end::Datepicker-->

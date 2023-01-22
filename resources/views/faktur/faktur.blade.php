@@ -138,8 +138,13 @@
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
+                                    @php
+                                        setlocale(LC_ALL, 'IND');
+                                        $tanggal = date_create($item->tanggal_faktur);
+                                        $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
+                                    @endphp
                                     <td>
-                                        <div class="badge badge-light">{{ $item->tanggal_faktur }}</div>
+                                        <div class="badge badge-light">{{ $data }}</div>
                                     </td>
                                     <!--end::Billing=-->
                                     <!--begin::Product=-->
