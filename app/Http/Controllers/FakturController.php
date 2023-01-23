@@ -84,7 +84,7 @@ class FakturController extends Controller
                 'jumlah' => $total,
                 'keterangan' => $request->ket_faktur,
             ]);
-            
+            Alert::toast('Berhasil Menyimpan Data Faktur', 'success');
             return redirect('faktur');
         }
     }
@@ -132,6 +132,7 @@ class FakturController extends Controller
     public function destroy(Faktur $faktur)
     {
         $faktur->delete();
+        Alert::toast('Berhasil Menghapus Data Faktur', 'success');
         return redirect('faktur');
     }
     public function getNama($id)

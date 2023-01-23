@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PajakController extends Controller
 {
@@ -44,6 +45,7 @@ class PajakController extends Controller
     public function store(Request $request)
     {
         Pajak::create($request->all());
+        Alert::toast('Berhasil Menyimpan Data Pajak', 'success');
         return redirect('pajak');
     }
 
@@ -79,6 +81,7 @@ class PajakController extends Controller
     public function update(Request $request, Pajak $pajak)
     {
         $pajak->update($request->all());
+        Alert::toast('Berhasil Mengubah Data Pajak', 'success');
         return redirect('pajak');
     }
 
@@ -91,6 +94,7 @@ class PajakController extends Controller
     public function destroy(Pajak $pajak)
     {
         $pajak->delete();
+        Alert::toast('Berhasil Menghapus Data Pajak', 'success');
         return redirect('pajak');
     }
 

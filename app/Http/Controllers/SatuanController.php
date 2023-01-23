@@ -6,6 +6,7 @@ use App\Models\Satuan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SatuanController extends Controller
 {
@@ -41,6 +42,7 @@ class SatuanController extends Controller
     {
         $data = $request->all();
         Satuan::create($data);
+        Alert::toast('Berhasil Menyimpan Data Satuan', 'success');
         return redirect('satuan');
     }
 
@@ -76,9 +78,8 @@ class SatuanController extends Controller
     public function update(Request $request, Satuan $satuan)
     {
         $data = $request->all();
-
         $satuan->update($data);
-
+        Alert::toast('Berhasil Mengubah Data Satuan', 'success');
         return redirect('satuan');
     }
 
@@ -91,6 +92,7 @@ class SatuanController extends Controller
     public function destroy(Satuan $satuan)
     {
         $satuan->delete();
+        Alert::toast('Berhasil Menghapus Data Satuan', 'success');
         return redirect('satuan');
     }
 }

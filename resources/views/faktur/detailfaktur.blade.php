@@ -151,26 +151,79 @@
                                     <!--end::Date=-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
-                                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                        <span class="svg-icon svg-icon-5 m-0">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon--></a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="/dfaktur/{{ $item->id }}" class="menu-link px-3">Hapus</a>
-                                            </div>
-                                            <!--end::Menu item-->
+                                        <div class="d-flex justify-content-end flex-shrink-0">
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-bs-toggle="modal" data-bs-target="#delete{{ $item->id }}">
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                                <span class="svg-icon svg-icon-3">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
+                                                        <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
+                                                        <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </a>
                                         </div>
-                                        <!--end::Menu-->
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
+                                <!--begin::Modal - New Target-->
+                                <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-hidden="true">
+                                    <!--begin::Modal dialog-->
+                                    <div class="modal-dialog modal-dialog-centered mw-650px">
+                                        <!--begin::Modal content-->
+                                        <div class="modal-content rounded">
+                                            <!--begin::Modal header-->
+                                            <div class="modal-header pb-0 border-0 justify-content-end">
+                                                <!--begin::Close-->
+                                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                    <span class="svg-icon svg-icon-1">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <!--end::Close-->
+                                            </div>
+                                            <!--begin::Modal header-->
+                                            <!--begin::Modal body-->
+                                            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                                                <!--begin:Form-->
+                                                <form id="kt_modal_new_target_form" class="form" action="{{ route('detailfaktur.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <!--begin::Heading-->
+                                                    <div class="mb-13 text-center">
+                                                        <!--begin::Title-->
+                                                        <h1 class="mb-3">Hapus Detail Faktur</h1>
+                                                        <!--end::Title-->
+                                                        <!--begin::Description-->
+                                                        <div class="text-muted fw-semibold fs-5">Apakah Anda yakin ingin menghapus detail faktur ini? 
+                                                        </div>
+                                                        <!--end::Description-->
+                                                    </div>
+                                                    <!--end::Heading-->
+                                                    <div class="text-center">
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <span class="indicator-label">Hapus</span>
+                                                            <span class="indicator-progress">Please wait...
+                                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                        </button>
+                                                    </div>
+                                                    <!--end::Actions-->
+                                                </form>
+                                                <!--end:Form-->
+                                            </div>
+                                            <!--end::Modal body-->
+                                        </div>
+                                        <!--end::Modal content-->
+                                    </div>
+                                    <!--end::Modal dialog-->
+                                </div>
+                                <!--end::Modal - New Target-->                                                   
                                 @endforeach
                             </tbody>
                             <!--end::Table body-->
@@ -265,7 +318,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" id="due_date" class="form-control form-control-solid ps-12" name="tanggal_keluar" placeholder="Select a date" required/>
+                                <input type="text" id="tanggalisi" class="form-control form-control-solid ps-12" name="tanggal_keluar" placeholder="Select a date" required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>

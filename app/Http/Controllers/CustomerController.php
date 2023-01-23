@@ -79,6 +79,7 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $customer->update($request->all());
+        Alert::toast('Berhasil Mengubah Data Customer', 'success');
         return redirect('customer');
     }
 

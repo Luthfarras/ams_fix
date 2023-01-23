@@ -148,42 +148,103 @@
                                                     </td>
                                                 @endif
 
-                                                <td class="text-end">
-                                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end">Aksi
-                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                        <span class="svg-icon svg-icon-5 m-0">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                                    fill="currentColor" />
+                                            <!--begin::Action=-->
+                                            <td class="text-end">
+                                                <div class="d-flex justify-content-end flex-shrink-0">
+                                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-bs-toggle="modal" data-bs-target="#delete{{ $item->id }}">
+                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                                        <span class="svg-icon svg-icon-3">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
+                                                                <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
+                                                                <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
                                                             </svg>
                                                         </span>
                                                         <!--end::Svg Icon-->
                                                     </a>
-                                                    <!--begin::Menu-->
-                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                        data-kt-menu="true">
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="/penjualan/{{ $item->id }}"
-                                                                data-kt-subscriptions-table-filter="delete_row"
-                                                                class="menu-link px-3">Hapus</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                        @if (DB::table('penjualans')->where('id', $item->id)->where('status', 'Lunas')->exists())
-                                                            <div class="menu-item px-3">
-                                                                    <a href="status/{{ $item->id }}"
-                                                                        class="menu-link px-3">Ganti Status</a>
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                    <!--end::Menu-->
-                                                </td>
-                                                <!--end::Action=-->
+                                                    @if (DB::table('penjualans')->where('id', $item->id)->where('status', 'Lunas')->exists())
+                                                    <a href="/status/{{ $item->id }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                        <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                                        <span class="svg-icon svg-icon-3">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22Z" fill="currentColor"/>
+                                                                <g clip-path="url(#clip0_787_1289)">
+                                                                <path d="M9.56133 15.7161C9.72781 15.5251 9.5922 15.227 9.33885 15.227H8.58033C8.57539 15.1519 8.57262 15.0763 8.57262 15C8.57262 13.1101 10.1101 11.5726 12 11.5726C12.7576 11.5726 13.4585 11.8198 14.0265 12.2377C14.2106 12.3731 14.4732 12.3609 14.6216 12.1872L15.1671 11.5491C15.3072 11.3852 15.2931 11.1382 15.1235 11.005C14.2353 10.3077 13.1468 9.92944 12 9.92944C10.6456 9.92944 9.37229 10.4569 8.41458 11.4146C7.4569 12.3723 6.92945 13.6456 6.92945 15C6.92945 15.0759 6.93135 15.1516 6.93465 15.2269H6.29574C6.0424 15.2269 5.90677 15.5251 6.07326 15.7161L7.51455 17.3693L7.81729 17.7166L8.90421 16.4698L9.56133 15.7161Z" fill="currentColor"/>
+                                                                <path d="M17.9268 14.7516L16.8518 13.5185L16.1828 12.7511L15.2276 13.8468L14.4388 14.7516C14.2723 14.9426 14.4079 15.2407 14.6612 15.2407H15.4189C15.2949 17.0187 13.809 18.4274 12.0001 18.4274C11.347 18.4274 10.736 18.2437 10.216 17.9253C10.0338 17.8138 9.79309 17.8362 9.6543 17.9985L9.10058 18.6463C8.95391 18.8179 8.97742 19.0782 9.16428 19.2048C9.99513 19.7678 10.9743 20.0706 12.0001 20.0706C13.3545 20.0706 14.6278 19.5432 15.5855 18.5855C16.4863 17.6847 17.0063 16.5047 17.0649 15.2407H17.7043C17.9577 15.2407 18.0933 14.9426 17.9268 14.7516Z" fill="currentColor"/>
+                                                                </g>
+                                                                <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"/>
+                                                                <defs>
+                                                                <clipPath id="clip0_787_1289">
+                                                                <rect width="12" height="12" fill="white" transform="translate(6 9)"/>
+                                                                </clipPath>
+                                                                </defs>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                    </a>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <!--end::Action=-->
                                         </tr>
+                                        <!--begin::Modal - New Target-->
+                                        <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-hidden="true">
+                                            <!--begin::Modal dialog-->
+                                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                <!--begin::Modal content-->
+                                                <div class="modal-content rounded">
+                                                    <!--begin::Modal header-->
+                                                    <div class="modal-header pb-0 border-0 justify-content-end">
+                                                        <!--begin::Close-->
+                                                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                            <span class="svg-icon svg-icon-1">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                                </svg>
+                                                            </span>
+                                                            <!--end::Svg Icon-->
+                                                        </div>
+                                                        <!--end::Close-->
+                                                    </div>
+                                                    <!--begin::Modal header-->
+                                                    <!--begin::Modal body-->
+                                                    <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                                                        <!--begin:Form-->
+                                                        <form id="kt_modal_new_target_form" class="form" action="{{ route('penjualan.destroy', $item->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <!--begin::Heading-->
+                                                            <div class="mb-13 text-center">
+                                                                <!--begin::Title-->
+                                                                <h1 class="mb-3">Hapus Data Penjualan</h1>
+                                                                <!--end::Title-->
+                                                                <!--begin::Description-->
+                                                                <div class="text-muted fw-semibold fs-5">Apakah Anda yakin ingin menghapus data penjualan ini? 
+                                                                </div>
+                                                                <!--end::Description-->
+                                                            </div>
+                                                            <!--end::Heading-->
+                                                            <div class="text-center">
+                                                                <button type="submit" class="btn btn-danger">
+                                                                    <span class="indicator-label">Hapus</span>
+                                                                    <span class="indicator-progress">Please wait...
+                                                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                                </button>
+                                                            </div>
+                                                            <!--end::Actions-->
+                                                        </form>
+                                                        <!--end:Form-->
+                                                    </div>
+                                                    <!--end::Modal body-->
+                                                </div>
+                                                <!--end::Modal content-->
+                                            </div>
+                                            <!--end::Modal dialog-->
+                                        </div>
+                                        <!--end::Modal - New Target-->                     
+
                                     @endforeach
                                 </tbody>
                                 <tfoot>

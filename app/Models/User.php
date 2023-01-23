@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(DetailProfil::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(User::class);
+    }
 }

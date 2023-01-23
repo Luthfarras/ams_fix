@@ -7,6 +7,7 @@ use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DetailProfilController extends Controller
 {
@@ -52,6 +53,7 @@ class DetailProfilController extends Controller
         $data['foto'] = $isi;
         $data['user_id'] = Auth::user()->id;
         DetailProfil::create($data);
+        Alert::toast('Berhasil Menyimpan Data Profil', 'success');
         return redirect('profil');
     }
 
@@ -119,6 +121,7 @@ class DetailProfilController extends Controller
             ]);
         }
         // dd($detailProfil);
+        Alert::toast('Berhasil Mengubah Data Profil', 'success');
         return redirect('profil');
     }
 

@@ -86,6 +86,7 @@ class BarangController extends Controller
     public function update(Request $request, Barang $barang)
     {
         $barang->update($request->all());
+        Alert::toast('Berhasil Mengubah Data Barang', 'success');
         return redirect('barang');
     }
 

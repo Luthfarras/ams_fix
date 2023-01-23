@@ -79,6 +79,7 @@ class DistributorController extends Controller
     public function update(Request $request, Distributor $distributor)
     {
         $distributor->update($request->all());
+        Alert::toast('Berhasil Mengubah Data Distributor', 'success');
         return redirect('distributor');
     }
 

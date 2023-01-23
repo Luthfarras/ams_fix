@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenjualanController extends Controller
 {
@@ -89,6 +90,7 @@ class PenjualanController extends Controller
     public function destroy(Penjualan $penjualan)
     {
         $penjualan->delete();
+        Alert::toast('Berhasil Menghapus Data Penjualan', 'success');
         return redirect('penjualan');
     }
 

@@ -9,6 +9,7 @@ use App\Models\DetailFaktur;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DetailFakturController extends Controller
 {
@@ -52,6 +53,7 @@ class DetailFakturController extends Controller
             'stok' => $barang->stok - $request->stok_keluar,
         ]);
         DetailFaktur::create($data);
+        Alert::toast('Berhasil Menyimpan Detail Faktur', 'success');
         return redirect('detailfaktur');
     }
 
@@ -102,6 +104,7 @@ class DetailFakturController extends Controller
             'stok' => $barang->stok + $detailfaktur->stok_keluar,
         ]);
         $detailfaktur->delete();
+        Alert::toast('Berhasil Menghapus Detail Faktur', 'success');
         return redirect('detailfaktur');
     }
 

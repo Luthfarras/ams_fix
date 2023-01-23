@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SetoranController extends Controller
 {
@@ -48,7 +49,14 @@ class SetoranController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['foto_dep'] = $request->file('foto_dep')->store('foto');
+        $newName = '';
+        if($request->file('foto_dep')){
+            $extension = $request->file('foto_dep')->getClientOriginalExtension();
+            $newName = $request->kode_dep.'-'.now()->timestamp.'.'.$extension;
+            $isi = $request->file('foto_dep')->storeAs('img', $newName);
+        };
+
+        $data['foto_dep'] = $isi;
         Setoran::create($data);
 
         Penjualan::create([
@@ -58,7 +66,7 @@ class SetoranController extends Controller
             'jumlah' => $request->jumlah_masuk,
             'keterangan' => $request->ket_dep,
         ]);
-
+        Alert::toast('Berhasil Menyimpan Data Setoran', 'success');
         return redirect('setoran');
     }
 
@@ -93,16 +101,31 @@ class SetoranController extends Controller
      */
     public function update(Request $request, Setoran $setoran)
     {
-        $setoran->update($request->all());
         $data = $request->all();
-        if ($request->file('foto_dep')) {
-            $data['foto_dep'] = $request->file('foto_dep')->store('foto');
+        
+        $newName = '';
+        // Jika foto akan diganti
+        if ($request->file('foto_dep')) {   
+            // Foto yang didalam database akan dihapus 
             Storage::delete($setoran->foto_dep);
+            
+            // mengambil ekstensi dari foto yang diinput
+            $extension = $request->file('foto_dep')->getClientOriginalExtension();
+
+            // Mengganti nama file dengan Nama - timestamp - dan ekstensi
+            $newName = $request->kode_dep . '-' . now()->timestamp . '.' . $extension;
+
+            // Setelah itu foto disimpan
+            $isi = $request->file('foto_dep')->storeAs('img', $newName);
+
+            $data['foto'] = $isi;
+
             $setoran->update($data);
-        }else {
+        } else {
             $data['foto_dep'] = $setoran->foto_dep;
             $setoran->update($data);
         }
+        Alert::toast('Berhasil Mengubah Data Setoran', 'success');
         return redirect('setoran');
     }
 
@@ -116,6 +139,7 @@ class SetoranController extends Controller
     {
         Storage::delete($setoran->foto_dep);
         $setoran->delete();
+        Alert::toast('Berhasil Menghapus Data Setoran', 'success');
         return redirect('setoran');
     }
 

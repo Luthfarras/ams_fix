@@ -7,6 +7,7 @@ use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -43,6 +44,7 @@ class UserController extends Controller
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
         User::create($data);
+        Alert::toast('Berhasil Menyimpan Data Pengguna', 'success');
         return redirect('pengguna');
     }
 
@@ -75,9 +77,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $pengguna)
     {
-        //
+        $pengguna->update([
+            'role' => $request->role,
+        ]);
+        Alert::toast('Berhasil Mengubah Role', 'success');
+        return redirect('pengguna');
     }
 
     /**
@@ -86,9 +92,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $pengguna)
     {
-        $user->delete();
+        $pengguna->delete();
+        Alert::toast('Berhasil Menghapus Data Pengguna', 'success');
         return redirect('pengguna');
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StokController extends Controller
 {
@@ -60,7 +61,7 @@ class StokController extends Controller
         $barang->update([
             'stok' => $stok,
         ]);
-
+        Alert::toast('Berhasil Menyimpan Data Stok', 'success');
         // Kembali ke halaman Stok
         return redirect('stok');
     }
@@ -117,6 +118,7 @@ class StokController extends Controller
 
         // Setelah itu id stok akan dihapus
         $stok->delete();
+        Alert::toast('Berhasil Menghapus Data Stok', 'success');
         return redirect('stok');
     }
 
