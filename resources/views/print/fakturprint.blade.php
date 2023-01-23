@@ -45,7 +45,7 @@
         }
 
         .right {
-            width: 25%;
+            width: 26%;
         }
 
         /* Clear floats after the columns */
@@ -56,6 +56,25 @@
         }
         .final {
             text-align: right;
+        }
+        .kiri {
+            margin-left: 20%;
+            width: 20%;
+            text-align: center;
+        }
+
+        .kanan {
+            width: 30%;
+            text-align: center;
+        }
+
+        .nama {
+            margin-top: 29%;
+            text-align: center;
+        }
+        .nama2 {
+            margin-top: 19%;
+            text-align: center;
         }
     </style>
 </head>
@@ -179,15 +198,13 @@
             </div>
 
         <div class="container">
-            <div class="row">
+            <div class="col kiri">
                 <p>Diterima Oleh : </p>
-                <br>
-                <p>(                      )</p>
+                <p class="nama">(Ari Gunawan Jatmiko)</p>
             </div>
-            <div class="row">
-                <p>Hormat Kami : </p>
-                <br>
-                <p></p>
+            <div class="col kanan">
+                <p>Hormat Kami :</p>
+                <p class="nama2">(Ari Gunawan Jatmiko)</p>
             </div>
         </div>
         </div>
