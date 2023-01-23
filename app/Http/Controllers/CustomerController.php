@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
@@ -42,9 +43,22 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create($request->all());
-        Alert::toast('Berhasil Menyimpan Data Customer', 'success');
+        
+        $validator = Validator::make($request->all(), [
+            'nama_customer' => 'required',
+            'kode_customer' => 'required|unique:customers',
+            'telepon_customer' => 'required',
+            'alamat_customer' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Menyimpan Data Customer', 'error');
+        } else {
+            Alert::toast('Berhasil Menyimpan Data Customer', 'success');
+            Customer::create($validator);
+        }
         return redirect('customer');
+
     }
 
     /**
