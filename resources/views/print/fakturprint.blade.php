@@ -76,6 +76,14 @@
             margin-top: 19%;
             text-align: center;
         }
+        p.terbilang {
+            padding: 0px;
+            margin: 0px;
+            margin-top: 0%;
+            border-style: double;
+            margin-right: 40%
+
+        }
     </style>
 </head>
 
@@ -184,7 +192,7 @@
                         @endphp
 
                     @foreach ($kodenama as $item)
-                        {{ terbilang($item->total_harga) }} rupiah
+                        <p class="terbilang">{{ terbilang($item->total_harga) }} rupiah </p>
                     @endforeach 
                 </div>
                 <div class="col right">
@@ -204,7 +212,7 @@
             </div>
             <div class="col kanan">
                 <p>Hormat Kami :</p>
-                <p class="nama2">(Ari Gunawan Jatmiko)</p>
+                <p class="nama2">(Waode Anna Lusia Welantina)</p>
             </div>
         </div>
         </div>
