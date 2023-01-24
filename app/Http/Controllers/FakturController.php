@@ -179,7 +179,7 @@ class FakturController extends Controller
         ->join('fakturs', 'detail_fakturs.kode_faktur', 'fakturs.kode_faktur')
         ->join('customers', 'fakturs.customer_id', 'customers.id')
         ->where('fakturs.kode_faktur', $id)->get()->unique('kode_faktur');
-
+        
         $pdf = Pdf::loadView('print.fakturprint', ['faktur' => $faktur, 'kodenama' => $kodenama]);
         
         return $pdf->setPaper('a4', 'landscape')->stream('Data Faktur - '. Carbon::now(). '.pdf');

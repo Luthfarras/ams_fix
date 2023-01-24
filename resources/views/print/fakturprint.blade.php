@@ -211,10 +211,12 @@
                 </div>
                 <div class="col right">
                     @foreach ($kodenama as $item)
-                        <p>Harga Jual : <span class="final">{{ number_format($item->total_harga, 0, ',', '.') }}</span></p>
-                        <p>PPN : <span class="final">{{ $item->ppn }} %</span></p>
-                        <p>PPH : <span class="final">{{ $item->pph }} %</span></p>
-                        <p>Total Harga : <span class="final">{{ number_format($item->total_pp, 0, ',', '.') }}</span></p>
+                    <ul>
+                        <li>Harga Jual : <span class="final">{{ number_format($item->total_harga, 0, ',', '.') }}</span></li>
+                        <li>PPN : <span class="final">{{ $item->ppn }} %</span></li>
+                        <li>PPH : <span class="final">{{ $item->pph }} %</span></li>
+                        <li>Total Harga : <span class="final">{{ number_format($item->total_pp, 0, ',', '.') }}</span</li>
+                    </ul>
                     @endforeach
                 </div>
             </div>

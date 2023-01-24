@@ -640,7 +640,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Satuan Barang</label>
                                 <select class="form-select form-select-solid" data-control="select2"
                                     data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
-                                    name="satuan_barang" required>
+                                    name="satuan_id" required>
                                     <option selected value="">Pilih Satuan...</option>
                                     @foreach ($satuan as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_satuan }}</option>

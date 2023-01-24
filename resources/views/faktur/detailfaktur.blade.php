@@ -344,7 +344,7 @@
                             name="barang_id" id="nama_barang" onchange="harga(value)" required>
                             <option selected value="">Pilih Barang...</option>
                             @foreach ($barang as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
                             @endforeach
                         </select>
                     </div>
