@@ -7,6 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cetak Faktur</title>
     <style>
+        @font-face {
+            font-family: 'Letter Gothic Std Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: url({{ storage_path('fonts/LetterGothicStd.otf') }}) format("truetype");
+        }
+        
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -38,10 +45,11 @@
         .col {
             float: left;
             padding: 10px;
+            font-family:'Letter Gothic Std Medium';
         }
         
         .left {
-            width: 70%;
+            width: 65%;
         }
 
         .right {
@@ -58,12 +66,14 @@
             text-align: right;
         }
         .kiri {
+            margin-top: -5%;
             margin-left: 20%;
             width: 20%;
             text-align: center;
         }
 
-        .kanan {
+        .kanan { 
+            margin-top: -5%;
             width: 30%;
             text-align: center;
         }
@@ -77,11 +87,11 @@
             text-align: center;
         }
         p.terbilang {
-            padding: 0px;
-            margin: 0px;
+            padding: 7px;
+            margin: 3px;
             margin-top: 0%;
             border-style: double;
-            margin-right: 40%
+            margin-right: 20%
 
         }
     </style>
@@ -192,7 +202,7 @@
                         @endphp
 
                     @foreach ($kodenama as $item)
-                        <p class="terbilang">{{ terbilang($item->total_harga) }} rupiah </p>
+                        <p class="terbilang">{{ terbilang($item->total_pp) }} rupiah </p>
                     @endforeach 
                 </div>
                 <div class="col right">
@@ -208,11 +218,11 @@
         <div class="container">
             <div class="col kiri">
                 <p>Diterima Oleh : </p>
-                <p class="nama">(Ari Gunawan Jatmiko)</p>
+                <p class="nama">________________</p>
             </div>
             <div class="col kanan">
                 <p>Hormat Kami :</p>
-                <p class="nama2">(Waode Anna Lusia Welantina)</p>
+                <p class="nama2">Waode Anna Lusia Welantina</p>
             </div>
         </div>
         </div>
