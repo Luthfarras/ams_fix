@@ -234,12 +234,16 @@
                                                     <!--begin::Heading-->
                                                     <div class="mb-13 text-center">
                                                         <!--begin::Title-->
-                                                        <h1 class="mb-3">Hapus Data Setoran</h1>
+                                                        <h1 class="mb-5">Hapus Data Setoran</h1>
                                                         <!--end::Title-->
                                                         <!--begin::Description-->
-                                                        <div class="text-muted fw-semibold fs-5">Apakah Anda yakin ingin menghapus data setoran ini? 
+                                                        <div class="text-muted fw-semibold fs-5">
+                                                            Apakah Anda yakin ingin menghapus Data Setoran {{ $item->kode_dep }}? 
                                                         </div>
                                                         <!--end::Description-->
+                                                    </div>
+                                                    <div class="image-responsive text-center">
+                                                        <img src="{{ asset('met/dist/assets/media/illustrations/6969.png') }}" width="250px" alt="" srcset="">
                                                     </div>
                                                     <!--end::Heading-->
                                                     <div class="text-center">
@@ -395,7 +399,7 @@
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Nama Customer</label>
                             <select class="form-select form-select-solid" data-control="select2"
-                            data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
+                            data-hide-search="true" data-placeholder="Pilih Nama Customer..."
                             name="customer_id" required>
                             <option selected value="">Pilih Nama Customer...</option>
                             @foreach ($customer as $data)

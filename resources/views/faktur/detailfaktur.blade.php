@@ -170,7 +170,7 @@
                                 <!--begin::Modal - New Target-->
                                 <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-hidden="true">
                                     <!--begin::Modal dialog-->
-                                    <div class="modal-dialog modal-dialog-centered mw-650px">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered mw-650px">
                                         <!--begin::Modal content-->
                                         <div class="modal-content rounded">
                                             <!--begin::Modal header-->
@@ -198,25 +198,30 @@
                                                     <!--begin::Heading-->
                                                     <div class="mb-13 text-center">
                                                         <!--begin::Title-->
-                                                        <h1 class="mb-3">Hapus Detail Faktur</h1>
+                                                        <h1 class="mb-5">Hapus Detail Faktur</h1>
                                                         <!--end::Title-->
                                                         <!--begin::Description-->
-                                                        <div class="text-muted fw-semibold fs-5">Apakah Anda yakin ingin menghapus detail faktur ini? 
+                                                        <div class="text-muted fw-semibold fs-5">
+                                                            Apakah Anda yakin ingin menghapus detail faktur {{ $item->kode_faktur }}? 
                                                         </div>
                                                         <!--end::Description-->
+                                                    </div>
+                                                    <div class="image-responsive text-center">
+                                                        <img src="{{ asset('met/dist/assets/media/illustrations/6969.png') }}" width="250px" alt="" srcset="">
                                                     </div>
                                                     <!--end::Heading-->
                                                     <div class="text-center">
                                                         <button type="submit" class="btn btn-danger">
                                                             <span class="indicator-label">Hapus</span>
                                                             <span class="indicator-progress">Please wait...
-                                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                            </span>
                                                         </button>
                                                     </div>
-                                                    <!--end::Actions-->
                                                 </form>
-                                                <!--end:Form-->
-                                            </div>
+                                                    <!--end::Actions-->
+                                                    <!--end:Form-->
+                                                </div>
                                             <!--end::Modal body-->
                                         </div>
                                         <!--end::Modal content-->
@@ -343,9 +348,6 @@
                             data-hide-search="true" data-placeholder="Pilih Barang..."
                             name="barang_id" id="nama_barang" onchange="harga(value)" required>
                             <option selected value="">Pilih Barang...</option>
-                            @foreach ($barang as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
-                            @endforeach
                         </select>
                     </div>
                     <div class="row g-9 mb-8">

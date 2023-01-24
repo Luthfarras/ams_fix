@@ -264,12 +264,16 @@
                                                     <!--begin::Heading-->
                                                     <div class="mb-13 text-center">
                                                         <!--begin::Title-->
-                                                        <h1 class="mb-3">Hapus Data Pengguna</h1>
+                                                        <h1 class="mb-5">Hapus Data Pengguna</h1>
                                                         <!--end::Title-->
                                                         <!--begin::Description-->
-                                                        <div class="text-muted fw-semibold fs-5">Apakah Anda yakin ingin menghapus data pengguna ini? 
+                                                        <div class="text-muted fw-semibold fs-5">
+                                                            Apakah Anda yakin ingin menghapus Data Pengguna {{ $item->username }}? 
                                                         </div>
                                                         <!--end::Description-->
+                                                    </div>
+                                                    <div class="image-responsive text-center">
+                                                        <img src="{{ asset('met/dist/assets/media/illustrations/6969.png') }}" width="250px" alt="" srcset="">
                                                     </div>
                                                     <!--end::Heading-->
                                                     <div class="text-center">

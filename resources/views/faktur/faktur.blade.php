@@ -273,12 +273,16 @@
                                                     <!--begin::Heading-->
                                                     <div class="mb-13 text-center">
                                                         <!--begin::Title-->
-                                                        <h1 class="mb-3">Hapus Data Faktur</h1>
+                                                        <h1 class="mb-5">Hapus Data Faktur</h1>
                                                         <!--end::Title-->
                                                         <!--begin::Description-->
-                                                        <div class="text-muted fw-semibold fs-5">Apakah Anda yakin ingin menghapus data faktur ini? 
+                                                        <div class="text-muted fw-semibold fs-5">
+                                                            Apakah Anda yakin ingin menghapus Data Faktur {{ $item->kode_faktur }}? 
                                                         </div>
                                                         <!--end::Description-->
+                                                    </div>
+                                                    <div class="image-responsive text-center">
+                                                        <img src="{{ asset('met/dist/assets/media/illustrations/6969.png') }}" width="250px" alt="" srcset="">
                                                     </div>
                                                     <!--end::Heading-->
                                                     <div class="text-center">
