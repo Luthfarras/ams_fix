@@ -49,9 +49,9 @@
                             <!--begin: Pic-->
                             @if (DB::table('detail_profils')->where('user_id', Auth::user()->id)->exists())
                             <div class="me-7 mb-4">
-                                <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                                <div class="symbol symbol-lg-160px">
                                     @foreach ($profil as $item)
-                                    <img src="{{ asset('storage/' . $item->foto) }}" alt="..." class="avatar-img rounded">
+                                    <img src="{{ asset('storage/' . $item->foto) }}" alt="..." style="object-fit: cover;" class="avatar-img rounded">
                                     @endforeach
                                 </div>
                             </div>

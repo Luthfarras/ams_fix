@@ -228,7 +228,9 @@
             </div>
             <div class="col kanan">
                 <p>Hormat Kami :</p>
-                <p class="nama2">Waode Anna Lusia Welantina</p>
+                @foreach ($profil as $item)
+                    <p class="nama2">{{ $item->nama }}</p>
+                @endforeach
             </div>
         </div>
         </div>

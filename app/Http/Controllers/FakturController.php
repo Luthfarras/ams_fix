@@ -181,11 +181,11 @@ class FakturController extends Controller
         ->where('fakturs.kode_faktur', $id)->get()->unique('kode_faktur');
 
         $ppn = DB::table('fakturs')->where('kode_faktur', $id)->get();
-        dd($ppn);
+        $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         
-        $pdf = Pdf::loadView('print.fakturprint', ['faktur' => $faktur, 'kodenama' => $kodenama]);
+        $pdf = Pdf::loadView('print.fakturprint', ['faktur' => $faktur, 'kodenama' => $kodenama, 'profil' => $profil]);
         
-        // return $pdf->setPaper('a4', 'landscape')->stream('Data Faktur - '. Carbon::now(). '.pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Faktur - '. Carbon::now(). '.pdf');
     }
 }
 

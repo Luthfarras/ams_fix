@@ -69,6 +69,19 @@
                                 <!--begin::Export-->
                                 
                                 <!--end::Export-->
+                                <a href="#" class="btn btn-warning me-3" data-bs-toggle="modal"
+                                        data-bs-target="#panduan">
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                        <span class="svg-icon svg-icon-2">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"/>
+                                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor"/>
+                                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor"/>
+                                            </svg>
+                                                
+                                        </span>
+                                        <!--end::Svg Icon-->Panduan Penggunaan
+                                    </a>
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#kt_modal_new_target">
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -251,6 +264,74 @@
     <!--end::Content wrapper-->
 </div>
 <!--end:::Main-->
+<div class="modal fade" id="panduan" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Panduan Penggunaan</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-muted fw-semibold fs-5">Tata Cara penggunaan Tambah Barang Faktur
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <div class="container">
+                        <ol>
+                            <li>Tujuan <span class="fw-bold">Tambah Barang Faktur</span>
+                                adalah untuk menambahkan barang yang akan di fakturkan sebelum faktur dicetak ke customer
+                            </li>
+                            <li>Dalam pembuatannya hal yang harus diperhatikan adalah 
+                                <span class="fw-bold">Admin harus teliti </span>
+                                dalam pengisiannya.
+                            </li>
+                            <li><span class="badge badge-success">Kode Faktur, Tanggal Keluar dan Nama Customer</span> 
+                                <span class="fw-bold">harus sama</span>, agar bisa dicetak dalam satu faktur
+                            </li>
+                            <li>Jika sudah sesuai, Admin bisa mencetak ke halaman 
+                                <span class="badge badge-dark"><a href="/faktur">Faktur</a></span>
+                            </li>
+                            <li>
+                                Faktur hanya bisa ditambahkan/dicetak <span class="fw-bold">satu kali</span>.
+                                Jika lebih dari 1x, maka akan terjadi error.
+                            </li>
+                        </ol>
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
  <!--begin::Modal - New Target-->
  <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->

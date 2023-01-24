@@ -70,7 +70,7 @@
 									<div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
 										@if (DB::table('detail_profils')->where('user_id', Auth::user()->id)->exists())
 										@foreach ($profil as $item)
-										<img alt="user" src="{{ asset('storage/' . $item->foto) }}" />
+										<img alt="user" src="{{ asset('storage/' . $item->foto) }}" style="object-fit: cover;"/>
 										@endforeach
 										@else
 										<img alt="user" src="{{ asset('met/dist/assets/media/svg/avatars/007-boy-2.svg') }}" />
@@ -85,7 +85,7 @@
 												<div class="symbol symbol-50px me-5">
 													@if (DB::table('detail_profils')->where('user_id', Auth::user()->id)->exists())
 													@foreach ($profil as $item)
-													<img alt="Logo" src="{{ asset('storage/' . $item->foto) }}" />
+													<img alt="Logo" src="{{ asset('storage/' . $item->foto) }}" style="object-fit: cover;" />
 													@endforeach
 													@else
 													<img alt="Logo" src="{{ asset('met/dist/assets/media/svg/avatars/007-boy-2.svg') }}" />
