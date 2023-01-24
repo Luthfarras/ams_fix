@@ -55,7 +55,7 @@ class CustomerController extends Controller
             Alert::toast('Gagal Menyimpan Data Customer', 'error');
         } else {
             Alert::toast('Berhasil Menyimpan Data Customer', 'success');
-            Customer::create($validator);
+            Customer::create($request->all());
         }
         return redirect('customer');
 

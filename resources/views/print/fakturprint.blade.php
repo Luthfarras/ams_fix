@@ -18,8 +18,9 @@
             border: 1px solid black;
             border-collapse: collapse;
             text-align: center;
+            font-family: 'Letter Gothic Std Medium';
         }
-        
+
         h1 {
             text-align: center;
             
@@ -62,6 +63,10 @@
             display: table;
             clear: both;
         }
+        p {
+            margin-top: -1%;
+            font-family:'Letter Gothic Std Medium';
+        }
         .final {
             text-align: right;
         }
@@ -103,11 +108,10 @@
         </header>
         <div class="row">
             <div class="col left">
-                <p>PT. Mitra Mulia Diagnostik
-                    <br>Jl. Taman Sari Gg. Famili No. 13 RT.02 RW.01 Kel. Tamanan 
-                    <br>Kec. Mojoroto - Kota Kediri 64116
-                    <br>Telp./WA : 0813 3073 3590, 0856 2464 9945
-                    <br>E-mail : mitramuliadiagnostik@gmail.com
+                <p>CV. Anugerah Mitra Sejati
+                    <br>Jl. Moch Juki No. 33
+                    <br>Kec. Sukun Kel. Mulyorejo - Kota Malang 65147
+                    <br>Telp. 0341 - 571270
                 </p>
             </div>
             <div class="col right">
@@ -128,20 +132,20 @@
 
         <div class="h6">
             @foreach ($kodenama as $item)
-                No. {{ $item->kode_faktur }}
+                <p>Nomor Faktur : {{ $item->kode_faktur }}</p>
             @endforeach
         </div>
         <div class="container">
             <table style="width: 100%">
                 <thead>
-                    <th style="width: 3%">No</th>
-                    <th>Kode</th>
-                    <th>Nama Barang</th>
-                    <th>Qty</th>
-                    <th>Stn</th>
-                    <th>Harga Stn</th>
-                    <th>Disc %</th>
-                    <th>Subtotal</th>
+                    <th style="width: 1%">No</th>
+                    <th style="width: 3%">Kode Barang</th>
+                    <th style="width: 5%">Nama Barang</th>
+                    <th style="width: 2%">Stn</th>
+                    <th style="width: 1%">Qty</th>
+                    <th style="width: 3%">Harga Stn</th>
+                    <th style="width: 2%">Disc %</th>
+                    <th style="width: 3%">Subtotal</th>
                 </thead>
                 <tbody>
                     @foreach ($faktur as $item)
@@ -149,8 +153,8 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->kode_barang }}</td>
                             <td>{{ $item->nama_barang }}</td>
-                            <td>{{ $item->stok_keluar }}</td>
                             <td>{{ $item->nama_satuan }}</td>
+                            <td>{{ $item->stok_keluar }}</td>
                             <td>Rp {{ number_format($item->harga_jual, 0, ',', '.') }}</td>
                             <td>{{ $item->diskon }}</td>
                             <td>Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
@@ -210,7 +214,7 @@
                         <p>Harga Jual : <span class="final">{{ number_format($item->total_harga, 0, ',', '.') }}</span></p>
                         <p>PPN : <span class="final">{{ $item->ppn }} %</span></p>
                         <p>PPH : <span class="final">{{ $item->pph }} %</span></p>
-                        <p>Total : <span class="final">{{ number_format($item->total_pp, 0, ',', '.') }}</span></p>
+                        <p>Total Harga : <span class="final">{{ number_format($item->total_pp, 0, ',', '.') }}</span></p>
                     @endforeach
                 </div>
             </div>
