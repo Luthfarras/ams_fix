@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class PajakController extends Controller
 {
@@ -44,8 +45,22 @@ class PajakController extends Controller
      */
     public function store(Request $request)
     {
-        Pajak::create($request->all());
-        Alert::toast('Berhasil Menyimpan Data Pajak', 'success');
+        $validator = Validator::make($request->all(), [
+            'kode_laporan' => 'required|unique:customers',
+            'customer_id' => 'required',
+            'tanggal_rep' => 'required',
+            'no_fakpajak' => 'required',
+            'tanggal_upload' => 'required',
+            'ket_rep' => 'required',
+        ]);
+        
+        if($validator->fails()){
+            Alert::toast('Gagal Menyimpan Data Pajak', 'error');
+        } else {
+            Alert::toast('Berhasil Menyimpan Data Pajak', 'success');
+            Pajak::create($request->all());
+        }
+
         return redirect('pajak');
     }
 

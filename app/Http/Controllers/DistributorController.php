@@ -6,9 +6,10 @@ use Carbon\Carbon;
 use App\Models\Distributor;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Validator;
 
 class DistributorController extends Controller
 {
@@ -42,8 +43,20 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        Distributor::create($request->all());
-        Alert::toast('Berhasil Menyimpan Data Distributor', 'success');
+        $validator = Validator::make($request->all(), [
+            'nama_distributor' => 'required',
+            'kode_distributor' => 'required|unique:distributors',
+            'telepon_distributor' => 'required',
+            'alamat_distributor' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Menyimpan Data Distributor', 'error');
+        } else {
+            Alert::toast('Berhasil Menyimpan Data Distributor', 'success');
+            Distributor::create($request->all());
+        }
+
         return redirect('distributor');
     }
 
@@ -78,8 +91,20 @@ class DistributorController extends Controller
      */
     public function update(Request $request, Distributor $distributor)
     {
-        $distributor->update($request->all());
-        Alert::toast('Berhasil Mengubah Data Distributor', 'success');
+        $validator = Validator::make($request->all(), [
+            'nama_distributor' => 'required',
+            'kode_distributor' => 'required|unique:distributors',
+            'telepon_distributor' => 'required',
+            'alamat_distributor' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Mengubah Data Distributor', 'error');
+        } else {
+            Alert::toast('Berhasil Mengubah Data Distributor', 'success');
+            $distributor->update($request->all());
+        }
+
         return redirect('distributor');
     }
 

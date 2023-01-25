@@ -92,8 +92,20 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        $customer->update($request->all());
-        Alert::toast('Berhasil Mengubah Data Customer', 'success');
+        $validator = Validator::make($request->all(), [
+            'nama_customer' => 'required',
+            'kode_customer' => 'required|unique:customers',
+            'telepon_customer' => 'required',
+            'alamat_customer' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Mengubah Data Customer', 'error');
+        } else {
+            Alert::toast('Berhasil Mengubah Data Customer', 'success');
+            $customer->update($request->all());
+        }
+        
         return redirect('customer');
     }
 

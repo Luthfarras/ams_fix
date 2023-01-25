@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class StokController extends Controller
 {
@@ -54,14 +55,26 @@ class StokController extends Controller
         // Stok Barang yang sudah ada akan dijumlahkan dengan isi Form yang diambil dari stok_masuk
         $stok = $barang->stok + $request->stok_masuk;
 
-        // Stok akan menyimpan semua yang ada dalam Form
-        Stok::create($request->all());
+        $validator = Validator::make($request->all(), [
+            'barang_id' => 'required',
+            'stok_masuk' => 'required',
+            'tanggal_masuk' => 'required',
+            'distributor_id' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Menyimpan Data Stok', 'error');
+        } else {
+            // Stok akan menyimpan semua yang ada dalam Form
+            Alert::toast('Berhasil Menyimpan Data Stok', 'success');
+            Stok::create($request->all());
+        }
 
         // TABLE barang akan mengupdate stok
         $barang->update([
             'stok' => $stok,
         ]);
-        Alert::toast('Berhasil Menyimpan Data Stok', 'success');
+
         // Kembali ke halaman Stok
         return redirect('stok');
     }

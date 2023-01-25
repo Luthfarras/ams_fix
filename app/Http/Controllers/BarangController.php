@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
 {
@@ -49,8 +50,26 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        Barang::create($request->all());
-        Alert::toast('Berhasil Menyimpan Data Barang', 'success');
+        $validator = Validator::make($request->all(), [
+            'kode_barang' => 'required|unique:barangs',
+            'kode_harga' => 'required|unique:barang',
+            'nama_barang' => 'required',
+            'harga_jual' => 'required',
+            'qty_barang' => 'required',
+            'stok' => 'required',
+            'satuan_id' => 'required',
+            'harga_netto' => 'required',
+            'ket_barang' => 'required',
+            'tgl_kadaluarsa' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Menyimpan Data Barang', 'error');
+        } else {
+            Barang::create($request->all());
+            Alert::toast('Berhasil Menyimpan Data Barang', 'success');
+        }
+
         return redirect('barang');
     }
 
@@ -85,8 +104,26 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        $barang->update($request->all());
-        Alert::toast('Berhasil Mengubah Data Barang', 'success');
+        $validator = Validator::make($request->all(), [
+            'kode_barang' => 'required|unique:barangs',
+            'kode_harga' => 'required|unique:barang',
+            'nama_barang' => 'required',
+            'harga_jual' => 'required',
+            'qty_barang' => 'required',
+            'stok' => 'required',
+            'satuan_id' => 'required',
+            'harga_netto' => 'required',
+            'ket_barang' => 'required',
+            'tgl_kadaluarsa' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Mengubah Data Barang', 'error');
+        } else {
+            Alert::toast('Berhasil Mengubah Data Barang', 'success');
+            $barang->update($request->all());
+        }
+
         return redirect('barang');
     }
 
