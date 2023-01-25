@@ -213,8 +213,9 @@
                     @foreach ($kodenama as $item)
                     <ul>
                         <li>Harga Jual : <span class="final">{{ number_format($item->total_harga, 0, ',', '.') }}</span></li>
-                        <li>PPN : <span class="final">{{ $item->ppn }} %</span></li>
-                        <li>PPH : <span class="final">{{ $item->pph }} %</span></li>
+                        <li>PPN 11% : <span class="final">{{ number_format($item->ppn, 0, ',', '.')  }}</span></li>
+                        <li>PPH : <span class="final">{{ number_format($item->pph, 0, ',', '.')  }}</span></li>
+
                         <li>Total Harga : <span class="final">{{ number_format($item->total_pp, 0, ',', '.') }}</span</li>
                     </ul>
                     @endforeach

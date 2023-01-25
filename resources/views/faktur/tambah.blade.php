@@ -174,13 +174,15 @@
                                                             </td>
                                                             <td class="ps-0">
                                                                 <input class="form-control form-control-solid"
-                                                                    type="text" name="ppn" id="ppn"
+                                                                    type="text" name="" id="ppn"
                                                                     onkeyup="total()" required/>
+                                                                    <input type="hidden" name="ppn" id="hasilppn">
                                                             </td>
                                                             <td class="ps-0">
                                                                 <input class="form-control form-control-solid"
                                                                     type="text" name="pph" id="pph"
                                                                     onkeyup="total()" required/>
+                                                                    <input type="hidden" name="pph" id="hasilpph">
                                                             </td>
                                                            
                                                         </tr>
@@ -302,9 +304,11 @@
             // let total_pp = $('#total_pp').val()
 
             let hitungPPN = parseFloat(total_harga * (parseInt(ppn) / 100))
+            $('#hasilppn').val(hitungPPN)
             // let hasilPPN = total_harga - hitungPPN
 
             let hitungPPH = parseFloat(total_harga * (pph / 100))
+            $('#hasilpph').val(hitungPPH)
             // let hasilPPH = 
 
             let total_final = parseInt(parseInt(total_harga) + hitungPPN + hitungPPH)
