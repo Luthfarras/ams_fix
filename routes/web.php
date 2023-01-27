@@ -1,21 +1,22 @@
 <?php
 
+use App\Models\Stok;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\FakturController;
+use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\SetoranController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\DetailFakturController;
 use App\Http\Controllers\DetailProfilController;
-use App\Http\Controllers\SatuanController;
-use App\Models\Stok;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('stok', StokController::class);
     Route::resource('detailprofil', DetailProfilController::class);
     Route::resource('satuan', SatuanController::class);
+    Route::resource('notes', NotesController::class);
     
     // DELETE
     // Route::get('barang/{barang}', [BarangController::class, 'destroy']);
@@ -77,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('getbfaktur/{id}', [FakturController::class, 'getBarang']);
 
     Route::get('status/{penjualan}', [PenjualanController::class, 'status']);
-
+    Route::get('statnotes/{notes}', [NotesController::class, 'status']);
 
     // Print 
         // Pendataan
@@ -91,7 +93,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('printpenjualan', [PenjualanController::class, 'printPenjualan']);
         Route::get('printpajak', [PajakController::class, 'printPajak']);
         Route::get('printfaktur/{id}', [FakturController::class, 'printFaktur']);
-        
     
 });
 

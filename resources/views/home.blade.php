@@ -292,101 +292,6 @@
                             <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#catatan">Tambah Catatan</a>
                         </div>
                         <!--begin::Feeds Widget 2-->
-                        <div class="card mb-5 mb-xl-8 ms-2">
-                            <!--begin::Body-->
-                            <div class="card-body pb-0">
-                                <!--begin::Header-->
-                                <div class="d-flex align-items-center mb-5">
-                                    <!--begin::User-->
-                                    <div class="d-flex align-items-center flex-grow-1">
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="text-gray-900 text-hover-primary fs-6 fw-bold">Judul Catatan</a>
-                                            <span class="text-gray-400 fw-bold">Tanggal Catatan</span>
-                                        </div>
-                                        <!--end::Info-->
-                                    </div>
-                                    <!--end::User-->
-                                    <!--begin::Menu-->
-                                    <div class="my-0">
-                                        <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect x="5" y="5" width="5" height="5" rx="1" fill="currentColor" />
-                                                        <rect x="14" y="5" width="5" height="5" rx="1" fill="currentColor" opacity="0.3" />
-                                                        <rect x="5" y="14" width="5" height="5" rx="1" fill="currentColor" opacity="0.3" />
-                                                        <rect x="14" y="14" width="5" height="5" rx="1" fill="currentColor" opacity="0.3" />
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </button>
-                                        <!--begin::Menu 2-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px" data-kt-menu="true">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <div class="menu-content fs-6 text-dark fw-bold px-3 py-4">Aksi Cepat</div>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu separator-->
-                                            <div class="separator mb-3 opacity-75"></div>
-                                            <!--end::Menu separator-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Edit</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Hapus</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu separator-->
-                                            <div class="separator mt-3 opacity-75"></div>
-                                            <!--end::Menu separator-->
-                                           
-                                        </div>
-                                        <!--end::Menu 2-->
-                                    </div>
-                                    <!--end::Menu-->
-                                </div>
-                                <!--end::Header-->
-                                <!--begin::Post-->
-                                <div class="mb-5">
-                                    <!--begin::Text-->
-                                    <p class="text-gray-800 fw-normal mb-5">Keterangan Catatan</p>
-                                    <!--end::Text-->
-                                    <!--begin::Toolbar-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <a href="#" class="btn btn-sm btn-light btn-color-muted btn-active-light-success px-4 py-2 me-4">
-                                        <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"/>
-                                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"/>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->Selesai</a>
-                                        <a href="#" class="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen030.svg-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"/>
-                                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor"/>
-                                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor"/>
-                                            </svg>
-                                                
-                                        </span>
-                                        <!--end::Svg Icon-->Belum Selesai</a>
-                                    </div>
-                                    <!--end::Toolbar-->
-                                </div>
-                                <!--end::Post-->
-                            </div>
-                            <!--end::Body-->
-                        </div>
                     </div>
                 </div>
                 <!--end::Feeds Widget 2-->
@@ -457,7 +362,7 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form id="kt_modal_new_target_form" class="form" action="" method="POST">
+                <form id="kt_modal_new_target_form" class="form" action="{{ route('notes.store') }}" method="POST">
                     @csrf
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
