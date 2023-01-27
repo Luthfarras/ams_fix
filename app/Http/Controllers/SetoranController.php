@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class SetoranController extends Controller
 {
@@ -49,24 +50,37 @@ class SetoranController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $newName = '';
-        if($request->file('foto_dep')){
-            $extension = $request->file('foto_dep')->getClientOriginalExtension();
-            $newName = $request->kode_dep.'-'.now()->timestamp.'.'.$extension;
-            $isi = $request->file('foto_dep')->storeAs('img', $newName);
-        };
-
-        $data['foto_dep'] = $isi;
-        Setoran::create($data);
-
-        Penjualan::create([
-            'customer_id' => $request->customer_id,
-            'tanggal_kirim' => $request->tanggal_dep,
-            'kode' => $request->kode_dep,
-            'jumlah' => $request->jumlah_masuk,
-            'keterangan' => $request->ket_dep,
+        $validator = Validator::make($request->all(), [
+            'kode_dep' => 'required|unique:setorans',
+            'customer_id' => 'required',
+            'tanggal_dep' => 'required',
+            'jumlah_masuk' => 'required',
+            'jumlah_keluar' => 'required',
+            'foto_dep' => 'required|mimes:jpeg,png,jpg',
+            'ket_dep' => 'required',
         ]);
-        Alert::toast('Berhasil Menyimpan Data Setoran', 'success');
+        if ($validator->fails()) {
+            Alert::toast('Gagal Menyimpan Data Setoran', 'error');
+        }else {
+            $newName = '';
+            if($request->file('foto_dep')){
+                $extension = $request->file('foto_dep')->getClientOriginalExtension();
+                $newName = $request->kode_dep.'-'.now()->timestamp.'.'.$extension;
+                $isi = $request->file('foto_dep')->storeAs('img', $newName);
+            };
+    
+            $data['foto_dep'] = $isi;
+            Setoran::create($data);
+    
+            Penjualan::create([
+                'customer_id' => $request->customer_id,
+                'tanggal_kirim' => $request->tanggal_dep,
+                'kode' => $request->kode_dep,
+                'jumlah' => $request->jumlah_masuk,
+                'keterangan' => $request->ket_dep,
+            ]);
+            Alert::toast('Berhasil Menyimpan Data Setoran', 'success');
+        }
         return redirect('setoran');
     }
 

@@ -10,6 +10,7 @@ use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class DetailFakturController extends Controller
 {
@@ -47,13 +48,27 @@ class DetailFakturController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['kode_faktur'] = $request->kode_faktur;
-        $barang = Barang::find($request->barang_id);
-        $barang->update([
-            'stok' => $barang->stok - $request->stok_keluar,
+        $validator = Validator::make($request->all(), [
+            'kode_faktur' => 'required',
+            'tanggal_keluar' => 'required',
+            'barang_id' => 'required',
+            'stok_keluar' => 'required',
+            'diskon' => 'required',
+            'subtotal' => 'required',
+            'customer_id' => 'required',
         ]);
-        DetailFaktur::create($data);
-        Alert::toast('Berhasil Menyimpan Detail Faktur', 'success');
+
+        if($validator->fails()){
+            Alert::toast('Gagal Menyimpan Detail Faktur', 'error');
+        } else {
+            $barang = Barang::find($request->barang_id);
+            $barang->update([
+                'stok' => $barang->stok - $request->stok_keluar,
+            ]);
+            DetailFaktur::create($data);
+            Alert::toast('Berhasil Menyimpan Detail Faktur', 'success');
+        }
+        
         return redirect('detailfaktur');
     }
 

@@ -14,6 +14,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class FakturController extends Controller
 {
@@ -54,9 +55,24 @@ class FakturController extends Controller
      */
     public function store(Request $request)
     {
-        if (DB::table('fakturs')->where('kode_faktur', $request->kode_faktur)->exists()) {
-            Alert::error('Oops..', 'Invoice sudah terdaftar');
+        $validator = Validator::make($request->all(), [
+            'kode_faktur' => 'required',
+            'tanggal_keluar' => 'required|unique:fakturs',
+            'barang_id' => 'required',
+            'stok_keluar' => 'required',
+            'diskon' => 'required',
+            'subtotal' => 'required',
+            'customer_id' => 'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::toast('Gagal Menyimpan Data Faktur', 'error');
             return redirect('faktur/create');
+        
+        // if (DB::table('fakturs')->where('kode_faktur', $request->kode_faktur)->exists()) {
+        //     Alert::error('Oops..', 'Invoice sudah terdaftar');
+        //     return redirect('faktur/create');
+        
         }else {
             $data = $request->all();
             $data['total_harga'] = 0;

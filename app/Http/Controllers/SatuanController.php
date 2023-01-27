@@ -7,6 +7,7 @@ use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class SatuanController extends Controller
 {
@@ -40,9 +41,16 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Satuan::create($data);
-        Alert::toast('Berhasil Menyimpan Data Satuan', 'success');
+        $validator = Validator::make($request->all(), [
+            'nama_satuan' => 'required',
+        ]);
+        if ($validator->fails()) {
+            Alert::toast('Gagal Menyimpan Data Satuan', 'error');
+        }else {
+            $data = $request->all();
+            Satuan::create($data);
+            Alert::toast('Berhasil Menyimpan Data Satuan', 'success');
+        }
         return redirect('satuan');
     }
 
@@ -77,9 +85,16 @@ class SatuanController extends Controller
      */
     public function update(Request $request, Satuan $satuan)
     {
-        $data = $request->all();
-        $satuan->update($data);
-        Alert::toast('Berhasil Mengubah Data Satuan', 'success');
+        $validator = Validator::make($request->all(), [
+            'nama_satuan' => 'required',
+        ]);
+        if ($validator->fails()) {
+            Alert::toast('Gagal Mengubah Data Satuan', 'error');
+        }else {
+            $data = $request->all();
+            $satuan->update($data);
+            Alert::toast('Berhasil Mengubah Data Satuan', 'success');
+        }
         return redirect('satuan');
     }
 
