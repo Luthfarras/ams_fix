@@ -431,6 +431,7 @@
                                             <!--end::Text-->
 
                                             <!--begin::Toolbar-->
+                                            @if ($item->user_id == Auth::user()->id)                                                
                                             <div class="d-flex align-items-center mb-5">
                                                 @if ($item->status == 'Belum Selesai')
                                                     <a href="/statnotes/{{ $item->id }}"
@@ -474,6 +475,7 @@
                                                     </a>
                                                 @endif
                                             </div>
+                                            @endif
                                             <!--end::Toolbar-->
                                         </div>
                                         <!--end::Post-->

@@ -40,7 +40,11 @@ class HomeController extends Controller
         $penjualan = DB::table('penjualans')->select('jumlah')->sum('jumlah');
         $faktur = Faktur::all()->count();
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
-        $notes = Notes::all();
+        if (Auth::user()->role == 'Owner') {
+            $notes = Notes::all();
+        }else {
+            $notes = Notes::where('user_id', Auth::user()->id)->get();
+        }
         return view('home', compact('customer','distributor', 'barang', 'stok', 'penjualan', 'faktur', 'profil', 'notes'));
     }
 
