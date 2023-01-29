@@ -258,7 +258,7 @@
                                             <!--begin::Modal body-->
                                             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                                                 <!--begin:Form-->
-                                                <form id="kt_modal_new_target_form" class="form" action="{{ route('distributor.destroy', $item->id) }}" method="POST">
+                                                <form id="kt_modal_new_target_form" class="form" action="{{ route('pengguna.destroy', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <!--begin::Heading-->
