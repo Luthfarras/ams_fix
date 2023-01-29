@@ -20,8 +20,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        // Menampilkan seluruh data pada tabel customer
         $cust = Customer::all();
+        
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+        // Masuk ke halaman customer dengan membawa data yang sudah dideklarasikan
         return view('pendataan.customer', compact('cust', 'profil'));
     }
 
@@ -43,7 +48,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_customer' => 'required',
             'kode_customer' => 'required|unique:customers',
@@ -51,12 +56,22 @@ class CustomerController extends Controller
             'alamat_customer' => 'required',
         ]);
 
+        // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
+            // Menampilkan Alert Gagal
             Alert::toast('Gagal Menyimpan Data Customer', 'error');
-        } else {
+        } 
+        
+        // Jika Berhasil
+        else {
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Menyimpan Data Customer', 'success');
+
+            // Dan Data akan dibuat dan dimasukkan ke tabel customer
             Customer::create($request->all());
         }
+
+        // Setelah salah satu kondisi terpenuhi akan dialihkan ke halaman customer
         return redirect('customer');
 
     }
@@ -92,6 +107,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_customer' => 'required',
             'kode_customer' => 'required|unique:customers',
@@ -99,13 +115,23 @@ class CustomerController extends Controller
             'alamat_customer' => 'required',
         ]);
 
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal 
         if($validator->fails()){
+            // Menampilkan Alert Errir
             Alert::toast('Gagal Mengubah Data Customer', 'error');
-        } else {
+        } 
+        
+        // Jika Berhasil
+        else {
+
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Mengubah Data Customer', 'success');
+            
+            // Dan data akan diupdate
             $customer->update($request->all());
         }
         
+        // Dialihkan ke halaman Customer
         return redirect('customer');
     }
 
@@ -117,16 +143,26 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
+
+        // Data pada tabel customer akan dihapus
         $customer->delete();
+
+        // Jika berhasil akan menampilkan Alert Success
         Alert::toast('Berhasil Menghapus Data Customer', 'success');
+
+        // Dan dialihkan ke halaman customer
         return redirect('customer');
     }
     
     public function printCust()
     {
+        // Mengambil seluruh data pada tabel Customer
         $customer = Customer::all();
+
+        // PDF akan diload dengan membawa data yang sudah dideklarasikan
         $pdf = Pdf::loadView('print.custprint', ['customer' => $customer]);
         
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Customer - '. Carbon::now(). '.pdf');
     }
 }

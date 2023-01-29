@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('tanggal_dep');
             $table->integer('jumlah_masuk');
             $table->integer('jumlah_keluar');
-            $table->string('foto_dep');
+            $table->string('foto_dep')->nullable();
             $table->string('ket_dep');
             $table->timestamps();
         });

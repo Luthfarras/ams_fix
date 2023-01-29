@@ -25,9 +25,16 @@ class FakturController extends Controller
      */
     public function index()
     {
+        // Menampilkan Seluruh Data pada tabel Faktur
         $faktur = Faktur::all();
+
+        // Menampilkan Seluruh Data pada tabel Detail Faktur
         $detail = DetailFaktur::all();
+
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+       // Masuk ke halaman faktur dengan membawa data yang sudah dideklarasikan
         return view('faktur.faktur', compact('faktur', 'detail', 'profil'));
     }
 
@@ -38,11 +45,22 @@ class FakturController extends Controller
      */
     public function create()
     {
+        // Mengambil seluruh data pada tabel customer
         $cust = Customer::all();
+
+        // Mengambil seluruh data pada tabel barang
         $barang = Barang::all();
+
+        // Mengambil seluruh data pada tabel Detail Faktur
         $detail = DetailFaktur::all();
+
+        // Menampilkan seluruh data pada tabel Detail faktur dengan data yang unique
         $dfaktur = $detail->unique('kode_faktur');
+
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+        // Kembali ke halaman tambah faktur dengan membawa data yang sudah dideklarasikan
         return view('faktur.tambah', compact('cust', 'barang', 'detail', 'dfaktur', 'profil'));
 
     }
@@ -55,44 +73,65 @@ class FakturController extends Controller
      */
     public function store(Request $request)
     {
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
-            'kode_faktur' => 'required',
-            'tanggal_keluar' => 'required|unique:fakturs',
-            'barang_id' => 'required',
-            'stok_keluar' => 'required',
-            'diskon' => 'required',
-            'subtotal' => 'required',
+            'kode_faktur' => 'required|unique:fakturs',
+            'tanggal_faktur' => 'required',
             'customer_id' => 'required',
+            'ket_faktur' => 'required',
+            'total_harga' => 'required',
+            'ppn' => 'required',
+            'pph' => 'required',
+            'total_pp' => 'required',
         ]);
 
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
             Alert::toast('Gagal Menyimpan Data Faktur', 'error');
             return redirect('faktur/create');
         
-        // if (DB::table('fakturs')->where('kode_faktur', $request->kode_faktur)->exists()) {
-        //     Alert::error('Oops..', 'Invoice sudah terdaftar');
-        //     return redirect('faktur/create');
+        /* 
+            * if (DB::table('fakturs')->where('kode_faktur', $request->kode_faktur)->exists()) {
+            * Alert::error('Oops..', 'Invoice sudah terdaftar');
+            * return redirect('faktur/create'); 
+        */
         
-        }else {
+        }
+        
+        // Jika Berhasil
+        else {
+            // Mengambil Data yang ada dalam seluruh form
             $data = $request->all();
+
+            // Total harga diberi penampung dengan nilai 0
             $data['total_harga'] = 0;
+
+            // Faktur akan di buat dengan isi data di variabel $data
             Faktur::create($data);
 
-            $faktur = Faktur::latest()->first()->id; // Mengambil ID terakhir (Angkanya saja)
-            $fakturs = Faktur::where('id', $faktur)->first(); // Mengambil data dari ID Terbaru
+            // Mengambil ID terakhir (Angkanya saja)
+            $faktur = Faktur::latest()->first()->id; 
+
+            // Mengambil data dari ID Terbaru
+            $fakturs = Faktur::where('id', $faktur)->first(); 
            
+            // Total sebagai variabel penampung
             $total = 0;
 
+            // Mengambil data dari tabel detail faktur dengan kolom subtotal dengan kondisi tabel detail faktur dan faktur kolom kode_faktur harus sama
             $price = DB::table('detail_fakturs')->select('subtotal')->where('detail_fakturs.kode_faktur', $fakturs->kode_faktur)->get();
 
+            // Data akan diulang dan dihitung secara total
             foreach ($price as $item) {
                 $total += $item->subtotal;
             }
 
+            // Data faktur kolom total_harga akan di update sesuai variabel $total
             $fakturs->update([
                 'total_harga' => $total,
             ]);
 
+            // Tabel Penjualan juga akan dibuat berdasarkan data dan kolom yang ditentukan sendiri
             Penjualan::create([
                 'customer_id' => $request->customer_id,
                 'tanggal_kirim' => $request->tanggal_faktur,
@@ -100,7 +139,11 @@ class FakturController extends Controller
                 'jumlah' => $total,
                 'keterangan' => $request->ket_faktur,
             ]);
+
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Menyimpan Data Faktur', 'success');
+
+            // Setelah salah satu kondisi berhasil akan dialihkan ke halaman faktur
             return redirect('faktur');
         }
     }
@@ -147,76 +190,90 @@ class FakturController extends Controller
      */
     public function destroy(Faktur $faktur)
     {
+        // Data pada tabel faktur akan dihapus
         $faktur->delete();
+
+        // Menampilkan Alert Success
         Alert::toast('Berhasil Menghapus Data Faktur', 'success');
+
+        // Dialihkan ke halaman faktur
         return redirect('faktur');
     }
     public function getNama($id)
     {
+        /*
+            * Tabel Detail faktur akan digabungkan dengan Tabel Customer dimana customer.id harus sama
+            * Dengan kondisi kode_faktur sama dengan data kode_faktur($id) yang diambil
+            * Setelah itu data diambil
+        */
         $data = DetailFaktur::join('customers', 'customers.id', 'detail_fakturs.customer_id')->where('detail_fakturs.kode_faktur', $id)->get();
-        // $good = response()->json($data);
-        // dd($good);
+      
+        // Data akan direspon ke dalam bentuk JSON dengan membawa data $data
         return response()->json($data);
     }
 
-    public function getTotal($id)
-    {
-        $data = DetailFaktur::join('customers', 'customers.id', 'detail_fakturs.customer_id')->where('detail_fakturs.kode_faktur', $id)->get();
-        $total = 0;
-        foreach ($data as $item) {
-            $total += $item->subtotal;
-        }
-        // dd($total);
-        return response()->json($data);
-    }
 
     public function getBarang($id)
     {
+        /*
+            * Tabel Detail faktur akan digabungkan dengan Tabel Barang dimana barang.id harus sama
+            * Dengan kondisi kode_faktur sama dengan data kode_faktur($id) yang diambil
+            * Setelah itu data diambil
+        */
         $data = DetailFaktur::join('barangs', 'barangs.id', 'detail_fakturs.barang_id')->where('detail_fakturs.kode_faktur', $id)->get();
       
+        // Sebagai Variabel penampung
         $li = '';
+
+        // Setelah itu data akan diulang
         foreach ($data as $item) {
             $li .= $item->nama_barang. ', ';
         }
       
+        // Data akan ditampilkan dalam bentuk respon dan bentuk json. Data yang ditampilkan berupa Array
         return response()->json([$li]);
     }
 
     public function printFaktur($id)
     {
+        /*
+            * Tabel Barang akan dipilih semua kemudian digabungkan dengan Tabel satuan dimana tabel barang kolom satuan.id harus sama
+            * kemudian digabungkan lagi dengan Tabel detail_faktur dimana tabel barang kolom barang.id harus sama
+            * kemudian digabungkan lagi dengan Tabel faktur dimana tabel detail_faktur kolom kode_faktur harus sama
+            * kemudian digabungkan lagi dengan Tabel customer dimana tabel faktur kolom customer.id harus sama
+            * Dengan kondisi tabel faktur dengan kolom kode_faktur sama dengan data kode_faktur($id) yang diambil
+            * Setelah itu data diambil
+        */
         $faktur = DB::table('barangs')->select('*')->join('satuans', 'barangs.satuan_id', 'satuans.id')
         ->join('detail_fakturs', 'detail_fakturs.barang_id', 'barangs.id')
         ->join('fakturs', 'detail_fakturs.kode_faktur', 'fakturs.kode_faktur')
         ->join('customers', 'fakturs.customer_id', 'customers.id')
         ->where('fakturs.kode_faktur', $id)->get();
         
+         /*
+            * Tabel Barang akan dipilih semua kemudian digabungkan dengan Tabel satuan dimana tabel barang kolom satuan.id harus sama
+            * kemudian digabungkan lagi dengan Tabel detail_faktur dimana tabel barang kolom barang.id harus sama
+            * kemudian digabungkan lagi dengan Tabel faktur dimana tabel detail_faktur kolom kode_faktur harus sama
+            * kemudian digabungkan lagi dengan Tabel customer dimana tabel faktur kolom customer.id harus sama
+            * Dengan kondisi tabel faktur dengan kolom kode_faktur sama dengan data kode_faktur($id) yang diambil
+            * Setelah itu data diambil dan berupa unique
+        */
         $kodenama = DB::table('barangs')->select('*')->join('satuans', 'barangs.satuan_id', 'satuans.id')
         ->join('detail_fakturs', 'detail_fakturs.barang_id', 'barangs.id')
         ->join('fakturs', 'detail_fakturs.kode_faktur', 'fakturs.kode_faktur')
         ->join('customers', 'fakturs.customer_id', 'customers.id')
         ->where('fakturs.kode_faktur', $id)->get()->unique('kode_faktur');
 
+        // Menampilkan data pada tabel faktur dengan kondisi kode faktur harus sama dengan kode faktur yang diambil
         $ppn = DB::table('fakturs')->where('kode_faktur', $id)->get();
+
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         
+        // PDF akan ditampilkan dengan membawa data yang sudah dideklarasikan
         $pdf = Pdf::loadView('print.fakturprint', ['faktur' => $faktur, 'kodenama' => $kodenama, 'profil' => $profil]);
         
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Faktur - '. Carbon::now(). '.pdf');
     }
 }
-
-// barang  -> detail faktur
-//         -> stok 
-//         -> satuan 
-
-// detail  -> customer
-//         -> barang 
-
-// cust    -> faktur 
-//         -> penjualan
-//         -> pajak
-//         -> setoran 
-//         -> detail faktur
-
-// select from barang join ke detail join ke customer
-// select from customer join ke detail join ke barang

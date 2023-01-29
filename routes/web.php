@@ -75,7 +75,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('getharga', [DetailFakturController::class, 'getHarga']);
     Route::get('getbarang/{id}', [DetailFakturController::class, 'getBarang']);
     Route::get('getname/{id}', [FakturController::class, 'getNama']);
-    Route::get('gettotal/{id}', [FakturController::class, 'getTotal']);
     Route::get('getbfaktur/{id}', [FakturController::class, 'getBarang']);
 
     Route::get('status/{penjualan}', [PenjualanController::class, 'status']);

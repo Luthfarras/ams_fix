@@ -22,6 +22,7 @@ class DetailFakturController extends Controller
     public function index()
     {
         $detail = DetailFaktur::all();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         $barang = Barang::all();
         $cust = Customer::all();
@@ -58,6 +59,7 @@ class DetailFakturController extends Controller
             'customer_id' => 'required',
         ]);
 
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
             Alert::toast('Gagal Menyimpan Detail Faktur', 'error');
         } else {

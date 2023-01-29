@@ -269,7 +269,7 @@
 
             $.ajax({
                 type: "get",
-                url: `/gettotal/${id}`,
+                url: `/getname/${id}`,
                 dataType: "json",
                 success: function(response) {
                     console.log(response);

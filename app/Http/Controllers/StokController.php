@@ -27,6 +27,7 @@ class StokController extends Controller
         $barang = Barang::all();
         $dist = Distributor::all();
         $jumlah = DB::table('stoks')->select('stok_masuk')->sum('stok_masuk');
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         return view('menu.stok', compact('stok', 'barang', 'dist', 'jumlah', 'profil'));
     }
@@ -62,6 +63,7 @@ class StokController extends Controller
             'distributor_id' => 'required',
         ]);
 
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
             Alert::toast('Gagal Menyimpan Data Stok', 'error');
         } else {
@@ -139,7 +141,7 @@ class StokController extends Controller
     {
         $stok = Stok::all();
         $pdf = Pdf::loadView('print.stokprint', ['stok' => $stok]);
-        
+        // PDF akan ditampilkan secara stream dengan ukuran A4-potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Stok - '. Carbon::now(). '.pdf');
     }
 }

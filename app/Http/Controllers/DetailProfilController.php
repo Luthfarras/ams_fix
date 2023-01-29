@@ -19,6 +19,7 @@ class DetailProfilController extends Controller
     public function index()
     {
         $user = Auth::user();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         return view('profil', compact('user', 'profil'));
     }

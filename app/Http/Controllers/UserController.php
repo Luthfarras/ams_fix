@@ -19,6 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         return view('pendataan.pengguna', compact('user', 'profil'));
     }

@@ -39,6 +39,7 @@ class HomeController extends Controller
         $stok = DB::table('barangs')->select('stok')->sum('stok');
         $penjualan = DB::table('penjualans')->select('jumlah')->sum('jumlah');
         $faktur = Faktur::all()->count();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         if (Auth::user()->role == 'Owner') {
             $notes = Notes::all();
@@ -48,24 +49,4 @@ class HomeController extends Controller
         return view('home', compact('customer','distributor', 'barang', 'stok', 'penjualan', 'faktur', 'profil', 'notes'));
     }
 
-    public function storeNotes(Request $request)
-    {
-        Notes::create($request->all());
-        Alert::toast('Berhasil Menyimpan Notes', 'success');
-        return redirect('home');
-    }
-
-    public function updateNotes(Request $request, Notes $notes)
-    {
-        $notes->update($request->all());
-        Alert::toast('Berhasil Mengubah Notes', 'success');
-        return redirect('home');
-    }
-
-    public function destroyNotes(Notes $notes)
-    {
-        $notes->delete();
-        Alert::toast('Berhasil Menghapus Notes', 'success');
-        return redirect('home');
-    }
 }

@@ -21,6 +21,7 @@ class PenjualanController extends Controller
     public function index()
     {
         $penjualan = Penjualan::all();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
         return view('menu.penjualan', compact('penjualan', 'profil', 'jumlah'));
@@ -113,6 +114,7 @@ class PenjualanController extends Controller
         $penjualan = Penjualan::all();
         $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan]);
         
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
     }
 }

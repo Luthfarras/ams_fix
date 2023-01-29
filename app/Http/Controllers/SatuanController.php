@@ -19,6 +19,7 @@ class SatuanController extends Controller
     public function index()
     {
         $satuan = Satuan::all();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         return view('pendataan.satuan', compact('satuan', 'profil'));
     }
@@ -42,7 +43,7 @@ class SatuanController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_satuan' => 'required',
+            'nama_satuan' => 'required|unique:satuans',
         ]);
         if ($validator->fails()) {
             Alert::toast('Gagal Menyimpan Data Satuan', 'error');
@@ -86,7 +87,7 @@ class SatuanController extends Controller
     public function update(Request $request, Satuan $satuan)
     {
         $validator = Validator::make($request->all(), [
-            'nama_satuan' => 'required',
+            'nama_satuan' => 'required|unique:satuans',
         ]);
         if ($validator->fails()) {
             Alert::toast('Gagal Mengubah Data Satuan', 'error');

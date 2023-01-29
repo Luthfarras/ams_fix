@@ -21,6 +21,7 @@ class DistributorController extends Controller
     public function index()
     {
         $dist = Distributor::all();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         return view('pendataan.distributor', compact('dist', 'profil'));
     }
@@ -50,6 +51,7 @@ class DistributorController extends Controller
             'alamat_distributor' => 'required',
         ]);
 
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
             Alert::toast('Gagal Menyimpan Data Distributor', 'error');
         } else {
@@ -98,6 +100,7 @@ class DistributorController extends Controller
             'alamat_distributor' => 'required',
         ]);
 
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
             Alert::toast('Gagal Mengubah Data Distributor', 'error');
         } else {
@@ -126,6 +129,7 @@ class DistributorController extends Controller
         $distributor = Distributor::all();
         $pdf = Pdf::loadView('print.distprint', ['distributor' => $distributor]);
         
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Distributor - '. Carbon::now(). '.pdf');
     }
 }

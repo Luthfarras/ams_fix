@@ -59,6 +59,8 @@ class SetoranController extends Controller
             'foto_dep' => 'required|mimes:jpeg,png,jpg',
             'ket_dep' => 'required',
         ]);
+
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if ($validator->fails()) {
             Alert::toast('Gagal Menyimpan Data Setoran', 'error');
         }else {
@@ -161,7 +163,7 @@ class SetoranController extends Controller
     {
         $setoran = Setoran::all();
         $pdf = Pdf::loadView('print.setoranprint', ['setoran' => $setoran]);
-        
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Setoran - '. Carbon::now(). '.pdf');
     }
 }

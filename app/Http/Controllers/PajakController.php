@@ -23,6 +23,7 @@ class PajakController extends Controller
     {
         $pajak = Pajak::all();
         $customer = DB::table('customers')->select('nama_customer', 'id')->get();
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
         return view('menu.pajak', compact('pajak', 'customer', 'profil'));
     }
@@ -54,6 +55,7 @@ class PajakController extends Controller
             'ket_rep' => 'required',
         ]);
         
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
             Alert::toast('Gagal Menyimpan Data Pajak', 'error');
         } else {
