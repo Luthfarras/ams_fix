@@ -13,12 +13,21 @@
             font-weight: normal;
             src: url({{ storage_path('fonts/LetterGothicStd.otf') }}) format("truetype");
         }
+        @font-face {
+            font-family: 'Letter Gothic Std Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: url({{ storage_path('fonts/Gothic-Bold.ttf') }}) format("truetype");
+        }
         
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
             text-align: center;
             font-family: 'Letter Gothic Std Medium';
+        }
+        .font {
+            font-family: 'Letter Gothic Std Bold';
         }
 
         h1 {
@@ -54,7 +63,8 @@
         }
 
         .right {
-            width: 26%;
+            width: 30%;
+            margin-left: -2%;
         }
 
         /* Clear floats after the columns */
@@ -69,26 +79,34 @@
         }
         .final {
             text-align: right;
+            margin-top: -25px;
+            margin-right: -3px;
         }
         .kiri {
-            margin-top: -5%;
+            margin-top: -2%;
             margin-left: 20%;
             width: 20%;
             text-align: center;
         }
 
         .kanan { 
-            margin-top: -5%;
+            margin-top: -2%;
+            margin-left: 10%;
             width: 30%;
             text-align: center;
         }
 
+        .hide {
+            list-style-type: none;
+            margin-top: -4%;
+        }
+
         .nama {
-            margin-top: 29%;
+            margin-top: 35%;
             text-align: center;
         }
         .nama2 {
-            margin-top: 19%;
+            margin-top: 25%;
             text-align: center;
         }
         p.terbilang {
@@ -97,8 +115,12 @@
             margin-top: 0%;
             border-style: double;
             margin-right: 20%
-
         }
+
+        .pinggir {
+            width: 29%;
+        }
+
     </style>
 </head>
 
@@ -130,22 +152,22 @@
             </div>
         </div>
 
-        <div class="h6">
+        <div class="h6" style="margin-top: -2%; margin-bottom: -1%; margin-left:1%;">
             @foreach ($kodenama as $item)
                 <p>Nomor Faktur : {{ $item->kode_faktur }}</p>
             @endforeach
         </div>
         <div class="container">
-            <table style="width: 100%">
+            <table style="width: 100%; font-family: 'Letter Gothic Std Medium';">
                 <thead>
-                    <th style="width: 1%">No</th>
-                    <th style="width: 3%">Kode Barang</th>
-                    <th style="width: 5%">Nama Barang</th>
-                    <th style="width: 2%">Stn</th>
-                    <th style="width: 1%">Qty</th>
-                    <th style="width: 3%">Harga Stn</th>
-                    <th style="width: 2%">Disc %</th>
-                    <th style="width: 3%">Subtotal</th>
+                    <td class="font">No</td>
+                    <td class="font">Kode Barang</td>
+                    <td class="font">Nama Barang</td>
+                    <td class="font">Stn</td>
+                    <td class="font">Qty</td>
+                    <td class="font">Harga Stn</td>
+                    <td class="font">Disc %</td>
+                    <td class="font">Subtotal</td>
                 </thead>
                 <tbody>
                     @foreach ($faktur as $item)
@@ -155,9 +177,9 @@
                             <td>{{ $item->nama_barang }}</td>
                             <td>{{ $item->nama_satuan }}</td>
                             <td>{{ $item->stok_keluar }}</td>
-                            <td>Rp {{ number_format($item->harga_jual, 0, ',', '.') }}</td>
+                            <td>{{ number_format($item->harga_jual, 0, ',', '.') }}</td>
                             <td>{{ $item->diskon }}</td>
-                            <td>Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
+                            <td>{{ number_format($item->subtotal, 0, ',', '.') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -209,14 +231,21 @@
                         <p class="terbilang">{{ terbilang($item->total_pp) }} rupiah </p>
                     @endforeach 
                 </div>
-                <div class="col right">
+                <div class="col pinggir">
                     @foreach ($kodenama as $item)
                     <ul>
-                        <li>Harga Jual : <span class="final">{{ number_format($item->total_harga, 0, ',', '.') }}</span></li>
-                        <li>PPN 11% : <span class="final">{{ number_format($item->ppn, 0, ',', '.')  }}</span></li>
-                        <li>PPH : <span class="final">{{ number_format($item->pph, 0, ',', '.')  }}</span></li>
-
-                        <li>Total Harga : <span class="final">{{ number_format($item->total_pp, 0, ',', '.') }}</span</li>
+                        <li class="hide">Harga Jual 
+                            <p class="final">{{ number_format($item->total_harga, 0, ',', '.') }}</p></li>
+                        @if (!$item->ppn == 0)
+                        <li class="hide">PPN 11% 
+                            <p class="final"> {{ number_format($item->ppn, 0, ',', '.')  }}</p></li>
+                        @endif
+                        @if (!$item->pph == 0)
+                        <li class="hide">PPH 
+                            <p class="final"><{{ number_format($item->pph, 0, ',', '.')  }}</p></li>
+                        @endif
+                        <li class="hide" style="font-family:'Letter Gothic Std Bold';">Total Harga 
+                            <p class="final" style="font-family:'Letter Gothic Std Bold';">{{ number_format($item->total_pp, 0, ',', '.') }}</p</li>
                     </ul>
                     @endforeach
                 </div>

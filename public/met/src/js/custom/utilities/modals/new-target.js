@@ -163,3 +163,4 @@ let isi = $('#tanggalisi2');
 		isi.flatpickr({
 			dateFormat: "Y-m-d",
 		});
+

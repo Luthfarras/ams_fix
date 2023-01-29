@@ -173,15 +173,27 @@
                                                                     onkeyup="nama(value)">
                                                             </td>
                                                             <td class="ps-0">
-                                                                <input class="form-control form-control-solid"
+                                                                <select class="form-select form-select-soild" data-hide-search="true"
+                                                                data-control="select2" id="ppn" required onchange="total()">
+                                                                    <option selected value="" disabled>Pilih PPN</option>
+                                                                    <option value="0">0</option>
+                                                                    <option value="11">11</option>
+                                                                </select>
+                                                                {{-- <input class="form-control form-control-solid"
                                                                     type="text" name="" id="ppn"
-                                                                    onkeyup="total()" required/>
+                                                                    onkeyup="total()" required/> --}}
                                                                     <input type="hidden" name="ppn" id="hasilppn">
                                                             </td>
                                                             <td class="ps-0">
-                                                                <input class="form-control form-control-solid"
+                                                                <select class="form-select form-select-soild" data-hide-search="true"
+                                                                data-control="select2" id="pph" required onchange="total()">
+                                                                    <option selected value="" disabled>Pilih PPH</option>
+                                                                    <option value="0">0</option>
+                                                                    <option value="1.5">1.5</option>
+                                                                </select>
+                                                                {{-- <input class="form-control form-control-solid"
                                                                     type="text" name="pph" id="pph"
-                                                                    onkeyup="total()" required/>
+                                                                    onkeyup="total()" required/> --}}
                                                                     <input type="hidden" name="pph" id="hasilpph">
                                                             </td>
                                                            

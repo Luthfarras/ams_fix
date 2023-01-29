@@ -79,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('status/{penjualan}', [PenjualanController::class, 'status']);
     Route::get('statnotes/{notes}', [NotesController::class, 'status']);
+    Route::get('delnotes/{notes}', [NotesController::class, 'destroy']);
 
     // Print 
         // Pendataan
