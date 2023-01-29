@@ -96,22 +96,36 @@ class PenjualanController extends Controller
      */
     public function destroy(Penjualan $penjualan)
     {
+        // Menghapus data yang ada dalam tabel penjualan
         $penjualan->delete();
+
+        // Menampilkan Alert Success
         Alert::toast('Berhasil Menghapus Data Penjualan', 'success');
+
+        // Dialihkan ke halaman Penjualan
         return redirect('penjualan');
     }
 
     public function status(Penjualan $penjualan)
     {
+        // Jika Status dalam tabel Notes 'Belum Lunas'
         if ($penjualan->status == 'Belum Lunas') {
+            // Maka Status diubah ke 'Lunas'
             $penjualan->update([
                 'status' => "Lunas"
             ]);
-        }else {
+
+        }
+        
+        // Jika sebaliknya
+        else {
+            // Akan Diubah ke Belum Lunas
             $penjualan->update([
                 'status' => "Belum Lunas"
             ]);
         }
+
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman penjualan
         return redirect('penjualan');
     }
 

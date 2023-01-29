@@ -77,7 +77,7 @@ class DetailProfilController extends Controller
         // Jika berhasil akan menampilkan alert sukses
         Alert::toast('Berhasil Menyimpan Data Profil', 'success');
 
-        // Setelah itu dialihkan ke halaman profil
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman profil
         return redirect('profil');
     }
 
@@ -155,7 +155,7 @@ class DetailProfilController extends Controller
         // Menampilkan Alert Sukses
         Alert::toast('Berhasil Mengubah Data Profil', 'success');
 
-        // Dan dialihkan ke dalam halaman profil
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman profil
         return redirect('profil');
     }
 

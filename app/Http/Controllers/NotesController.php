@@ -154,7 +154,6 @@ class NotesController extends Controller
     {
         // Jika Status dalam tabel Notes 'Belum Selesai'
         if ($notes->status == 'Belum Selesai') {
-            
             // Maka Status diubah ke 'Selesai'
             $notes->update([
                 'status' => "Selesai",

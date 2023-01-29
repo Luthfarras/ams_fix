@@ -66,6 +66,7 @@ class StokController extends Controller
         // Stok Barang yang sudah ada akan dijumlahkan dengan isi Form yang diambil dari stok_masuk
         $stok = $barang->stok + $request->stok_masuk;
 
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'barang_id' => 'required',
             'stok_masuk' => 'required',
@@ -75,14 +76,20 @@ class StokController extends Controller
 
          // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
+            // Menampilkan Alert Error
             Alert::toast('Gagal Menyimpan Data Stok', 'error');
-        } else {
-            // Stok akan menyimpan semua yang ada dalam Form
+        } 
+        
+        // Jika berhasil
+        else {
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Menyimpan Data Stok', 'success');
+
+            // Stok akan menyimpan semua yang ada dalam Form
             Stok::create($request->all());
         }
 
-        // TABLE barang akan mengupdate stok
+        // Tabel barang akan mengupdate stok
         $barang->update([
             'stok' => $stok,
         ]);
@@ -141,9 +148,13 @@ class StokController extends Controller
             'stok' => $barang->stok - $stok->stok_masuk,
         ]);
 
-        // Setelah itu id stok akan dihapus
+        // Menghapus data yang ada dalam tabel stok
         $stok->delete();
+
+        // Menampilkan Alert Success
         Alert::toast('Berhasil Menghapus Data Stok', 'success');
+
+        // Dialihkan ke halaman stok
         return redirect('stok');
     }
 

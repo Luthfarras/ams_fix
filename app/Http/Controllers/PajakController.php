@@ -52,6 +52,8 @@ class PajakController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Membuat Validdasi
         $validator = Validator::make($request->all(), [
             'kode_laporan' => 'required|unique:customers',
             'customer_id' => 'required',
@@ -61,11 +63,18 @@ class PajakController extends Controller
             'ket_rep' => 'required',
         ]);
         
-         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
+        // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
+            // Menampilkan Alert Error
             Alert::toast('Gagal Menyimpan Data Pajak', 'error');
-        } else {
+        } 
+
+        // Jika Berhasil
+        else {
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Menyimpan Data Pajak', 'success');
+
+            // Menyimpan seluruh data yang ada dalam form ke dalam tabel pajak
             Pajak::create($request->all());
         }
 
@@ -104,8 +113,13 @@ class PajakController extends Controller
      */
     public function update(Request $request, Pajak $pajak)
     {
+        // Mengubah seluruh data yang ada dalam form ke dalam tabel pajak
         $pajak->update($request->all());
+
+        // Menampilkan Alert Success
         Alert::toast('Berhasil Mengubah Data Pajak', 'success');
+
+        // Dialihkan ke halaman Pajak
         return redirect('pajak');
     }
 
@@ -117,8 +131,13 @@ class PajakController extends Controller
      */
     public function destroy(Pajak $pajak)
     {
+        // Menghapus data yang ada dalam tabel pajak
         $pajak->delete();
+
+        // Menampilkan Alert Success
         Alert::toast('Berhasil Menghapus Data Pajak', 'success');
+
+        // Dialihkan ke halaman pajak
         return redirect('pajak');
     }
 
@@ -130,6 +149,7 @@ class PajakController extends Controller
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.pajakprint', ['pajak' => $pajak]);
         
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Laporan Faktur Pajak - '. Carbon::now(). '.pdf');
     }
 }

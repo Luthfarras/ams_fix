@@ -46,10 +46,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // Menagmbil seluruh data yang ada dalam Form
         $data = $request->all();
+
+        // Isi Kolom Password akan diubah menggunakan Hash
         $data['password'] = Hash::make($request->password);
+
+        // Menyimpan Data ke dalam database user
         User::create($data);
+
+        // Menampilkan Alert Success
         Alert::toast('Berhasil Menyimpan Data Pengguna', 'success');
+
+        // Dialihkan ke halaman pengguna
         return redirect('pengguna');
     }
 
@@ -84,10 +93,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $pengguna)
     {
+        // Mengubah kolom Role
         $pengguna->update([
             'role' => $request->role,
         ]);
+
+        // Menampilkan Alert Success
         Alert::toast('Berhasil Mengubah Role', 'success');
+
+        // Dialihkan ke halaman Pengguna
         return redirect('pengguna');
     }
 
@@ -99,8 +113,13 @@ class UserController extends Controller
      */
     public function destroy(User $pengguna)
     {
+        // Menghapus data yang ada dalam tabel user
         $pengguna->delete();
+
+        // Menampilkan alert sukses
         Alert::toast('Berhasil Menghapus Data Pengguna', 'success');
+
+        // Dialihkan ke halaman pengguna
         return redirect('pengguna');
     }
 }

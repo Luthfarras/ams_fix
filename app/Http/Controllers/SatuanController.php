@@ -46,14 +46,27 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_satuan' => 'required|unique:satuans',
         ]);
+
+        // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if ($validator->fails()) {
+            // Menampilkan Alert Error
             Alert::toast('Gagal Menyimpan Data Satuan', 'error');
-        }else {
+
+        }
+        
+        // Jika berhasil
+        else {
+            // Mengambil seluruh data yang ada dalam form
             $data = $request->all();
+
+            // Menyimpan isi data ke dalam database
             Satuan::create($data);
+
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Menyimpan Data Satuan', 'success');
         }
 
@@ -92,14 +105,26 @@ class SatuanController extends Controller
      */
     public function update(Request $request, Satuan $satuan)
     {
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_satuan' => 'required|unique:satuans',
         ]);
+
+        // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if ($validator->fails()) {
             Alert::toast('Gagal Mengubah Data Satuan', 'error');
-        }else {
+        }
+        
+        // Jika berhasil
+        else {
+
+            // Mengambil seluruh data yang ada dalam form
             $data = $request->all();
+
+            // Menupdate data ke dalam database
             $satuan->update($data);
+
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Mengubah Data Satuan', 'success');
         }
 
@@ -115,8 +140,13 @@ class SatuanController extends Controller
      */
     public function destroy(Satuan $satuan)
     {
+        // Menghapus data yang ada dalam tabel satuan
         $satuan->delete();
+
+         // Menampilkan Alert Success
         Alert::toast('Berhasil Menghapus Data Satuan', 'success');
+
+        // Dialihkan ke Halaman Satuan
         return redirect('satuan');
     }
 }

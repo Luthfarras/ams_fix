@@ -24,11 +24,16 @@ class SetoranController extends Controller
      */
     public function index()
     {
-        // Mengambil seluruh data yang ada dalam tabel Distributor
+        // Mengambil seluruh data yang ada dalam tabel Setoran
         $setoran = Setoran::all();
 
+        // Mengambil seluruh data yang ada dalam tabel Customer
         $cust = Customer::all();
+
+        // Mengambil Data pada tabel Customer dengan kolom nama customer dan idnya saja
         $customer = DB::table('customers')->select('nama_customer', 'id')->get();
+
+        // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
 
         // Masuk ke halaman home dengan membawa data yang sudah dideklarasikan
@@ -53,7 +58,10 @@ class SetoranController extends Controller
      */
     public function store(Request $request)
     {
+        // Mengambil data yang ada di dalam form
         $data = $request->all();
+
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'kode_dep' => 'required|unique:setorans',
             'customer_id' => 'required',
@@ -66,8 +74,12 @@ class SetoranController extends Controller
 
          // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if ($validator->fails()) {
+            // Menampilkan Alert Error
             Alert::toast('Gagal Menyimpan Data Setoran', 'error');
-        }else {
+        }
+        
+        // Jika berhasil
+        else {
             // Sebagai Variabel penampung nama file
             $newName = '';
 
@@ -84,9 +96,13 @@ class SetoranController extends Controller
                 $isi = $request->file('foto_dep')->storeAs('img', $newName);
             };
     
+            // Kolom Foto akan diisi dengan variabel $isi
             $data['foto_dep'] = $isi;
+
+            // Data akan dibuat ke tabel Setoran
             Setoran::create($data);
     
+            // Tabel Penjualan juga akan dibuat berdasarkan data dan kolom yang ditentukan sendiri
             Penjualan::create([
                 'customer_id' => $request->customer_id,
                 'tanggal_kirim' => $request->tanggal_dep,
@@ -94,8 +110,12 @@ class SetoranController extends Controller
                 'jumlah' => $request->jumlah_masuk,
                 'keterangan' => $request->ket_dep,
             ]);
+
+            // Menampilkan Alert Success
             Alert::toast('Berhasil Menyimpan Data Setoran', 'success');
         }
+
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman setoran
         return redirect('setoran');
     }
 
@@ -164,6 +184,8 @@ class SetoranController extends Controller
 
         // Menampilkan Alert Sukses
         Alert::toast('Berhasil Mengubah Data Setoran', 'success');
+
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman Setoran
         return redirect('setoran');
     }
 
@@ -175,9 +197,16 @@ class SetoranController extends Controller
      */
     public function destroy(Setoran $setoran)
     {
+        // Foto yang didalam database akan dihapus 
         Storage::delete($setoran->foto_dep);
+
+        // Menghapus data yang ada dalam tabel setoran
         $setoran->delete();
+
+         // Menampilkan Alert Success
         Alert::toast('Berhasil Menghapus Data Setoran', 'success');
+
+        // Dialihkan ke halaman setoran
         return redirect('setoran');
     }
 
