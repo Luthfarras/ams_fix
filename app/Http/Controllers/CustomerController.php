@@ -123,7 +123,6 @@ class CustomerController extends Controller
         
         // Jika Berhasil
         else {
-
             // Menampilkan Alert Success
             Alert::toast('Berhasil Mengubah Data Customer', 'success');
             

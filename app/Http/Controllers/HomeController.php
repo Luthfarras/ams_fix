@@ -33,19 +33,39 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Data yang ada dalam Tabel Customer akan dihitung seluruh datanya
         $customer = Customer::all()->count();
+
+        // Data yang ada dalam Tabel Distributor akan dihitung seluruh datanya
         $distributor = Distributor::all()->count();
+
+        // Data yang ada dalam Tabel Barang akan dihitung seluruh datanya
         $barang = Barang::all()->count();
-        $stok = DB::table('barangs')->select('stok')->sum('stok');
-        $penjualan = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+
+        // Data yang ada dalam Tabel Faktur akan dihitung seluruh datanya
         $faktur = Faktur::all()->count();
+
+        // Menjumlahkan tabel stok pada kolom harga stok
+        $stok = DB::table('barangs')->select('stok')->sum('stok');
+
+        // Menjumlahkan tabel penjualan pada kolom harga stok
+        $penjualan = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+        // Jika Role yang login adalah Owner
         if (Auth::user()->role == 'Owner') {
+            // Menampilkan seluruh data dalam tabel Owner
             $notes = Notes::all();
-        }else {
+        } 
+        // Selain itu
+        else {
+            // Hanya menampilkan data untuk yang login saja
             $notes = Notes::where('user_id', Auth::user()->id)->get();
         }
+
+        // Masuk ke halaman home dengan membawa data yang sudah dideklarasikan
         return view('home', compact('customer','distributor', 'barang', 'stok', 'penjualan', 'faktur', 'profil', 'notes'));
     }
 

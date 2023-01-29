@@ -79,7 +79,7 @@ class BarangController extends Controller
             'tgl_kadaluarsa' => 'required',
         ]);
 
-        // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
+        // Jika Validator yang dideklarasikan ada salah satu yang gagal
         if($validator->fails()){
             Alert::toast('Gagal Menyimpan Data Barang', 'error');
         } 
@@ -142,9 +142,8 @@ class BarangController extends Controller
             'tgl_kadaluarsa' => 'required',
         ]);
 
-         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal 
         if($validator->fails()){
-
             // Menampilkan Alert Error
             Alert::toast('Gagal Mengubah Data Barang', 'error');
         } 

@@ -21,10 +21,16 @@ class PajakController extends Controller
      */
     public function index()
     {
+        // Mengambil seluruh data yang ada dalam tabel Pajak
         $pajak = Pajak::all();
+
+        // Mengambil Data pada tabel Customer dengan kolom nama customer dan idnya saja
         $customer = DB::table('customers')->select('nama_customer', 'id')->get();
+        
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+        // Masuk ke halaman home dengan membawa data yang sudah dideklarasikan
         return view('menu.pajak', compact('pajak', 'customer', 'profil'));
     }
 
@@ -63,6 +69,7 @@ class PajakController extends Controller
             Pajak::create($request->all());
         }
 
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman pajak
         return redirect('pajak');
     }
 
@@ -117,7 +124,10 @@ class PajakController extends Controller
 
     public function printPajak()
     {
+        // Mengambil seluruh data yang ada dalam tabel Pajak
         $pajak = Pajak::all();
+
+        // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.pajakprint', ['pajak' => $pajak]);
         
         return $pdf->setPaper('a4', 'potrait')->stream('Data Laporan Faktur Pajak - '. Carbon::now(). '.pdf');

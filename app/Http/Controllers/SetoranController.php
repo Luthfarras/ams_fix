@@ -24,10 +24,14 @@ class SetoranController extends Controller
      */
     public function index()
     {
+        // Mengambil seluruh data yang ada dalam tabel Distributor
         $setoran = Setoran::all();
+
+        $cust = Customer::all();
         $customer = DB::table('customers')->select('nama_customer', 'id')->get();
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
-        $cust = Customer::all();
+
+        // Masuk ke halaman home dengan membawa data yang sudah dideklarasikan
         return view('menu.setoran', compact('cust','setoran', 'customer', 'profil'));
     }
 
@@ -64,10 +68,19 @@ class SetoranController extends Controller
         if ($validator->fails()) {
             Alert::toast('Gagal Menyimpan Data Setoran', 'error');
         }else {
+            // Sebagai Variabel penampung nama file
             $newName = '';
+
+            // Jika didalam form terdapat file foto
             if($request->file('foto_dep')){
+
+                // Mengambil ekstensi original foto
                 $extension = $request->file('foto_dep')->getClientOriginalExtension();
+
+                // Dilakukan perubahan nama file yang diambil dari Nama, Timestamp dan Ekstensi
                 $newName = $request->kode_dep.'-'.now()->timestamp.'.'.$extension;
+
+                 // Menyimpan file ke dalam folder img dengan nama yang sudah dideklarasikan
                 $isi = $request->file('foto_dep')->storeAs('img', $newName);
             };
     
@@ -117,30 +130,39 @@ class SetoranController extends Controller
      */
     public function update(Request $request, Setoran $setoran)
     {
+        // Mengambil data yang ada dalam seluruh form
         $data = $request->all();
-        
+
+        // Sebagai Variabel Penampung Nama File
         $newName = '';
+
         // Jika foto akan diganti
         if ($request->file('foto_dep')) {   
             // Foto yang didalam database akan dihapus 
             Storage::delete($setoran->foto_dep);
             
-            // mengambil ekstensi dari foto yang diinput
+            // Mengambil ekstensi dari foto yang diinput
             $extension = $request->file('foto_dep')->getClientOriginalExtension();
 
             // Mengganti nama file dengan Nama - timestamp - dan ekstensi
             $newName = $request->kode_dep . '-' . now()->timestamp . '.' . $extension;
 
-            // Setelah itu foto disimpan
+            // Menyimpan file ke dalam folder img dengan nama yang sudah dideklarasikan
             $isi = $request->file('foto_dep')->storeAs('img', $newName);
-
+            
+            // Kolom foto akan diisi oleh variabel $isi
             $data['foto'] = $isi;
-
+            
+            // Setelah itu dilakukan update data
             $setoran->update($data);
-        } else {
+        } 
+        // Jika tidak ada pergantian foto, maka foto diisi dengan foto yang sudah ada dalam database
+        else {
             $data['foto_dep'] = $setoran->foto_dep;
             $setoran->update($data);
         }
+
+        // Menampilkan Alert Sukses
         Alert::toast('Berhasil Mengubah Data Setoran', 'success');
         return redirect('setoran');
     }
@@ -161,8 +183,12 @@ class SetoranController extends Controller
 
     public function printSetoran()
     {
+        // Mengambil seluruh data yang ada dalam tabel Setoran
         $setoran = Setoran::all();
+
+        // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.setoranprint', ['setoran' => $setoran]);
+
         // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Setoran - '. Carbon::now(). '.pdf');
     }

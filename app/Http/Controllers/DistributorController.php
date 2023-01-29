@@ -20,9 +20,13 @@ class DistributorController extends Controller
      */
     public function index()
     {
+        // Mengambil seluruh data yang ada dalam tabel Distributor
         $dist = Distributor::all();
+
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+        // Masuk ke halaman distributor dengan membawa data yang sudah di deklarasikan
         return view('pendataan.distributor', compact('dist', 'profil'));
     }
 
@@ -44,6 +48,8 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_distributor' => 'required',
             'kode_distributor' => 'required|unique:distributors',
@@ -51,14 +57,22 @@ class DistributorController extends Controller
             'alamat_distributor' => 'required',
         ]);
 
-         // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
+         // Jika Validator yang dideklarasikan ada salah satu yang gagal 
         if($validator->fails()){
+            // Menampilkan Alert Error
             Alert::toast('Gagal Menyimpan Data Distributor', 'error');
-        } else {
+        } 
+        
+        // Jika berhasil
+        else {
+            // Menampilkan Alert Sukses
             Alert::toast('Berhasil Menyimpan Data Distributor', 'success');
+
+            // Dan Data akan disimpan ke dalam database
             Distributor::create($request->all());
         }
 
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman distributor
         return redirect('distributor');
     }
 
@@ -93,6 +107,8 @@ class DistributorController extends Controller
      */
     public function update(Request $request, Distributor $distributor)
     {
+
+        // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_distributor' => 'required',
             'kode_distributor' => 'required|unique:distributors',
@@ -102,12 +118,21 @@ class DistributorController extends Controller
 
          // Jika Validator yang dideklarasikan ada salah satu yang gagal maka akan error
         if($validator->fails()){
+            // Menampilkan Alert Error
             Alert::toast('Gagal Mengubah Data Distributor', 'error');
-        } else {
+
+        } 
+
+        // Jika berhasil
+        else {
+            // Menampilkan Alert Sukses
             Alert::toast('Berhasil Mengubah Data Distributor', 'success');
+
+            // Dan Data akan diupdate ke dalam database
             $distributor->update($request->all());
         }
 
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman distributor
         return redirect('distributor');
     }
 
@@ -119,14 +144,23 @@ class DistributorController extends Controller
      */
     public function destroy(Distributor $distributor)
     {
+        // Menghapus data yang ada dalam tabel Distributor
         $distributor->delete();
+
+        // Menampilkan Alert Sukses
         Alert::toast('Berhasil Menghapus Data Distributor', 'success');
+
+        // Dialihkan ke halaman distributor
         return redirect('distributor');
     }
 
     public function printDist()
     {
+
+        // Mengambil seluruh data yang ada dalam tabel distributor 
         $distributor = Distributor::all();
+
+        // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.distprint', ['distributor' => $distributor]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan

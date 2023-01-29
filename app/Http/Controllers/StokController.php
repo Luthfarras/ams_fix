@@ -23,12 +23,22 @@ class StokController extends Controller
      */
     public function index()
     {
+        // Mengambil seluruh data yang ada dalam tabel Stok
         $stok = Stok::all();
+
+        // Mengambil seluruh data yang ada dalam tabel Barang
         $barang = Barang::all();
+
+        // Mengambil seluruh data yang ada dalam tabel Distributor
         $dist = Distributor::all();
+
+
         $jumlah = DB::table('stoks')->select('stok_masuk')->sum('stok_masuk');
+
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+        // Masuk ke halaman home dengan membawa data yang sudah dideklarasikan
         return view('menu.stok', compact('stok', 'barang', 'dist', 'jumlah', 'profil'));
     }
 
@@ -139,8 +149,12 @@ class StokController extends Controller
 
     public function printStok()
     {
+        // Mengambil seluruh data yang ada dalam tabel Stok
         $stok = Stok::all();
+
+        // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.stokprint', ['stok' => $stok]);
+
         // PDF akan ditampilkan secara stream dengan ukuran A4-potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Data Stok - '. Carbon::now(). '.pdf');
     }

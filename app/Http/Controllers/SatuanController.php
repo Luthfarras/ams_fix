@@ -18,9 +18,13 @@ class SatuanController extends Controller
      */
     public function index()
     {
+        // Mengambil seluruh data yang ada dalam tabel Distributor
         $satuan = Satuan::all();
+
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
+
+        // Masuk ke halaman home dengan membawa data yang sudah dideklarasikan
         return view('pendataan.satuan', compact('satuan', 'profil'));
     }
 
@@ -52,6 +56,8 @@ class SatuanController extends Controller
             Satuan::create($data);
             Alert::toast('Berhasil Menyimpan Data Satuan', 'success');
         }
+
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman satuan
         return redirect('satuan');
     }
 
@@ -96,6 +102,8 @@ class SatuanController extends Controller
             $satuan->update($data);
             Alert::toast('Berhasil Mengubah Data Satuan', 'success');
         }
+
+        // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman satuan
         return redirect('satuan');
     }
 
