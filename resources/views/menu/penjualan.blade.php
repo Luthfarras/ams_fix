@@ -87,14 +87,15 @@
                                         </svg>
                                     </span>
                                 <!--end::Svg Icon-->Cetak Data</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    @foreach ($tahuns as $item)
-                                        @php
-                                            $year = date('Y', strtotime($item->tanggal_kirim));
-                                        @endphp
-                                    <li><a class="dropdown-item" href="#">{{ $year }}</a></li>
-                                    @endforeach
-                                </ul>
+                                @php
+                                    $now = date('Y');
+                                @endphp
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        @for ($i = 2022; $i <= $now; $i++)
+                                        <li><a class="dropdown-item" href="#">{{ $i }}</a></li>
+                                        @endfor
+                                    </ul>
+                                    
                                 <!--end::Export-->
                             </div>
                             <!--end::Toolbar-->

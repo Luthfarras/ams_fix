@@ -29,11 +29,8 @@ class PenjualanController extends Controller
         // Menjumlahkan tabel penjualan pada kolom harga jumlah
         $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
 
-        // DB::table('penjualans')->where(DB::raw(YEAR('tanggal_kirim')), $year);
-        $tahuns = $penjualan->unique('tanggal_kirim');
-
         // Masuk ke halaman home dengan membawa data yang sudah dideklarasikan
-        return view('menu.penjualan', compact('penjualan', 'profil', 'jumlah', 'tahuns'));
+        return view('menu.penjualan', compact('penjualan', 'profil', 'jumlah'));
     }
 
     /**
@@ -168,8 +165,8 @@ class PenjualanController extends Controller
         'jumlah' => $jumlah, 
         'result' => $result,
     ]);
-        dd($tahuns);
+        
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
-        // return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
     }
 }
