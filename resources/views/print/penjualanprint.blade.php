@@ -122,7 +122,11 @@
 
 
     <div class="page-break">
-        <h1 class="text-center">Data Penjualan Tahunan</h1>
+        @php
+            setlocale(LC_ALL, 'IND');
+            $tahun = strftime('%Y');
+        @endphp
+        <h1 class="text-center">Data Penjualan Tahunan {{ $tahun }}</h1>
         <table class="table table-bordered">
             <thead>
                 <th>Bulan</th>
@@ -131,14 +135,19 @@
             <tbody>
                 @for ($i = 1; $i <= 12; $i++)
                         @php
-                            $month = date('F', mktime(0, 0, 0, $i, 10)); 
+                            setlocale(LC_ALL, 'IND');
+                            $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
                         @endphp        
                     <tr>
                         <td>{{ $month }}</td>
-                        <td class="fw-bold">{{ $result[$i] }}</td>
+                        <td class="fw-bold">Rp {{ number_format($result[$i], 0, ',', '.') }}</td>
                     </tr>
                     @endfor
             </tbody>
+            <tfoot>
+                <th>Jumlah</th>
+                <th>Rp {{ number_format($jumlah, 0, ',', '.') }}</th>
+            </tfoot>
         </table>
     </div>
 </body>

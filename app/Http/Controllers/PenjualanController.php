@@ -145,6 +145,8 @@ class PenjualanController extends Controller
 
         // $januari = DB::table('penjualans')->select('tanggal_kirim')->where('tanggal_kirim', '<=', Carbon::createFromDate(2023, 1, 31))->sum('jumlah');
 
+        $tahunini = Penjualan::where('tanggal_keluar', '<=', Carbon::createFromDate(2023, 12, 31));
+
         foreach($penjualan as $item){
             for ($i=1; $i <= 12 ; $i++) { 
                 $result[$i] = 0;
