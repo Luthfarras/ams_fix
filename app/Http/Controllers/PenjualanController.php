@@ -132,17 +132,20 @@ class PenjualanController extends Controller
     public function printPenjualan($id)
     {
         // Mengambil seluruh data yang ada dalam tabel Penjualan
-        $penjualan = Penjualan::all();
+        $penjualan = Penjualan::where(DB::raw('YEAR(tanggal_kirim)'), $id)->get()->sortBy('tanggal_kirim');
+
         $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->get();
 
         // Menghitung jumlah Status Lunas
-        $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
+        $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->count();
 
         // Menghitung jumlah Status Belum Lunas
-        $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
+        $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->count();
 
         // Menjumlahkan tabel penjualan pada kolom harga jumlah
         $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+        
+        $pertahun = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->sum('jumlah');
 
         foreach($year as $item){
             for ($i=1; $i <= 12 ; $i++) { 
@@ -155,13 +158,27 @@ class PenjualanController extends Controller
         }
 
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
-        $pdf = Pdf::loadView('print.penjualanprint', [
-        'penjualan' => $penjualan, 
-        'lunas' => $lunas, 
-        'belum' => $belum, 
-        'jumlah' => $jumlah, 
-        'result' => $result,
-    ]);
+        if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists()) {
+            $pdf = Pdf::loadView('print.penjualanprint', [
+            'penjualan' => $penjualan, 
+            'lunas' => $lunas, 
+            'belum' => $belum, 
+            'jumlah' => $jumlah, 
+            'pertahun' => $pertahun,
+            'id' => $id,
+            'result' => $result,
+        ]);
+           
+        } else {
+            $pdf = Pdf::loadView('print.penjualanprint', [
+                'penjualan' => $penjualan, 
+                'lunas' => $lunas, 
+                'belum' => $belum, 
+                'jumlah' => $jumlah, 
+                'pertahun' => $pertahun,
+                'id' => $id,
+            ]);
+        }
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');

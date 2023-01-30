@@ -54,102 +54,105 @@
             display: grid;
             grid-auto-columns: 10%;
         }
+        .kosong {
+            text-align: center;
+            margin-top: 30%;
+            font-size: 60px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1 class="text-center">Data Penjualan</h1>
-            <p class="text-center">
-                @php
-                    setlocale(LC_ALL, 'IND');
-                    $data = strftime('%A, %d %B %Y');
-                @endphp
-                 Dicetak : <span class="text-warna">{{ $data }}</span>
-            </p>
-        </header>
-        <table class="table table-bordered">
-            <thead>
-                <th class="nopenj">No</th>
-                <th>Kode Penjualan</th>
-                <th class="cust">Nama Customer</th>
-                <th>Tanggal Kirim</th>
-                <th>Jumlah</th>
-                <th>Keterangan</th>
-                <th>Status</th>
-            </thead>
-            <tbody>
-                @foreach ($penjualan as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->kode }}</td>
-                        <td>{{ $item->customer->nama_customer }}</td>
-                        @php
-                            setlocale(LC_ALL, 'IND');
-                            $tanggal = date_create($item->tanggal_kirim);
-                            $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
-                        @endphp
-                        <td>{{ $tgl }}</td>
-                        <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
-                        <td>{{ $item->keterangan }}</td>
-                        @if ($item->status == 'Belum Lunas')
-                            <td class="text-warna">{{ $item->status }}</td>
-                        @else 
-                            <td>{{ $item->status }}</td>
-                        @endif
+    @if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists())
+        <div class="container">
+            <header>
+                <h1 class="text-center">Data Penjualan</h1>
+                <p class="text-center">
+                    @php
+                        setlocale(LC_ALL, 'IND');
+                        $data = strftime('%A, %d %B %Y');
+                    @endphp
+                    Dicetak : <span class="text-warna">{{ $data }}</span>
+                </p>
+            </header>
+            <table class="table table-bordered">
+                <thead>
+                    <th class="nopenj">No</th>
+                    <th>Kode Penjualan</th>
+                    <th class="cust">Nama Customer</th>
+                    <th>Tanggal Kirim</th>
+                    <th>Jumlah</th>
+                    <th>Keterangan</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+                    @foreach ($penjualan as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->kode }}</td>
+                            <td>{{ $item->customer->nama_customer }}</td>
+                            @php
+                                setlocale(LC_ALL, 'IND');
+                                $tanggal = date_create($item->tanggal_kirim);
+                                $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
+                            @endphp
+                            <td>{{ $tgl }}</td>
+                            <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
+                            <td>{{ $item->keterangan }}</td>
+                            @if ($item->status == 'Belum Lunas')
+                                <td class="text-warna">{{ $item->status }}</td>
+                            @else 
+                                <td>{{ $item->status }}</td>
+                            @endif
+                        </tr>
+                        
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr style="border: 2px solid;">
+                        <th colspan="4">Jumlah</th>
+                        <th>Rp {{ number_format($pertahun, 0, ',', '.') }}</th>
+                        <th colspan="2"></th>
                     </tr>
-                    
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr style="border: 2px solid;">
-                    <th colspan="4">Jumlah</th>
-                    <th>Rp {{ number_format($jumlah, 0, ',', '.') }}</th>
-                    <th colspan="2"></th>
-                </tr>
-                <tr style="border: 2px solid;">
-                    <th colspan="6" class="text-warna">Belum Lunas</th>
-                    <th class="text-warna">{{ $belum }}</th>
-                </tr>
-                <tr style="border: 2px solid;">
-                    <th colspan="6">Sudah Lunas</th>
-                    <th>{{ $lunas }}</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-
-
-    <div class="page-break">
-        @php
-            setlocale(LC_ALL, 'IND');
-            $tahun = strftime('%Y');
-        @endphp
-        <h1 class="text-center">Data Penjualan Tahunan {{ $tahun }}</h1>
-        <table class="table table-bordered">
-            <thead>
-                <th>Bulan</th>
-                <th class="cust">Total</th>
-            </thead>
-            <tbody>
-                @for ($i = 1; $i <= 12; $i++)
-                        @php
-                            setlocale(LC_ALL, 'IND');
-                            $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
-                        @endphp        
-                    <tr>
-                        <td>{{ $month }}</td>
-                        <td class="fw-bold">Rp {{ number_format($result[$i], 0, ',', '.') }}</td>
+                    <tr style="border: 2px solid;">
+                        <th colspan="6" class="text-warna">Belum Lunas</th>
+                        <th class="text-warna">{{ $belum }}</th>
                     </tr>
-                    @endfor
-            </tbody>
-            <tfoot>
-                <th>Jumlah</th>
-                <th>Rp {{ number_format($jumlah, 0, ',', '.') }}</th>
-            </tfoot>
-        </table>
-    </div>
+                    <tr style="border: 2px solid;">
+                        <th colspan="6">Sudah Lunas</th>
+                        <th>{{ $lunas }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="page-break">
+            <h1 class="text-center">Data Penjualan Tahunan {{ $id }}</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Bulan</th>
+                    <th class="cust">Total</th>
+                </thead>
+                <tbody>
+                    @for ($i = 1; $i <= 12; $i++)
+                            @php
+                                setlocale(LC_ALL, 'IND');
+                                $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
+                            @endphp        
+                        <tr>
+                            <td>{{ $month }}</td>
+                            <td class="fw-bold">Rp {{ number_format($result[$i], 0, ',', '.') }}</td>
+                        </tr>
+                        @endfor
+                </tbody>
+                <tfoot>
+                    <th>Jumlah</th>
+                    <th>Rp {{ number_format($pertahun, 0, ',', '.') }}</th>
+                </tfoot>
+            </table>
+        </div>
+    @else
+    <h1 class="kosong">DATA TIDAK DITEMUKAN</h1>
+    @endif
 </body>
 
 </html>
