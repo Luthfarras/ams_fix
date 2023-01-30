@@ -158,12 +158,12 @@ class DistributorController extends Controller
     {
 
         // Mengambil seluruh data yang ada dalam tabel distributor 
-        $distributor = Distributor::all();
+        $distributor = Distributor::all()->sortBy('nama_distributor');
 
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.distprint', ['distributor' => $distributor]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
-        return $pdf->setPaper('a4', 'potrait')->stream('Data Distributor - '. Carbon::now(). '.pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Distributor - '. Carbon::now(). '.pdf');
     }
 }

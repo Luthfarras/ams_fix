@@ -27,10 +27,10 @@ class StokController extends Controller
         $stok = Stok::all();
 
         // Mengambil seluruh data yang ada dalam tabel Barang
-        $barang = Barang::all();
+        $barang = Barang::all()->sortBy('nama_barang');
 
         // Mengambil seluruh data yang ada dalam tabel Distributor
-        $dist = Distributor::all();
+        $dist = Distributor::all()->sortBy('nama_distributor');
 
 
         $jumlah = DB::table('stoks')->select('stok_masuk')->sum('stok_masuk');
@@ -161,7 +161,7 @@ class StokController extends Controller
     public function printStok()
     {
         // Mengambil seluruh data yang ada dalam tabel Stok
-        $stok = Stok::all();
+        $stok = Stok::all()->sortBy('tanggal_masuk');
 
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.stokprint', ['stok' => $stok]);

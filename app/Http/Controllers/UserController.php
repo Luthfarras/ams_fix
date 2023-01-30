@@ -122,4 +122,27 @@ class UserController extends Controller
         // Dialihkan ke halaman pengguna
         return redirect('pengguna');
     }
+
+    public function gantiPassword(Request $request, User $pengguna)
+    {
+        // Jika Form Password diganti
+        if($request->password){
+            // Password akan diubah dengan hash
+            $pengguna->update([
+                'password' => Hash::make($request->password)
+            ]);
+        } 
+        // Jika TidaK
+        else {
+            // Password akan diisi dengan yang sudah ada
+            $pengguna->update([
+                'password' => $pengguna->password
+            ]);
+        }
+        // Menampilkan Alert Success
+        Alert::toast('Berhasil Mengubah Password', 'success');
+
+        // Dialihkan ke halaman profil
+        return redirect('profil');
+    }
 }

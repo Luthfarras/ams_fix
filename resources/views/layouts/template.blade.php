@@ -486,6 +486,7 @@
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/new-address.js') }}"></script>
 		<script src="{{ asset('met/dist/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+		<script src="{{ asset('met/src/js/custom/authentication/sign-up/general.js') }}"></script>
 		<script>
 			$('#logout').on("click", function() {
 				swal.fire({

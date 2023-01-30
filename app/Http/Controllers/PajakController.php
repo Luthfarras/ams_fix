@@ -25,7 +25,7 @@ class PajakController extends Controller
         $pajak = Pajak::all();
 
         // Mengambil Data pada tabel Customer dengan kolom nama customer dan idnya saja
-        $customer = DB::table('customers')->select('nama_customer', 'id')->get();
+        $customer = DB::table('customers')->select('nama_customer', 'id')->get()->sortBy('nama_customer');
         
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
@@ -55,7 +55,7 @@ class PajakController extends Controller
 
         // Membuat Validdasi
         $validator = Validator::make($request->all(), [
-            'kode_laporan' => 'required|unique:customers',
+            'kode_laporan' => 'required|unique:pajaks',
             'customer_id' => 'required',
             'tanggal_rep' => 'required',
             'no_fakpajak' => 'required',
@@ -149,7 +149,7 @@ class PajakController extends Controller
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.pajakprint', ['pajak' => $pajak]);
         
-        // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
-        return $pdf->setPaper('a4', 'potrait')->stream('Data Laporan Faktur Pajak - '. Carbon::now(). '.pdf');
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Laporan Faktur Pajak - '. Carbon::now(). '.pdf');
     }
 }

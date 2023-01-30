@@ -28,7 +28,7 @@ class DetailFakturController extends Controller
         $barang = Barang::all();
         
         // Mengambil seluruh data yang ada pada tabel Customer
-        $cust = Customer::all();
+        $cust = Customer::all()->sortBy('nama_customer');
         
         // Mengambil seluruh data yang ada pada tabel Stok
         $stok = Stok::all();

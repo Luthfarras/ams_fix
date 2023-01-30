@@ -19,7 +19,7 @@ class SatuanController extends Controller
     public function index()
     {
         // Mengambil seluruh data yang ada dalam tabel Distributor
-        $satuan = Satuan::all();
+        $satuan = Satuan::all()->sortBy('nama_satuan');
 
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();

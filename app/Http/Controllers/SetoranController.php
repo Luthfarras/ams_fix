@@ -31,7 +31,7 @@ class SetoranController extends Controller
         $cust = Customer::all();
 
         // Mengambil Data pada tabel Customer dengan kolom nama customer dan idnya saja
-        $customer = DB::table('customers')->select('nama_customer', 'id')->get();
+        $customer = DB::table('customers')->select('nama_customer', 'id')->get()->sortBy('nama_customer');
 
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
@@ -93,10 +93,13 @@ class SetoranController extends Controller
 
                  // Menyimpan file ke dalam folder img dengan nama yang sudah dideklarasikan
                 $isi = $request->file('foto_dep')->storeAs('img', $newName);
+                
+                // Kolom Foto akan diisi dengan variabel $isi
+                $data['foto_dep'] = $isi;
+            } else {
+                $data['foto_dep'] = "-";
             };
     
-            // Kolom Foto akan diisi dengan variabel $isi
-            $data['foto_dep'] = $isi;
 
             // Data akan dibuat ke tabel Setoran
             Setoran::create($data);
@@ -218,6 +221,6 @@ class SetoranController extends Controller
         $pdf = Pdf::loadView('print.setoranprint', ['setoran' => $setoran]);
 
         // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
-        return $pdf->setPaper('a4', 'potrait')->stream('Data Setoran - '. Carbon::now(). '.pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Setoran - '. Carbon::now(). '.pdf');
     }
 }

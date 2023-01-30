@@ -34,6 +34,9 @@
             border-radius: 6px;
             font-weight: bold;
         }
+        .text-warna {
+            color: red;
+        }
     </style>
 </head>
 
@@ -46,10 +49,10 @@
                     setlocale(LC_ALL, 'IND');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
-                Dicetak : <span class="badge-blue">{{ $data }}</span>
+                Dicetak : <span class="text-warna">{{ $data }}</span>
             </p>
         </header>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="width: 100%">
             <thead>
                 <th>No</th>
                 <th>Kode Setoran</th>
@@ -75,7 +78,11 @@
                         <td>{{ $item->jumlah_masuk }}</td>
                         <td>{{ $item->jumlah_keluar }}</td>
                         <td>{{ $item->ket_dep }}</td>
+                        @if ($item->foto_dep == "-")
+                            <td>-</td>
+                        @else
                         <td><img src="{{ public_path('storage/' .$item->foto_dep) }}" width="100px" alt="" srcset=""></td>
+                        @endif
                     </tr>
                     
                 @endforeach

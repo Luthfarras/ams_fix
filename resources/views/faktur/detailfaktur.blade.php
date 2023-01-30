@@ -404,7 +404,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" id="tanggalisi" class="form-control form-control-solid ps-12" name="tanggal_keluar" placeholder="Select a date" required/>
+                                <input type="text" id="tanggalisi" class="form-control form-control-solid ps-12" name="tanggal_keluar" placeholder="Pilih Tanggal..." required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>

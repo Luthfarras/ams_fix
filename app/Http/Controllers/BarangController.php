@@ -26,7 +26,7 @@ class BarangController extends Controller
         $barang = Barang::all();
 
         // Mengambil seluruh Data pada tabel Satuan
-        $satuan = Satuan::all();
+        $satuan = Satuan::all()->sortBy('nama_satuan');
 
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
@@ -68,7 +68,7 @@ class BarangController extends Controller
         // Membuat validasi Data
         $validator = Validator::make($request->all(), [
             'kode_barang' => 'required|unique:barangs',
-            'kode_harga' => 'required|unique:barang',
+            'kode_harga' => 'required|unique:barangs',
             'nama_barang' => 'required',
             'harga_jual' => 'required',
             'qty_barang' => 'required',
@@ -77,6 +77,9 @@ class BarangController extends Controller
             'harga_netto' => 'required',
             'ket_barang' => 'required',
             'tgl_kadaluarsa' => 'required',
+        ], [
+            'kode_harga.unique' => 'Kode Harga sudah ada',
+            'kode_barang.unique' => 'Kode Barang sudah ada'
         ]);
 
         // Jika Validator yang dideklarasikan ada salah satu yang gagal
@@ -131,7 +134,7 @@ class BarangController extends Controller
         // Membuat Validasi Data
         $validator = Validator::make($request->all(), [
             'kode_barang' => 'required|unique:barangs',
-            'kode_harga' => 'required|unique:barang',
+            'kode_harga' => 'required|unique:barangs',
             'nama_barang' => 'required',
             'harga_jual' => 'required',
             'qty_barang' => 'required',
@@ -181,7 +184,7 @@ class BarangController extends Controller
     public function printBarang()
     {
         // Menampilkan seluruh data dalam tabel barang
-        $barang = Barang::all();
+        $barang = Barang::all()->sortBy('nama_barang');
 
         // Menjumlahkan tabel barang pada kolom harga stok
         $jumlahstok = DB::table('barangs')->select('stok')->sum('stok');

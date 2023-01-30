@@ -21,7 +21,7 @@ class PenjualanController extends Controller
     public function index()
     {
         // Mengambil seluruh data yang ada dalam tabel Penjualan
-        $penjualan = Penjualan::all();
+        $penjualan = Penjualan::all()->sortBy('tanggal_kirim');
 
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
@@ -132,10 +132,19 @@ class PenjualanController extends Controller
     public function printPenjualan()
     {
         // Mengambil seluruh data yang ada dalam tabel Penjualan
-        $penjualan = Penjualan::all();
+        $penjualan = Penjualan::all()->sortBy('tanggal_kirim');
+        
+        // Menghitung jumlah Status Lunas
+        $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
+
+        // Menghitung jumlah Status Belum Lunas
+        $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
+
+        // Menjumlahkan tabel penjualan pada kolom harga jumlah
+        $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
 
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
-        $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan]);
+        $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan, 'lunas' => $lunas, 'belum' => $belum, 'jumlah' => $jumlah]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
