@@ -21,7 +21,7 @@
         h1 {
             text-align: center;
         }
-        p {
+        .text-center {
             text-align: center;
             margin-top: -15px
         }
@@ -46,6 +46,14 @@
         .page-break {
             page-break-before: always;
         }
+        .text-warna {
+            color: red;
+        }
+        .footer {
+            margin-top: 2%;
+            display: grid;
+            grid-auto-columns: 10%;
+        }
     </style>
 </head>
 
@@ -58,7 +66,7 @@
                     setlocale(LC_ALL, 'IND');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
-                 Dicetak : <span class="badge-blue">{{ $data }}</span>
+                 Dicetak : <span class="text-warna">{{ $data }}</span>
             </p>
         </header>
         <table class="table table-bordered">
@@ -86,7 +94,7 @@
                         <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
                         <td>{{ $item->keterangan }}</td>
                         @if ($item->status == 'Belum Lunas')
-                            <td>{{ $item->status }}</td>
+                            <td class="text-warna">{{ $item->status }}</td>
                         @else 
                             <td>{{ $item->status }}</td>
                         @endif
@@ -94,8 +102,24 @@
                     
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr style="border: 2px solid;">
+                    <th colspan="4">Jumlah</th>
+                    <th>Rp {{ number_format($jumlah, 0, ',', '.') }}</th>
+                    <th colspan="2"></th>
+                </tr>
+                <tr style="border: 2px solid;">
+                    <th colspan="6" class="text-warna">Belum Lunas</th>
+                    <th class="text-warna">{{ $belum }}</th>
+                </tr>
+                <tr style="border: 2px solid;">
+                    <th colspan="6">Sudah Lunas</th>
+                    <th>{{ $lunas }}</th>
+                </tr>
+            </tfoot>
         </table>
     </div>
+
 
     <div class="page-break">
         <h1 class="text-center">Data Penjualan Tahunan</h1>

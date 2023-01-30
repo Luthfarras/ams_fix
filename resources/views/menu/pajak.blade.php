@@ -329,7 +329,7 @@
                                                                 <!--end::Svg Icon-->
                                                                 <!--end::Icon-->
                                                                 <!--begin::Datepicker-->
-                                                                <input type="text" id="tanggalisi" required class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" value="{{ $item->tanggal_rep }}" required/>
+                                                                <input type="date" required class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Pilih Tanggal..." value="{{ $item->tanggal_rep }}" required/>
                                                                 <!--end::Datepicker-->
                                                             </div>
                                                         </div>
@@ -353,7 +353,7 @@
                                                                 <!--end::Svg Icon-->
                                                                 <!--end::Icon-->
                                                                 <!--begin::Datepicker-->
-                                                                <input type="text" id="tanggalisi2" required class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" value="{{ $item->tanggal_upload }}" required/>
+                                                                <input type="date"  required class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Pilih Tanggal..." value="{{ $item->tanggal_upload }}" required/>
                                                                 <!--end::Datepicker-->
                                                             </div>
                                                             
@@ -526,7 +526,7 @@
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Nama Customer</label>
                             <select class="form-select form-select-solid" data-control="select2"
-                                data-hide-search="true" data-placeholder="Pilih Satuan Barang..."
+                                data-hide-search="true" data-placeholder="Pilih Nama Customer..."
                                 name="customer_id" required>
                                 <option selected value="">Pilih Satuan...</option>
                                 @foreach ($customer as $data)
@@ -551,14 +551,14 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" id="tanggalisi" required class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Select a date" required/>
+                                <input type="text" id="tanggalisi" required class="form-control form-control-solid ps-12" name="tanggal_rep" placeholder="Pilih Tanggal..." required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">No. Faktur Pajak</label>
                             <input type="text" class="form-control form-control-solid"
-                                placeholder="Masukkan No FakPajak..." name="no_fakpajak" required/>
+                                placeholder="Masukkan No Faktur Pajak..." name="no_fakpajak" required/>
                         </div>
                         <div class="col-md-6 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Tanggal Upload</label>
@@ -575,16 +575,16 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" id="tanggalisi2" required class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Select a date" required/>
+                                <input type="text" id="tanggalisi2" required class="form-control form-control-solid ps-12" name="tanggal_upload" placeholder="Pilih Tanggal..." required/>
                                 <!--end::Datepicker-->
                             </div>
                             
                         <!--end::Col-->
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
-                        <label class="required fs-6 fw-semibold mb-2">Keterangan</label>
+                        <label class="required fs-6 fw-semibold mb-2">Status</label>
                         <select class="form-select form-select-solid" data-control="select2"
-                            data-hide-search="true" data-placeholder="Pilih Keterangan..."
+                            data-hide-search="true" data-placeholder="Pilih Status..."
                             name="ket_rep" required>
                             <option selected value="">Pilih Status...</option>
                             <option value="Sudah Upload">Sudah Upload</option>

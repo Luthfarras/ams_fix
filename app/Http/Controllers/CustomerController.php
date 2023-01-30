@@ -156,12 +156,12 @@ class CustomerController extends Controller
     public function printCust()
     {
         // Mengambil seluruh data pada tabel Customer
-        $customer = Customer::all();
+        $customer = Customer::all()->sortBy('nama_customer');
 
         // PDF akan diload dengan membawa data yang sudah dideklarasikan
         $pdf = Pdf::loadView('print.custprint', ['customer' => $customer]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
-        return $pdf->setPaper('a4', 'potrait')->stream('Data Customer - '. Carbon::now(). '.pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Customer - '. Carbon::now(). '.pdf');
     }
 }

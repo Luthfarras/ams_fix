@@ -424,7 +424,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input id="tanggalisi" type="text" class="form-control form-control-solid ps-12" placeholder="Select a date" name="tanggal_dep" required/>
+                                <input id="tanggalisi" type="text" class="form-control form-control-solid ps-12" placeholder="Pilih Tanggal..." name="tanggal_dep" required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>
@@ -446,7 +446,7 @@
                         <!--begin::Col-->
                             <label class="required fs-6 fw-semibold mb-2">Foto</label>
                             <input type="file" class="form-control form-control-solid"
-                                placeholder="Masukkan Foto..." name="foto_dep" required/>
+                                placeholder="Masukkan Foto..." name="foto_dep"/>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->

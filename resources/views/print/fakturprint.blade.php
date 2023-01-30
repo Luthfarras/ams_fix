@@ -114,7 +114,8 @@
             margin: 3px;
             margin-top: 0%;
             border-style: double;
-            margin-right: 20%
+            margin-right: 20%;
+            margin-left: -10px;
         }
 
         .pinggir {
@@ -152,7 +153,7 @@
             </div>
         </div>
 
-        <div class="h6" style="margin-top: -2%; margin-bottom: -1%; margin-left:1%;">
+        <div class="h6" style="margin-top: -2%; margin-bottom: -1%; margin-left:-1px;">
             @foreach ($kodenama as $item)
                 <p>Nomor Faktur : {{ $item->kode_faktur }}</p>
             @endforeach
@@ -186,7 +187,7 @@
             </table>
             <div class="row">
                 <div class="col left">
-                    Terbilang :
+                    <p style="margin-bottom: -3%; margin-left:-10px">Terbilang :</p> 
                     <br>
                         @php
                             function penyebut($nilai) {
@@ -195,7 +196,7 @@
                                 $temp = "";
                                 if ($nilai < 12) {
                                     $temp = " ". $huruf[$nilai];
-                                } else if ($nilai <20) {
+                                } else if ($nilai < 20) {
                                     $temp = penyebut($nilai - 10). " belas";
                                 } else if ($nilai < 100) {
                                     $temp = penyebut($nilai/10)." puluh". penyebut($nilai % 10);
@@ -210,9 +211,9 @@
                                 } else if ($nilai < 1000000000) {
                                     $temp = penyebut($nilai/1000000) . " juta" . penyebut($nilai % 1000000);
                                 } else if ($nilai < 1000000000000) {
-                                    $temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
+                                    $temp = penyebut($nilai/1000000000) . " miliar" . penyebut(fmod($nilai,1000000000));
                                 } else if ($nilai < 1000000000000000) {
-                                    $temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
+                                    $temp = penyebut($nilai/1000000000000) . " triliun" . penyebut(fmod($nilai,1000000000000));
                                 }     
                                 return $temp;
                             }
@@ -241,11 +242,11 @@
                             <p class="final"> {{ number_format($item->ppn, 0, ',', '.')  }}</p></li>
                         @endif
                         @if (!$item->pph == 0)
-                        <li class="hide">PPH 
+                        <li class="hide">PPH 1.5%
                             <p class="final"><{{ number_format($item->pph, 0, ',', '.')  }}</p></li>
                         @endif
                         <li class="hide" style="font-family:'Letter Gothic Std Bold';">Total Harga 
-                            <p class="final" style="font-family:'Letter Gothic Std Bold';">{{ number_format($item->total_pp, 0, ',', '.') }}</p</li>
+                            <p class="final" style="font-family:'Letter Gothic Std Bold';">Rp {{ number_format($item->total_pp, 0, ',', '.') }}</p</li>
                     </ul>
                     @endforeach
                 </div>

@@ -133,6 +133,7 @@
                                         @else
                                         <a href="#" class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Tambahkan Detail Profil</a>
                                         @endif
+                                        <a href="#" class="btn btn-sm btn-danger me-2" data-bs-toggle="modal" data-bs-target="#gantipassword{{ Auth::user()->id }}">Ganti Password</a>
                                     </div>
                                     <!--end::Actions-->
                                 </div>
@@ -320,6 +321,73 @@
     <!--end::Modal - New Target-->
 @endforeach
 
+<div class="modal fade" id="gantipassword{{ Auth::user()->id }}" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                <form id="kt_modal_new_target_form" class="form" action="profil/{{ Auth::user()->id }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Ubah Password</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-muted fw-semibold fs-5">Sesuaikan dengan data yang dibutuhkan
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span class="required">Ubah Password</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Sesuaikan Isi password"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="password" class="form-control form-control-solid" placeholder="Masukkan Password Anda..." name="password" required/>
+                    </div>
+                    <!--end::Input group-->
+                    <div class="text-center">
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end:Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
 <!--begin::Modal - New Target-->
 <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
@@ -417,7 +485,7 @@
                                 <!--end::Svg Icon-->
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
-                                <input type="text" id="due_date" class="form-control form-control-solid ps-12" name="tanggal_lahir" placeholder="Select a date" required/>
+                                <input type="text" id="tanggalisi" class="form-control form-control-solid ps-12" name="tanggal_lahir" placeholder="Select a date" required/>
                                 <!--end::Datepicker-->
                             </div>
                         </div>

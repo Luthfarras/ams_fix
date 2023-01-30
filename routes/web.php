@@ -45,6 +45,7 @@ Route::middleware(['auth', 'Owner'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('home', [HomeController::class, 'index']);
     Route::get('profil', [DetailProfilController::class, 'index']);
+    Route::post('profil/{pengguna}', [UserController::class, 'gantiPassword']);
     Route::resource('barang', BarangController::class);
     Route::resource('distributor', DistributorController::class);
     Route::resource('customer', CustomerController::class);
@@ -57,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('detailprofil', DetailProfilController::class);
     Route::resource('satuan', SatuanController::class);
     Route::resource('notes', NotesController::class);
+
     
     // DELETE
     // Route::get('barang/{barang}', [BarangController::class, 'destroy']);

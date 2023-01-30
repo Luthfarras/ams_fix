@@ -34,6 +34,9 @@
             border-radius: 6px;
             font-weight: bold;
         }
+        .text-warna {
+            color: red;
+        }
     </style>
 </head>
 

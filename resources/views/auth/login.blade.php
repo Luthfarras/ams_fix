@@ -95,7 +95,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                               		@enderror
 									<!--end::Password-->
 								</div>
 								<!--end::Input group=-->

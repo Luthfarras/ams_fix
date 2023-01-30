@@ -36,6 +36,10 @@
             border-radius: 6px;
             font-weight: bold;
         }
+
+        .text-warna {
+            color: red;
+        }
     </style>
 </head>
 
@@ -48,10 +52,10 @@
                     setlocale(LC_ALL, 'IND');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
-                 Dicetak : <span class="badge-blue">{{ $data }}</span>
+                 Dicetak pada : <span class="text-warna">{{ $data }}</span>
             </p>
         </header>
-        <table class="table">
+        <table class="table" style="width: 100%">
             <thead>
                 <th>No</th>
                 <th>Kode Customer</th>
