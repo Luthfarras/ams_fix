@@ -131,21 +131,28 @@ class PenjualanController extends Controller
 
     public function printPenjualan($id)
     {
-        // Mengambil seluruh data yang ada dalam tabel Penjualan
-        $penjualan = Penjualan::where(DB::raw('YEAR(tanggal_kirim)'), $id)->get()->sortBy('tanggal_kirim');
-
-        $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->get();
-
-        // Menghitung jumlah Status Lunas
-        $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->count();
-
-        // Menghitung jumlah Status Belum Lunas
-        $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->count();
-
-        // Menjumlahkan tabel penjualan pada kolom harga jumlah
-        $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
-        
-        $pertahun = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->sum('jumlah');
+        if ($id == 0) {
+            $penjualan = Penjualan::all()->sortBy('tanggal_kirim');
+            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
+            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
+            $pertahun = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+            $year = DB::table('penjualans')->get();
+        }else {
+            // Mengambil seluruh data yang ada dalam tabel Penjualan
+            $penjualan = Penjualan::where(DB::raw('YEAR(tanggal_kirim)'), $id)->get()->sortBy('tanggal_kirim');
+    
+            $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->get();
+    
+            // Menghitung jumlah Status Lunas
+            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->count();
+    
+            // Menghitung jumlah Status Belum Lunas
+            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->count();
+    
+            // Menjumlahkan tabel penjualan pada kolom harga jumlah
+            
+            $pertahun = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->sum('jumlah');
+        }
 
         foreach($year as $item){
             for ($i=1; $i <= 12 ; $i++) { 
@@ -157,24 +164,34 @@ class PenjualanController extends Controller
             $result[$bulan] += $dt->jumlah;
         }
 
+        foreach($penjualan as $item){
+            for ($i=1; $i <= 12 ; $i++) { 
+                $hasil[$i] = 0;
+            }
+        }
+        foreach($penjualan as $dt){
+            $bulan = date('n', strtotime($dt->tanggal_kirim));
+            $hasil[$bulan] += $dt->jumlah;
+        }
+
+
+
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
-        if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists()) {
+        if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists() || $id == 0) {
             $pdf = Pdf::loadView('print.penjualanprint', [
             'penjualan' => $penjualan, 
             'lunas' => $lunas, 
             'belum' => $belum, 
-            'jumlah' => $jumlah, 
             'pertahun' => $pertahun,
             'id' => $id,
             'result' => $result,
+            'hasil' => $hasil,
         ]);
-           
         } else {
             $pdf = Pdf::loadView('print.penjualanprint', [
                 'penjualan' => $penjualan, 
                 'lunas' => $lunas, 
                 'belum' => $belum, 
-                'jumlah' => $jumlah, 
                 'pertahun' => $pertahun,
                 'id' => $id,
             ]);

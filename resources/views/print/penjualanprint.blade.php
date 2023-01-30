@@ -63,7 +63,7 @@
 </head>
 
 <body>
-    @if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists())
+    @if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists() || $id == 0)
         <div class="container">
             <header>
                 <h1 class="text-center">Data Penjualan</h1>
@@ -126,7 +126,7 @@
             </table>
         </div>
         <div class="page-break">
-            <h1 class="text-center">Data Penjualan Tahunan {{ $id }}</h1>
+            <h1 class="text-center">Data Penjualan Tahunan @if (!$id == 0) {{ $id }} @endif</h1>
             <table class="table table-bordered">
                 <thead>
                     <th>Bulan</th>
@@ -134,15 +134,21 @@
                 </thead>
                 <tbody>
                     @for ($i = 1; $i <= 12; $i++)
-                            @php
-                                setlocale(LC_ALL, 'IND');
-                                $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
-                            @endphp        
+                        @php
+                            setlocale(LC_ALL, 'IND');
+                            $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
+                        @endphp        
                         <tr>
                             <td>{{ $month }}</td>
-                            <td class="fw-bold">Rp {{ number_format($result[$i], 0, ',', '.') }}</td>
+                            <td class="fw-bold">
+                                @if (!$id == 0)
+                                Rp {{ number_format($result[$i], 0, ',', '.') }}
+                                @else
+                                Rp {{ number_format($hasil[$i], 0, ',', '.') }}
+                                @endif
+                            </td>
                         </tr>
-                        @endfor
+                    @endfor
                 </tbody>
                 <tfoot>
                     <th>Jumlah</th>
