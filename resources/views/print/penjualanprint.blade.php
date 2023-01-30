@@ -125,23 +125,22 @@
         <h1 class="text-center">Data Penjualan Tahunan</h1>
         <table class="table table-bordered">
             <thead>
-                <th class="nopenj">No</th>
                 <th>Bulan</th>
                 <th class="cust">Total</th>
             </thead>
             <tbody>
-                @foreach ($penjualan as $item)
+                @for ($i = 1; $i <= 12; $i++)
+                    @foreach ($penjualan as $item)
+                        @php
+                            $bulan = date('n', strtotime($item->tanggal_kirim));
+                            $month = date('F', mktime(0, 0, 0, $i, 10)); 
+                        @endphp        
+                    @endforeach
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->kode }}</td>
-                        <td>
-                            @php
-                                $bulan = date('n', strtotime($item->tanggal_kirim));
-                            @endphp
-                            {{ $result[$bulan] }}
-                        </td>
+                        <td>{{ $month }}</td>
+                        <td class="fw-bold">{{ $result[$bulan] }}</td>
                     </tr>
-                @endforeach
+                    @endfor
             </tbody>
         </table>
     </div>

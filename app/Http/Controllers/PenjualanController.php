@@ -143,6 +143,8 @@ class PenjualanController extends Controller
         // Menjumlahkan tabel penjualan pada kolom harga jumlah
         $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
 
+        // $januari = DB::table('penjualans')->select('tanggal_kirim')->where('tanggal_kirim', '<=', Carbon::createFromDate(2023, 1, 31))->sum('jumlah');
+
         foreach($penjualan as $item){
             for ($i=1; $i <= 12 ; $i++) { 
                 $result[$i] = 0;
@@ -155,7 +157,15 @@ class PenjualanController extends Controller
 
 
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
-        $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan, 'lunas' => $lunas, 'belum' => $belum, 'jumlah' => $jumlah, 'result' => $result]);
+        $pdf = Pdf::loadView('print.penjualanprint', [
+        'penjualan' => $penjualan, 
+        'lunas' => $lunas, 
+        'belum' => $belum, 
+        'jumlah' => $jumlah, 
+        'result' => $result,
+        // 'januari' => $januari,
+        'bulan' => $bulan,
+    ]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
