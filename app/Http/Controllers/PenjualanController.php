@@ -134,27 +134,25 @@ class PenjualanController extends Controller
         // Mengambil seluruh data yang ada dalam tabel Penjualan
         $penjualan = Penjualan::all();
 
-                // Menghitung jumlah Status Lunas
-                $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
+        // Menghitung jumlah Status Lunas
+        $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
 
-                // Menghitung jumlah Status Belum Lunas
-                $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
-        
-                // Menjumlahkan tabel penjualan pada kolom harga jumlah
-                $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+        // Menghitung jumlah Status Belum Lunas
+        $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
 
-                foreach($penjualan as $item){
-                    for ($i=1; $i <= 12 ; $i++) { 
-                        $result[$i] = 0;
-                    }
-                }
-        
-                foreach($penjualan as $dt){
-                    $bulan = date('n', strtotime($dt->tanggal_kirim));
-                    $result[$bulan] += $dt->jumlah;
-                }
-        
-        
+        // Menjumlahkan tabel penjualan pada kolom harga jumlah
+        $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+
+        foreach($penjualan as $item){
+            for ($i=1; $i <= 12 ; $i++) { 
+                $result[$i] = 0;
+            }
+        }
+        foreach($penjualan as $dt){
+            $bulan = date('n', strtotime($dt->tanggal_kirim));
+            $result[$bulan] += $dt->jumlah;
+        }
+
 
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan, 'lunas' => $lunas, 'belum' => $belum, 'jumlah' => $jumlah, 'result' => $result]);

@@ -138,15 +138,9 @@
                             @php
                                 $bulan = date('n', strtotime($item->tanggal_kirim));
                             @endphp
-                            {{ $jumlah[$bulan] }}
+                            {{ $result[$bulan] }}
                         </td>
                     </tr>
-                    {{-- <tr>
-
-                        @for ($i = 1; $i <= 12; $i++)
-                        <td>{{ $jumlah[$i] }}</td>
-                        @endfor
-                    </tr> --}}
                 @endforeach
             </tbody>
         </table>
