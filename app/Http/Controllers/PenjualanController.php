@@ -134,8 +134,19 @@ class PenjualanController extends Controller
         // Mengambil seluruh data yang ada dalam tabel Penjualan
         $penjualan = Penjualan::all();
 
+        foreach($penjualan as $item){
+            for ($i=1; $i <= 12 ; $i++) { 
+                $result[$i] = 0;
+            }
+        }
+
+        foreach($penjualan as $dt){
+            $bulan = date('n', strtotime($dt->tanggal_kirim));
+            $result[$bulan] += $dt->jumlah;
+        }
+
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
-        $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan]);
+        $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan, 'jumlah' => $result]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
