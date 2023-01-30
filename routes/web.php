@@ -92,7 +92,7 @@ Route::middleware(['auth'])->group(function () {
         // Menu
         Route::get('printsetoran', [SetoranController::class, 'printSetoran']);
         Route::get('printstok', [StokController::class, 'printStok']);
-        Route::get('printpenjualan', [PenjualanController::class, 'printPenjualan']);
+        Route::get('printpenjualan/{id}', [PenjualanController::class, 'printPenjualan']);
         Route::get('printpajak', [PajakController::class, 'printPajak']);
         Route::get('printfaktur/{id}', [FakturController::class, 'printFaktur']);
     

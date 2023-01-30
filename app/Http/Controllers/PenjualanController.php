@@ -129,10 +129,11 @@ class PenjualanController extends Controller
         return redirect('penjualan');
     }
 
-    public function printPenjualan(Request $request)
+    public function printPenjualan($id)
     {
         // Mengambil seluruh data yang ada dalam tabel Penjualan
         $penjualan = Penjualan::all();
+        $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->get();
 
         // Menghitung jumlah Status Lunas
         $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
@@ -143,16 +144,12 @@ class PenjualanController extends Controller
         // Menjumlahkan tabel penjualan pada kolom harga jumlah
         $jumlah = DB::table('penjualans')->select('jumlah')->sum('jumlah');
 
-        // $januari = DB::table('penjualans')->select('tanggal_kirim')->where('tanggal_kirim', '<=', Carbon::createFromDate(2023, 1, 31))->sum('jumlah');
-
-        $tahunini = Penjualan::where('tanggal_keluar', '<=', Carbon::createFromDate(2023, 12, 31));
-
-        foreach($penjualan as $item){
+        foreach($year as $item){
             for ($i=1; $i <= 12 ; $i++) { 
                 $result[$i] = 0;
             }
         }
-        foreach($penjualan as $dt){
+        foreach($year as $dt){
             $bulan = date('n', strtotime($dt->tanggal_kirim));
             $result[$bulan] += $dt->jumlah;
         }
