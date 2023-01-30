@@ -137,7 +137,7 @@ class PenjualanController extends Controller
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.penjualanprint', ['penjualan' => $penjualan]);
         
-        // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
-        return $pdf->setPaper('a4', 'potrait')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
     }
 }

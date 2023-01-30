@@ -43,6 +43,9 @@
             border-radius: 6px;
             font-weight: bold;
         }
+        .page-break {
+            page-break-before: always;
+        }
     </style>
 </head>
 
@@ -80,13 +83,34 @@
                             $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
                         @endphp
                         <td>{{ $tgl }}</td>
-                        <td>{{ $item->jumlah }}</td>
+                        <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
                         <td>{{ $item->keterangan }}</td>
                         @if ($item->status == 'Belum Lunas')
                             <td>{{ $item->status }}</td>
                         @else 
                             <td>{{ $item->status }}</td>
                         @endif
+                    </tr>
+                    
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break">
+        <h1 class="text-center">Data Penjualan Tahunan</h1>
+        <table class="table table-bordered">
+            <thead>
+                <th class="nopenj">No</th>
+                <th>Bulan</th>
+                <th class="cust">Total</th>
+            </thead>
+            <tbody>
+                @foreach ($penjualan as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->kode }}</td>
+                        <td>{{ $item->kode }}</td>
                     </tr>
                     
                 @endforeach

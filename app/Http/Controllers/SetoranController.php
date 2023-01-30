@@ -68,7 +68,6 @@ class SetoranController extends Controller
             'tanggal_dep' => 'required',
             'jumlah_masuk' => 'required',
             'jumlah_keluar' => 'required',
-            'foto_dep' => 'required|mimes:jpeg,png,jpg',
             'ket_dep' => 'required',
         ]);
 
