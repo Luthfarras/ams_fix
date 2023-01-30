@@ -77,7 +77,7 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-subscription-table-toolbar="base">
                                 <!--begin::Export-->
-                                <a href="#" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#cetakpenjualan">
+                                <a href="#" class="btn btn-warning me-2 dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                     <span class="svg-icon svg-icon-2">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,6 +87,14 @@
                                         </svg>
                                     </span>
                                 <!--end::Svg Icon-->Cetak Data</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    @foreach ($tahuns as $item)
+                                        @php
+                                            $year = date('Y', strtotime($item->tanggal_kirim));
+                                        @endphp
+                                    <li><a class="dropdown-item" href="#">{{ $year }}</a></li>
+                                    @endforeach
+                                </ul>
                                 <!--end::Export-->
                             </div>
                             <!--end::Toolbar-->
