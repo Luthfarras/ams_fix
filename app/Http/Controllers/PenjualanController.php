@@ -155,7 +155,6 @@ class PenjualanController extends Controller
             $result[$bulan] += $dt->jumlah;
         }
 
-
         // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
         $pdf = Pdf::loadView('print.penjualanprint', [
         'penjualan' => $penjualan, 
@@ -163,8 +162,6 @@ class PenjualanController extends Controller
         'belum' => $belum, 
         'jumlah' => $jumlah, 
         'result' => $result,
-        // 'januari' => $januari,
-        'bulan' => $bulan,
     ]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan

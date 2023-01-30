@@ -130,15 +130,12 @@
             </thead>
             <tbody>
                 @for ($i = 1; $i <= 12; $i++)
-                    @foreach ($penjualan as $item)
                         @php
-                            $bulan = date('n', strtotime($item->tanggal_kirim));
                             $month = date('F', mktime(0, 0, 0, $i, 10)); 
                         @endphp        
-                    @endforeach
                     <tr>
                         <td>{{ $month }}</td>
-                        <td class="fw-bold">{{ $result[$bulan] }}</td>
+                        <td class="fw-bold">{{ $result[$i] }}</td>
                     </tr>
                     @endfor
             </tbody>
