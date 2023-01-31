@@ -394,7 +394,7 @@
                                         <!--begin::Post-->
                                         <div class="mb-5">
                                             <!--begin::Text-->
-                                            <p class="text-gray-800 fw-normal mb-5">{{ $item->isi }}</p>
+                                            <pre class="text-gray-800 fw-normal mb-5" style="font-family:inherit;">{{ $item->isi }}</pre>
                                             <!--end::Text-->
 
                                             <!--begin::Toolbar-->

@@ -131,16 +131,31 @@ class PenjualanController extends Controller
 
     public function printPenjualan($id)
     {
+        // Parameter $id adalah Tahun yang di cari
+
+        // Jika Tahun bernilai 0
         if ($id == 0) {
+            // Menampilkan seluruh penjualan yang disortir sesuai kolom tanggal_kirim
             $penjualan = Penjualan::all()->sortBy('tanggal_kirim');
+
+            // Menghitung jumlah status Lunas
             $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
+
+             // Menghitung jumlah status Belum Lunas
             $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
+            
+            // Menjumlahkan tabel penjualan pada kolom harga jumlah
             $pertahun = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+
+            // Mengambil seluruh data penjualan
             $year = DB::table('penjualans')->get();
-        }else {
+        } 
+        // Selain itu jika Tahun ada
+        else {
             // Mengambil seluruh data yang ada dalam tabel Penjualan
             $penjualan = Penjualan::where(DB::raw('YEAR(tanggal_kirim)'), $id)->get()->sortBy('tanggal_kirim');
     
+            // Mengambil Data berdasarkan tahun yang dicocokkan didatabase dan parameter tahun
             $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->get();
     
             // Menghitung jumlah Status Lunas
@@ -150,44 +165,51 @@ class PenjualanController extends Controller
             $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->count();
     
             // Menjumlahkan tabel penjualan pada kolom harga jumlah
-            
             $pertahun = DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->sum('jumlah');
         }
 
+        // Pengulangan sebagai penampung nilai jumlah dengan variabel $year
         foreach($year as $item){
             for ($i=1; $i <= 12 ; $i++) { 
                 $result[$i] = 0;
             }
         }
+
+        // Menjumlahkan perbulan dengan pengulangan dengan variabel $year
         foreach($year as $dt){
             $bulan = date('n', strtotime($dt->tanggal_kirim));
             $result[$bulan] += $dt->jumlah;
         }
 
+        // Pengulangan sebagai penampung nilai jumlah dengan variabel $penjualan
         foreach($penjualan as $item){
             for ($i=1; $i <= 12 ; $i++) { 
                 $hasil[$i] = 0;
             }
         }
+
+         // Menjumlahkan perbulan dengan pengulangan dengan variabel $penjualan
         foreach($penjualan as $dt){
             $bulan = date('n', strtotime($dt->tanggal_kirim));
             $hasil[$bulan] += $dt->jumlah;
         }
 
 
-
-        // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
+        // Jika Tahun didatabase dan parameternya cocok dan ada ATAU tahunnya bernilai 0
         if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists() || $id == 0) {
-            $pdf = Pdf::loadView('print.penjualanprint', [
-            'penjualan' => $penjualan, 
-            'lunas' => $lunas, 
-            'belum' => $belum, 
-            'pertahun' => $pertahun,
-            'id' => $id,
-            'result' => $result,
-            'hasil' => $hasil,
-        ]);
-        } else {
+            // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
+                $pdf = Pdf::loadView('print.penjualanprint', [
+                'penjualan' => $penjualan, 
+                'lunas' => $lunas, 
+                'belum' => $belum, 
+                'pertahun' => $pertahun,
+                'id' => $id,
+                'result' => $result,
+                'hasil' => $hasil,
+            ]);
+        } 
+        // Sebaliknya jika tidak terdaftar
+        else {
             $pdf = Pdf::loadView('print.penjualanprint', [
                 'penjualan' => $penjualan, 
                 'lunas' => $lunas, 

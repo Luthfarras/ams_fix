@@ -124,7 +124,7 @@ class DetailProfilController extends Controller
         // Jika foto akan diganti
         if ($request->file('foto')) {   
             // Foto yang didalam database akan dihapus 
-            !is_null($detailprofil->image) && Storage::delete($detailprofil->foto);
+            Storage::delete($detailprofil->foto);
             
             // mengambil ekstensi dari foto yang diinput
             $extension = $request->file('foto')->getClientOriginalExtension();
