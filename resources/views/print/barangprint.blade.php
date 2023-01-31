@@ -50,7 +50,7 @@
                     setlocale(LC_ALL, 'IND');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
-                Dicetak : <span class="badge-blue">{{ $data }}</span>
+                Dicetak : <span class="text-warna">{{ $data }}</span>
             </p>
         </header>
         <table class="table table-bordered">
