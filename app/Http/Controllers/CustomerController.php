@@ -110,7 +110,7 @@ class CustomerController extends Controller
         // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_customer' => 'required',
-            'kode_customer' => 'required|unique:customers',
+            'kode_customer' => 'required',
             'telepon_customer' => 'required',
             'alamat_customer' => 'required',
         ]);

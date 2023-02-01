@@ -111,7 +111,7 @@ class DistributorController extends Controller
         // Membuat Validasi
         $validator = Validator::make($request->all(), [
             'nama_distributor' => 'required',
-            'kode_distributor' => 'required|unique:distributors',
+            'kode_distributor' => 'required',
             'telepon_distributor' => 'required',
             'alamat_distributor' => 'required',
         ]);

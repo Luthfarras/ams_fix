@@ -133,8 +133,8 @@ class BarangController extends Controller
     {
         // Membuat Validasi Data
         $validator = Validator::make($request->all(), [
-            'kode_barang' => 'required|unique:barangs',
-            'kode_harga' => 'required|unique:barangs',
+            'kode_barang' => 'required',
+            'kode_harga' => 'required',
             'nama_barang' => 'required',
             'harga_jual' => 'required',
             'qty_barang' => 'required',
