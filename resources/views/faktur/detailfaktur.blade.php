@@ -514,10 +514,7 @@ function harga(id){
             $(`#harga_barang`).children().remove()
             response.map((value) => { 
                 $('#harga_barang').val(value.harga_jual)
-                // $(`#harga_barang`).append($('<option>', {
-                //     value: value.id,
-                //     text: value.harga_jual
-                // }));
+             
             });
         }
     });

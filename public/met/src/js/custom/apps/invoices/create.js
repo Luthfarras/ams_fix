@@ -134,25 +134,6 @@ let KTAppInvoicesCreate = function () {
 		}
 	});
 
-	// function harga(id){
-	// 	$.ajax({
-	// 		type: "get",
-	// 		url: `/getbarang/${id}`,
-	// 		dataType: "json",
-	// 		success: function (response) {
-	// 			console.log(response);
-	// 			$(`#harga_barang`).children().remove()
-	// 			response.map((value) => { 
-	// 				$('#harga_barang').val(value.harga_jual)
-	// 				// $(`#harga_barang`).append($('<option>', {
-	// 				//     value: value.id,
-	// 				//     text: value.harga_jual
-	// 				// }));
-	// 			});
-				
-	// 		}
-	// 	});
-	// }
 
 	function bharga(id){
 		$.ajax({
@@ -173,23 +154,6 @@ let KTAppInvoicesCreate = function () {
 		});
 	}
 
-	// function hasil() {
-	// 	let stok = $('#stok_keluar').val()
-	// 	let hargabarang = $('#harga_barang').val()
-	// 	let diskon = $('#diskon').val()
-
-	// 	let total = hargabarang * stok
-
-	// 	$('#total').text(total);
-
-	// 	let sementara = parseInt(total) * (parseInt(diskon) / 100);
-	// 	let subtotal = parseInt(total) - sementara
-
-	// 	if (!isNaN(subtotal)) {
-	// 		$('#subtotal').val(subtotal);
-	// 		$('#sub').val(subtotal);
-	// 	}
-	// }
 
 	function bhasil() {
 		let stok = $('#s_keluar').val()

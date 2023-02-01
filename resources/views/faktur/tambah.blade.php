@@ -263,6 +263,7 @@
         <!--end::Content wrapper-->
     </div>
     <!--end:::Main-->
+
     <script>
         function nama(id) {
             $.ajax({
