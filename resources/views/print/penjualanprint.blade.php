@@ -127,6 +127,13 @@
         </div>
         <div class="page-break">
             <h1 class="text-center">Data Penjualan Tahunan @if (!$id == 0) {{ $id }} @endif</h1>
+            <p class="text-center">
+                @php
+                    setlocale(LC_ALL, 'IND');
+                    $data = strftime('%A, %d %B %Y');
+                @endphp
+                Dicetak : <span class="text-warna">{{ $data }}</span>
+            </p>
             <table class="table table-bordered">
                 <thead>
                     <th>Bulan</th>
