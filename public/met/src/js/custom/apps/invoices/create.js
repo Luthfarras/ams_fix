@@ -118,60 +118,8 @@ let KTAppInvoicesCreate = function () {
 	};
 }();
 
-	$.ajax({
-		type: "GET",
-		url: "/getharga",
-		dataType: "JSON",
-		success: function (response) {
-			response.map((value) => {
-				let item1 = $('.additem');
-				let brg = item1.length
-				$('#nama_barang').append($('<option>', {
-					value: value.id,
-					text: value.nama_barang
-				}));
-			})
-		}
-	});
+	
 
-
-	function bharga(id){
-		$.ajax({
-			type: "get",
-			url: `/getbarang/${id}`,
-			dataType: "json",
-			success: function (response) {
-				console.log(response);
-				$(`#h_barang`).children().remove()
-				response.map((value) => { 
-					$('#h_barang').val(value.harga_jual)
-					// $(`#harga_barang`).append($('<option>', {
-					//     value: value.id,
-					//     text: value.harga_jual
-					// }));
-				});
-			}
-		});
-	}
-
-
-	function bhasil() {
-		let stok = $('#s_keluar').val()
-		let hargabarang = $('#h_barang').val()
-		let diskon = $('#diskon').val()
-
-		let total = hargabarang * stok
-
-		$('#ttotal').text(total);
-
-		let sementara = parseInt(total) * (parseInt(diskon) / 100);
-		let subtotal = parseInt(total) - sementara
-
-		if (!isNaN(subtotal)) {
-			$('#subtotal').val(subtotal);
-			$('#sub').val(subtotal);
-		}
-	}
 
 	$('#cloneDiv').click(function(){
 
@@ -194,3 +142,6 @@ let KTAppInvoicesCreate = function () {
 KTUtil.onDOMContentLoaded(function () {
     KTAppInvoicesCreate.init();
 });
+
+
+

@@ -429,6 +429,9 @@
                             data-hide-search="true" data-placeholder="Pilih Barang..."
                             name="barang_id" id="nama_barang" onchange="harga(value)" required>
                             <option selected value="">Pilih Barang...</option>
+                            @foreach ($barang as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="row g-9 mb-8">
@@ -490,19 +493,7 @@
 </div>
 
 <script>
-    $.ajax({
-        type: "GET",
-        url: "/getharga",
-        dataType: "JSON",
-        success: function (response) {
-            response.map((value) => {
-                $('#nama_barang').append($('<option>', {
-                    value: value.id,
-                    text: value.nama_barang
-                }));
-            })
-        }
-    });
+    
 
 function harga(id){
     $.ajax({
