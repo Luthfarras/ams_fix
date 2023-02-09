@@ -129,7 +129,7 @@
             <h1 class="text-center">Data Penjualan Tahunan @if (!$id == 0) {{ $id }} @endif</h1>
             <p class="text-center">
                 @php
-                    setlocale(LC_ALL, 'IND');
+                    setlocale(LC_ALL, 'id-ID', 'id_ID');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
                 Dicetak : <span class="text-warna">{{ $data }}</span>
@@ -142,7 +142,7 @@
                 <tbody>
                     @for ($i = 1; $i <= 12; $i++)
                         @php
-                            setlocale(LC_ALL, 'IND');
+                            setlocale(LC_ALL, 'id-ID', 'id_ID');
                             $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
                         @endphp        
                         <tr>

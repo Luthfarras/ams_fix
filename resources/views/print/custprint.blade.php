@@ -49,7 +49,7 @@
             <h1 class="text-center">Data Customer</h1>
             <p class="text-center">
                 @php
-                    setlocale(LC_ALL, 'IND');
+                    setlocale(LC_ALL, 'id-ID', 'id_ID');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
                  Dicetak pada : <span class="text-warna">{{ $data }}</span>

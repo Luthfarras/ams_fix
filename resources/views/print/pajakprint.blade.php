@@ -46,7 +46,7 @@
             <h1 class="text-center">Data Laporan Faktur Pajak</h1>
             <p class="text-center">
                 @php
-                    setlocale(LC_ALL, 'IND');
+                    setlocale(LC_ALL, 'id-ID', 'id_ID');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
                  Dicetak : <span class="text-warna">{{ $data }}</span>
@@ -69,7 +69,7 @@
                         <td>{{ $item->kode_laporan }}</td>
                         <td>{{ $item->customer->nama_customer }}</td>
                         @php
-                            setlocale(LC_ALL, 'IND');
+                            setlocale(LC_ALL, 'id-ID', 'id_ID');
                             $tanggal = date_create($item->tanggal_rep);
                             $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
                         @endphp

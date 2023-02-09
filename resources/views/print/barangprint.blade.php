@@ -47,7 +47,7 @@
             <h1 class="text-center">Data Barang</h1>
             <p class="text-center" id="tanggal">
                 @php
-                    setlocale(LC_ALL, 'IND');
+                    setlocale(LC_ALL, 'id-ID', 'id_ID');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
                 Dicetak : <span class="text-warna">{{ $data }}</span>
@@ -81,7 +81,7 @@
                         <td>{{ number_format($item->harga_netto,0,",",".") }}</td>
                         <td>{{ $item->ket_barang }}</td>
                         @php
-                            setlocale(LC_ALL, 'IND');
+                            setlocale(LC_ALL, 'id-ID', 'id_ID');
                             $tanggal = date_create($item->tgl_kadaluarsa);
                             $tgl =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d-%m-%Y');
                         @endphp

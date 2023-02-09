@@ -147,7 +147,7 @@
                                     <!--end::Status=-->
                                     <!--begin::Billing=-->
                                     @php
-                                        setlocale(LC_ALL, 'IND');
+                                        setlocale(LC_ALL, 'id-ID', 'id_ID');
                                         $tanggal = date_create($item->tanggal_keluar);
                                         $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
                                     @endphp

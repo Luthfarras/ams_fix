@@ -151,7 +151,7 @@
                                                 <div class="badge badge-light">{{ $item->customer->nama_customer }}</div>
                                             </td>
                                             @php
-                                                setlocale(LC_ALL, 'IND');
+                                                setlocale(LC_ALL, 'id-ID', 'id_ID');
                                                 $tanggal = date_create($item->tanggal_kirim);
                                                 $data = \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
                                             @endphp
