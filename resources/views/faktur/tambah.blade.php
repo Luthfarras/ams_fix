@@ -164,8 +164,7 @@
                                                     <tbody>
                                                         <tr class="border-bottom border-bottom-dashed"
                                                             data-kt-element="item" id="barang_barang">
-                                                            <td class="pe-7" id="barang_faktur">
-                                                            </td>
+                                                            <td class="barang_faktur pe-7"></td>
                                                             <td class="pe-7">
                                                                 <input type="text"
                                                                     class="form-control form-control-solid"
@@ -270,7 +269,6 @@
                 url: `/getname/${id}`,
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
                     $(`#nama_cust`).children().remove()
                     response.map((value) => {
                         $(`#cust_id`).val(value.customer_id)
@@ -284,7 +282,6 @@
                 url: `/getname/${id}`,
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
                     let hasil = 0;
                     response.map((value) => {
                         let total = value.subtotal
@@ -302,8 +299,9 @@
                 dataType: "json",
                 success: function (response) {
                     response.map((value) => {
-                        $('#barang_faktur').text(value)
+                        $('.barang_faktur').append('-' + value.nama_barang + '<br>');
                     })
+                    
                 }
             });
         }
