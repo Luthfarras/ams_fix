@@ -501,7 +501,6 @@ function harga(id){
         url: `/getbarang/${id}`,
         dataType: "json",
         success: function (response) {
-            console.log(response);
             $(`#harga_barang`).children().remove()
             response.map((value) => { 
                 $('#harga_barang').val(value.harga_jual)
