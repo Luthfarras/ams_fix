@@ -26,7 +26,7 @@ class BarangController extends Controller
         $barang = Barang::all();
 
         // Mengambil seluruh Data pada tabel Satuan
-        $satuan = Satuan::all()->sortBy('nama_satuan');
+        $satuan = DB::table('satuans')->select('id','nama_satuan')->get()->sortBy('nama_satuan');
 
         // Mengambil detail profil dengan user_id dengan ID yang sudah login
         $profil = DetailProfil::where('user_id', Auth::user()->id)->get();
@@ -68,7 +68,6 @@ class BarangController extends Controller
         // Membuat validasi Data
         $validator = Validator::make($request->all(), [
             'kode_barang' => 'required|unique:barangs',
-            'kode_harga' => 'required|unique:barangs',
             'nama_barang' => 'required',
             'harga_jual' => 'required',
             'qty_barang' => 'required',
@@ -78,7 +77,6 @@ class BarangController extends Controller
             'ket_barang' => 'required',
             'tgl_kadaluarsa' => 'required',
         ], [
-            'kode_harga.unique' => 'Kode Harga sudah ada',
             'kode_barang.unique' => 'Kode Barang sudah ada'
         ]);
 
@@ -134,7 +132,6 @@ class BarangController extends Controller
         // Membuat Validasi Data
         $validator = Validator::make($request->all(), [
             'kode_barang' => 'required',
-            'kode_harga' => 'required',
             'nama_barang' => 'required',
             'harga_jual' => 'required',
             'qty_barang' => 'required',

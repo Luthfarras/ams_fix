@@ -57,7 +57,6 @@
             <thead>
                 <th>No</th>
                 <th>Kode Barang</th>
-                <th>Kode Harga</th>
                 <th>Nama Barang</th>
                 <th>Harga Jual</th>
                 <th>Qty</th>
@@ -72,7 +71,6 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->kode_barang }}</td>
-                        <td>{{ $item->kode_harga }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ number_format($item->harga_jual,0,",",".") }}</td>
                         <td>{{ $item->qty_barang }}</td>
@@ -93,7 +91,6 @@
             <tfoot>
                 <th colspan="4">TOTAL</th>
                 <th>{{ number_format($jumlahjual,0,",",".") }}</th>
-                <th></th>
                 <th>{{ $jumlahstok }}</th>
                 <th></th>
                 <th>{{ number_format($jumlahnetto,0,",",".") }}</th>
