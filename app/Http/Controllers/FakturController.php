@@ -222,16 +222,16 @@ class FakturController extends Controller
         */
         $data = DetailFaktur::join('barangs', 'barangs.id', 'detail_fakturs.barang_id')->where('detail_fakturs.kode_faktur', $id)->get();
       
-        // Sebagai Variabel penampung
-        $li = '';
+        // // Sebagai Variabel penampung
+        // $li = '';
 
-        // Setelah itu data akan diulang
-        foreach ($data as $item) {
-            $li .= $item->nama_barang. ', ';
-        }
+        // // Setelah itu data akan diulang
+        // foreach ($data as $item) {
+        //     $li .= $item->nama_barang. ', ';
+        // }
       
         // Data akan ditampilkan dalam bentuk respon dan bentuk json. Data yang ditampilkan berupa Array
-        return response()->json([$li]);
+        return response()->json($data);
     }
 
     public function printFaktur($id)

@@ -129,7 +129,7 @@
                                     <td>{{ $item->distributor->nama_distributor }}</td>
                                     <td>{{ $item->stok_masuk }}</td>
                                     @php
-                                        setlocale(LC_ALL, 'IND');
+                                        setlocale(LC_ALL, 'id-ID', 'id_ID');
                                         $tanggal = date_create($item->tanggal_masuk);
                                         $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
                                     @endphp

@@ -46,7 +46,7 @@
             <h1 class="text-center">Data Barang</h1>
             <p class="text-center" id="tanggal">
                 @php
-                    setlocale(LC_ALL, 'IND');
+                    setlocale(LC_ALL, 'id-ID', 'id_ID');
                     $data = strftime('%A, %d %B %Y');
                 @endphp
                 Dicetak : <span class="badge-blue">{{ $data }}</span>

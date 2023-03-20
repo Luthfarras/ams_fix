@@ -174,7 +174,7 @@
                                         <td>Rp. {{ number_format("$item->harga_netto",0,",",".") }}</td>
                                         <td>{{ $item->ket_barang }}</td>
                                         @php
-                                            setlocale(LC_ALL, 'IND');
+                                            setlocale(LC_ALL, 'id-ID', 'id_ID');
                                             $tanggal = date_create($item->tgl_kadaluarsa);
                                             $data =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%d %B %Y');
                                         @endphp
