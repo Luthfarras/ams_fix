@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DistributorExport;
+use App\Imports\DistributorImport;
 use Carbon\Carbon;
 use App\Models\Distributor;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -165,5 +168,21 @@ class DistributorController extends Controller
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Potrait dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Distributor - '. Carbon::now(). '.pdf');
+    }
+
+    public function distributorExport()
+    {
+        return Excel::download(new DistributorExport, 'DistributorExport.xlsx');
+    }
+
+    public function distributorImport(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new DistributorImport, $file);
+
+        Alert::toast('Berhasil Mengimport Data Satuan', 'success');
+
+        return redirect('distributor');
     }
 }

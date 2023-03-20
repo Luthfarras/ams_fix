@@ -159,8 +159,7 @@
                                     <!--begin::Action=-->
                                     <td class="text-end">
                                         <div class="d-flex justify-content-end flex-shrink-0">
-                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal"
-                                            data-bs-target="#cetakfaktur{{ $item->id }}">
+                                            <a href="/printfaktur/{{ $item->kode_faktur }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,60 +187,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
-                                <!--begin::Modal - New Target-->
-                                <div class="modal fade" id="cetakfaktur{{ $item->id }}" tabindex="-1" aria-hidden="true">
-                                    <!--begin::Modal dialog-->
-                                    <div class="modal-dialog modal-lg modal-dialog-centered ">
-                                        <!--begin::Modal content-->
-                                        <div class="modal-content rounded">
-                                            <!--begin::Modal header-->
-                                            <div class="modal-header pb-0 border-0 justify-content-end">
-                                                <!--begin::Close-->
-                                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                                    <span class="svg-icon svg-icon-1">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </div>
-                                                <!--end::Close-->
-                                            </div>
-                                            <!--begin::Modal header-->
-                                            <div class="modal-header">
-                                                <div class="p">
-                                                    Tekan <span class="badge bg-info"><i class="fa-solid fa-download fa-inverse"></i></span> untuk mengunduh Data
-                                                </div>
-                                                <div class="p">
-                                                    Tekan <span class="badge bg-success"><i class="fa-solid fa-print fa-inverse"></i></span> untuk mencetak data
-                                                </div>
-                                            </div>
-                                            <!--begin::Modal body-->
-                                            <div class="modal-body">
-                                                <div class="ratio" style="--bs-aspect-ratio: 100%;">
-                                                    <iframe src="/printfaktur/{{ $item->kode_faktur }}" title="Print Data Faktur"></iframe>
-                                                </div>
-                                                <div class="h4 mt-3 text-center">
-                                                    Pastikan data sudah benar. Mohon diperiksa kembali sebelum dicetak
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                
-                                            </div>
-                                            <!--end::Modal body-->
-                                        </div>
-                                        <!--end::Modal content-->
-                                    </div>
-                                    <!--end::Modal dialog-->
-                                            </div>
-                                            <!--end::Content container-->
-                                        </div>
-                                        <!--end::Content-->
-                                    </div>
-                                    <!--end::Content wrapper-->
-                                </div>
+                                
                                 <!--begin::Modal - New Target-->
                                 <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-hidden="true">
                                     <!--begin::Modal dialog-->

@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Customer;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use App\Exports\CustomerExport;
+use App\Imports\CustomerImport;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -163,5 +166,21 @@ class CustomerController extends Controller
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Customer - '. Carbon::now(). '.pdf');
+    }
+
+    public function customerExport()
+    {
+        return Excel::download(new CustomerExport, 'CustomerExport.xlsx');
+    }
+
+    public function customerImport(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new CustomerImport, $file);
+
+        Alert::toast('Berhasil Mengimport Data Customer', 'success');
+
+        return redirect('customer');
     }
 }

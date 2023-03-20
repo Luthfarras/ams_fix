@@ -59,6 +59,23 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('satuan', SatuanController::class);
     Route::resource('notes', NotesController::class);
 
+    // EXPORT & IMPORT
+        // BARANG
+        Route::get('barangexport', [BarangController::class, 'barangExport']);
+        Route::post('barangimport', [BarangController::class, 'barangImport'])->name('barangimport');
+
+        // SATUAN
+        Route::get('satuanexport', [SatuanController::class, 'satuanExport']);
+        Route::post('satuanimport', [SatuanController::class, 'satuanImport'])->name('satuanimport');
+
+        // CUSTOMER
+        Route::get('customerexport', [CustomerController::class, 'customerExport']);
+        Route::post('customerimport', [CustomerController::class, 'customerImport'])->name('customerimport');
+
+        // DISTRIBUTOR
+        Route::get('distributorexport', [DistributorController::class, 'distributorExport']);
+        Route::post('distributorimport', [DistributorController::class, 'distributorImport'])->name('distributorimport');
+
     
     // DELETE
     // Route::get('barang/{barang}', [BarangController::class, 'destroy']);

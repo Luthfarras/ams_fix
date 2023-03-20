@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SatuanExport;
+use App\Imports\SatuanImport;
 use App\Models\Satuan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -147,6 +150,22 @@ class SatuanController extends Controller
         Alert::toast('Berhasil Menghapus Data Satuan', 'success');
 
         // Dialihkan ke Halaman Satuan
+        return redirect('satuan');
+    }
+
+    public function satuanExport()
+    {
+        return Excel::download(new SatuanExport, 'SatuanExport.xlsx');
+    }
+
+    public function satuanImport(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new SatuanImport, $file);
+
+        Alert::toast('Berhasil Mengimport Data Satuan', 'success');
+
         return redirect('satuan');
     }
 }

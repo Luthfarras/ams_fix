@@ -7,9 +7,12 @@ use App\Models\Barang;
 use App\Models\Satuan;
 use App\Models\DetailProfil;
 use Illuminate\Http\Request;
+use App\Exports\BarangExport;
+use App\Imports\BarangImport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -197,5 +200,21 @@ class BarangController extends Controller
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'landscape')->stream('Data Barang - '. Carbon::now(). '.pdf');
+    }
+
+    public function barangExport()
+    {
+        return Excel::download(new BarangExport, 'BarangExport.xlsx');
+    }
+
+    public function barangImport(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new BarangImport, $file);
+
+        Alert::toast('Berhasil Mengimport Data Barang', 'success');
+
+        return redirect('barang');
     }
 }
