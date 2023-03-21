@@ -3,23 +3,35 @@
 namespace App\Imports;
 
 use App\Models\Customer;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CustomerImport implements ToModel, WithHeadingRow
+class CustomerImport implements ToCollection, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+  
+    public function collection(Collection $rows)
     {
-        return new Customer([
-            'nama_customer' => $row['nama_customer'],
-            'kode_customer' => $row['kode_customer'],
-            'telepon_customer' => $row['telepon_customer'],
-            'alamat_customer' => $row['alamat_customer'],
-        ]);
+        foreach ($rows as $row) {
+            $customer = Customer::where('kode_customer', $row['kode_customer'])->exists();
+            $cari = Customer::where('kode_customer', $row['kode_customer'])->first();
+
+            if ($customer == null) {
+                Customer::create([
+                    'kode_customer' => $row['kode_customer'],
+                    'nama_customer' => $row['nama_customer'],
+                    'telepon_customer' => $row['telepon_customer'],
+                    'alamat_customer' => $row['alamat_customer'],
+                ]);
+            } elseif ($customer != null) {
+                $cari->update([
+                    'kode_customer' => $row['kode_customer'],
+                    'nama_customer' => $row['nama_customer'],
+                    'telepon_customer' => $row['telepon_customer'],
+                    'alamat_customer' => $row['alamat_customer'],
+                ]);
+            }
+        }
     }
+   
 }
